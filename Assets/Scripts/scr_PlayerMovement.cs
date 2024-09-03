@@ -68,6 +68,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool restricted;
 
+     [Header("Checking what you look at")]
+
+    public Camera Cam;
+    public GameObject lastHit;
+
+
+
 
     private void Start()
     {
@@ -88,7 +95,17 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         rb.drag = groundDrag;
 
+        Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(positionFacing, out hit))
+        {
+            lastHit = hit.transform.gameObject;
+
+        }
+
     }
+
+
 
     private void FixedUpdate()
     {
