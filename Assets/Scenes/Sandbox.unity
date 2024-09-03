@@ -516,7 +516,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 175532915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb291bf784ac3a04c82d6d5ff7078dc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9edd55fe861a85a419864801e5971de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 1911442774}
@@ -971,7 +971,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1342876908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d9468ebd480bc4181c5d5b46577e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d9a52cdd6cd5794d8cd5ffda52be6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 7
@@ -1363,10 +1363,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2060896008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967d087270f965443af9fcec590188ba, type: 3}
+  m_Script: {fileID: 11500000, guid: f7da07a22a0a34e4ab4cab6b66b51d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 400
+  sensX: 800
   sensY: 400
   orientation: {fileID: 1501051890}
   camHolder: {fileID: 175532916}
