@@ -738,6 +738,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c600ff2f44cb3e14489c5bc24bc7e83a, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d9468ebd480bc4181c5d5b46577e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d9468ebd480bc4181c5d5b46577e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 7
@@ -748,15 +750,25 @@ MonoBehaviour:
   groundDrag: 4
   crouchSpeed: 4
   crouchYScale: 1
+  walkSpeed: 0
+  sprintSpeed: 0
+  vaultSpeed: 0
+  speedIncreaseMultiplier: 0
+  slopeIncreaseMultiplier: 0
+  groundDrag: 0
+  crouchSpeed: 0
+  crouchYScale: 0
   sprintKey: 304
   crouchKey: 306
-  playerHeight: 2
+  playerHeight: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   grounded: 0
   maxSlopeAngle: 50
   orientation: {fileID: 1501051890}
+  maxSlopeAngle: 0
+  orientation: {fileID: 0}
   state: 0
   crouching: 0
   vaulting: 0
