@@ -72,7 +72,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool restricted;
 
-     [Header("Checking what you look at")]
+
 
     public Camera Cam;
     public GameObject lastHit;
@@ -86,6 +86,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb.freezeRotation = true;
 
         startYScale = transform.localScale.y;
+
+        
     }
 
     private void Update()
@@ -101,11 +103,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(positionFacing, out hit))
+        if (Physics.Raycast(positionFacing, out  hit))
         {
             lastHit = hit.transform.gameObject;
-
-        }
+            
+        }        
 
     }
 
