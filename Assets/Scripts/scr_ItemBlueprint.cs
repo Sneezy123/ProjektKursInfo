@@ -3,25 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+interface IInteractable
+{
+    public void Interact();
+}
+
 public class scr_ItemBlueprint : MonoBehaviour
 {
+
     public int itemID;
     private string itemName;
-    // Start is called before the first frame update
+
+    public Transform InteractorSource;
+    public float InteractRange = 100;
+
+    public PlayerMovementAdvanced playerscript;
+  
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        clicked();
-    }
-
-    static Boolean clicked()
-    {
-        return false;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(playerscript.lastHit.TryGetComponent(out IInteractable interactObj))
+            {
+                interactObj.Interact();
+            }
+        }
+  
 
     }
 
