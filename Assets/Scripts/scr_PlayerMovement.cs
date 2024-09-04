@@ -73,12 +73,21 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool restricted;
 
 
+
+    public Camera Cam;
+    public GameObject lastHit;
+
+
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
         startYScale = transform.localScale.y;
+
+        
     }
 
     private void Update()
@@ -92,7 +101,17 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         rb.drag = groundDrag;
 
+        Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(positionFacing, out  hit))
+        {
+            lastHit = hit.transform.gameObject;
+            
+        }        
+
     }
+
+
 
     private void FixedUpdate()
     {
