@@ -83,7 +83,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private Collider[] hitColliders;
     private float playerRadius = 1f;
 
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -98,7 +97,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // ground check
         hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround);
         grounded = 0 < hitColliders.Length;
-
 
         MyInput();
         SpeedControl();
