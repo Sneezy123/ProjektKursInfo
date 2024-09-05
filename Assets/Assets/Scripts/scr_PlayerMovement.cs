@@ -23,8 +23,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float slopeIncreaseMultiplier = 2.5f;
 
     public float groundDrag = 0f;
-    //timwarhiertest
-    //timwarhiertest
+
     [Header("Crouching")]
     public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.7f;
