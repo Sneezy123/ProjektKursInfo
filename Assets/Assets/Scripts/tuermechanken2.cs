@@ -16,12 +16,12 @@ public class tuermechanken2 : MonoBehaviour, IInteractable
     {
                 
 
-        if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0)){
+        if (!tueroffen){
 
             tuerAnim.Play("tueranimation",0,0.0f);
             tueroffen= true;
         }
-        else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
+        else
         {
            tuerAnim.Play("tuerSchliessenAnimation",0,0.0f);
             tueroffen= false;
