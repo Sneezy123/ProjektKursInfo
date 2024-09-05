@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 7
-  sprintSpeed: 10
+  sprintSpeed: 30
   vaultSpeed: 15
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
