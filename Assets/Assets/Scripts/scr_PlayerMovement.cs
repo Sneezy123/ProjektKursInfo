@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// ERROR: Assets/Scripts/scr_PlayerMovement.cs(4,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
 using TMPro;
+// ERROR: Assets/Scripts/scr_PlayerMovement.cs(5,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine.UI;
 
 
@@ -17,15 +19,15 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private float lastDesiredMoveSpeed;
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
-    public float vaultSpeed = 15f;
+    public float vaultSpeed = 10f;
 
-    public float speedIncreaseMultiplier = 1.5f;
-    public float slopeIncreaseMultiplier = 2.5f;
+    public float speedIncreaseMultiplier;
+    public float slopeIncreaseMultiplier;
 
     public float groundDrag = 0f;
-    //timwarhiertest
+//timwarhiertest
     [Header("Crouching")]
-    public float crouchSpeed = 3.5f;
+    public float crouchSpeed = 5f;
     public float crouchYScale = 0.7f;
     private float startYScale;
 
@@ -35,14 +37,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     [Header("Ground Check")]
     public float playerHeight = 2;
-    public LayerMask EnemyField;
-    public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
+    public LayerMask whatIsGround;
     public bool grounded;
 
     [Header("Slope Handling")]
-
-    public bool onSlope;
-    public float maxSlopeAngle = 50;
+    public float maxSlopeAngle;
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
@@ -64,7 +63,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         walking,
         sprinting,
         vaulting,
-        crouching
+        crouching,
+        sliding
     }
 
     public bool crouching;
@@ -95,7 +95,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void Update()
     {
         // ground check
-        hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround | EnemyField);
+        hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround);
         grounded = 0 < hitColliders.Length;
 
         MyInput();
@@ -112,8 +112,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
             lastHit = hit.transform.gameObject;
 
         }
-
-        onSlope = OnSlope();
 
     }
 
@@ -293,9 +291,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position + Vector3.up * playerHeight / 2, Vector3.down, out slopeHit))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.02f))
         {
-            Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down * 999f);
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
