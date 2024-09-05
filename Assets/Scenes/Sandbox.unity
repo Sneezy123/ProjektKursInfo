@@ -1107,11 +1107,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 7
   sprintSpeed: 10
-  vaultSpeed: 10
-  speedIncreaseMultiplier: 0
-  slopeIncreaseMultiplier: 0
+  vaultSpeed: 15
+  speedIncreaseMultiplier: 1.5
+  slopeIncreaseMultiplier: 2.5
   groundDrag: 0
-  crouchSpeed: 5
+  crouchSpeed: 3.5
   crouchYScale: 0.7
   sprintKey: 304
   crouchKey: 306

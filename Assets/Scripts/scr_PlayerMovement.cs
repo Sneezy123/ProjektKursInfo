@@ -80,9 +80,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Camera Cam;
     public GameObject lastHit;
 
-
     private Collider[] hitColliders;
     private float playerRadius = 1f;
+
 
     private void Start()
     {
@@ -99,6 +99,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround);
         grounded = 0 < hitColliders.Length;
 
+
         MyInput();
         SpeedControl();
         StateHandler();
@@ -107,6 +108,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         if (Physics.Raycast(positionFacing, out hit))
         {
             lastHit = hit.transform.gameObject;
