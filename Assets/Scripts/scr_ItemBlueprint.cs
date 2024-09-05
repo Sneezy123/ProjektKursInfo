@@ -14,7 +14,6 @@ public class scr_ItemBlueprint : MonoBehaviour
     public int itemID;
     private string itemName;
 
-    public Transform InteractorSource;
     public float InteractRange = 100;
 
     public PlayerMovementAdvanced playerscript;
