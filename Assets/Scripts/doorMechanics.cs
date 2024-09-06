@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tuermechanken2 : MonoBehaviour, IInteractable
+public class doorMechanics : MonoBehaviour, IInteractable
 {
     private Animator tuerAnim;
     private bool tueroffen = false;
@@ -19,12 +19,12 @@ public class tuermechanken2 : MonoBehaviour, IInteractable
         if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0)){
 
             tuerAnim.Play("tueranimation",0,0.0f);
-            tueroffen= true;
+            tueroffen = true;
         }
         else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
         {
            tuerAnim.Play("tuerSchliessenAnimation",0,0.0f);
-            tueroffen= false;
+            tueroffen = false;
 
         }
     }

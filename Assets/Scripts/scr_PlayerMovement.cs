@@ -19,15 +19,15 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private float lastDesiredMoveSpeed;
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
-    public float vaultSpeed = 10f;
+    public float vaultSpeed = 15f;
 
-    public float speedIncreaseMultiplier;
-    public float slopeIncreaseMultiplier;
+    public float speedIncreaseMultiplier = 1.5f;
+    public float slopeIncreaseMultiplier = 2.5f;
 
     public float groundDrag = 0f;
 //timwarhiertest
     [Header("Crouching")]
-    public float crouchSpeed = 5f;
+    public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.7f;
     private float startYScale;
 
@@ -37,10 +37,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     [Header("Ground Check")]
     public float playerHeight = 2;
-    public LayerMask whatIsGround;
+    public LayerMask whatIsGround = 64; // LayerMAsk 64: WhatIsGround
     public bool grounded;
 
     [Header("Slope Handling")]
+
+    public bool onSlope;
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
     private bool exitingSlope;
@@ -112,6 +114,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
             lastHit = hit.transform.gameObject;
 
         }
+
+        onSlope = OnSlope();
 
     }
 
@@ -291,8 +295,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.02f))
+        if (Physics.Raycast(transform.position + Vector3.up * playerHeight / 2, Vector3.down, out slopeHit))
         {
+            Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down*999f);
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
