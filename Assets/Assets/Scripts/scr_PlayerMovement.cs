@@ -23,7 +23,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float slopeIncreaseMultiplier = 2.5f;
 
     public float groundDrag = 0f;
-
+    //timwarhiertest
     [Header("Crouching")]
     public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.7f;
@@ -78,12 +78,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
 
     public Camera Cam;
+    public GameObject lastHit;
 
     private Collider[] hitColliders;
     private float playerRadius = 1f;
-
-    public RaycastHit hit;
-
 
     private void Start()
     {
@@ -107,10 +105,16 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb.drag = groundDrag;
 
         Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        Physics.Raycast(positionFacing, out hit);
+        if (Physics.Raycast(positionFacing, out hit))
+        {
+            lastHit = hit.transform.gameObject;
+
+        }
 
         onSlope = OnSlope();
+
     }
 
 
@@ -126,7 +130,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // start crouch
-        if (Input.GetKeyDown(crouchKey) && horizontalInput == 0)
+        if (Input.GetKeyDown(crouchKey) && horizontalInput == 0 && verticalInput == 0)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -291,7 +295,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         if (Physics.Raycast(transform.position + Vector3.up * playerHeight / 2, Vector3.down, out slopeHit))
         {
-            Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down * 999f);
             Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down * 999f);
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
