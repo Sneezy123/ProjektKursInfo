@@ -1,6 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// ERROR: Assets/Scripts/scr_PlayerMovement.cs(4,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+using TMPro;
+// ERROR: Assets/Scripts/scr_PlayerMovement.cs(5,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+using UnityEngine.UI;
+
+
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
@@ -67,18 +73,27 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool restricted;
 
 
+
+    public Camera Cam;
+    public GameObject lastHit;
+
+
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
         startYScale = transform.localScale.y;
+
+
     }
 
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.02f, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -86,7 +101,17 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         rb.drag = groundDrag;
 
+        Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(positionFacing, out hit))
+        {
+            lastHit = hit.transform.gameObject;
+
+        }
+
     }
+
+
 
     private void FixedUpdate()
     {
@@ -261,7 +286,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.02f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
