@@ -24,6 +24,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public float groundDrag = 0f;
     //timwarhiertest
+    //timwarhiertest
     [Header("Crouching")]
     public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.7f;
@@ -37,11 +38,14 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float playerHeight = 2;
     public LayerMask EnemyField;
     public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
+    public LayerMask EnemyField;
+    public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
     public bool grounded;
 
     [Header("Slope Handling")]
 
     public bool onSlope;
+    public float maxSlopeAngle = 50;
     public float maxSlopeAngle = 50;
     private RaycastHit slopeHit;
     private bool exitingSlope;
@@ -64,6 +68,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         walking,
         sprinting,
         vaulting,
+        crouching
         crouching
     }
 
@@ -94,6 +99,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Update()
     {
+        // ground check
         hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround | EnemyField);
         grounded = 0 < hitColliders.Length;
 
@@ -293,6 +299,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         if (Physics.Raycast(transform.position + Vector3.up * playerHeight / 2, Vector3.down, out slopeHit))
         {
+            Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down * 999f);
             Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down * 999f);
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
