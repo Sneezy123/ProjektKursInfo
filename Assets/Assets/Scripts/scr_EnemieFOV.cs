@@ -1,53 +1,94 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class scr_EnemieFOV : MonoBehaviour
 {
-    public float viewRadius;
+    [Header("Sichtfeld 1 (breit)")]
+    public float wideViewRadius = 10f;
     [Range(0, 360)]
-    public float viewAngle;
+    public float wideViewAngle = 250f;
 
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
-    public bool canSeePlayer = false;
+    [Header("Sichtfeld 2 (eng)")]
+    public float narrowViewRadius = 30f;
+    [Range(0, 360)]
+    public float narrowViewAngle = 15f;
+
+    public bool CanSeePlayer;
+    public Transform player;
 
     void Start()
     {
-        StartCoroutine("FindTargetsWithDelay", .2f);
+
     }
 
-
-    IEnumerator FindTargetsWithDelay(float delay)
+    void Update()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
-        }
+        CheckIfPlayerInSight();
     }
 
-    void FindVisibleTargets()
+    void CheckIfPlayerInSight()
     {
-        canSeePlayer = false; //HERE
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        CanSeePlayer = false;
 
-        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer <= wideViewRadius)
         {
-            Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            float angleBetweenEnemyAndPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+
+            if (angleBetweenEnemyAndPlayer < wideViewAngle / 2)
             {
-                float dstToTarget = Vector3.Distance(transform.position, target.position);
-
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                if (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, distanceToPlayer))
                 {
-                    canSeePlayer = true;
+                    CanSeePlayer = true;
+                    return;
+                }
+            }
+        }
+
+        distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer <= narrowViewRadius)
+        {
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            float angleBetweenEnemyAndPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+
+            if (angleBetweenEnemyAndPlayer < narrowViewAngle / 2)
+            {
+                if (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, distanceToPlayer))
+                {
+                    CanSeePlayer = true;
                 }
             }
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, wideViewRadius);
+
+        Vector3 wideViewAngleA = DirFromAngle(-wideViewAngle / 2, false);
+        Vector3 wideViewAngleB = DirFromAngle(wideViewAngle / 2, false);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + wideViewAngleA * wideViewRadius);
+        Gizmos.DrawLine(transform.position, transform.position + wideViewAngleB * wideViewRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, narrowViewRadius);
+
+        Vector3 narrowViewAngleA = DirFromAngle(-narrowViewAngle / 2, false);
+        Vector3 narrowViewAngleB = DirFromAngle(narrowViewAngle / 2, false);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(transform.position, transform.position + narrowViewAngleA * narrowViewRadius);
+        Gizmos.DrawLine(transform.position, transform.position + narrowViewAngleB * narrowViewRadius);
+
+        if (CanSeePlayer)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, player.position);
+        }
+    }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
