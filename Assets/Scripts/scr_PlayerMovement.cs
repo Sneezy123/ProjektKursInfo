@@ -10,22 +10,25 @@ using UnityEngine.UI;
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
+
+    // Give them default values!
+
     [Header("Movement")]
     private float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
-    public float walkSpeed;
-    public float sprintSpeed;
-    public float vaultSpeed;
+    public float walkSpeed = 7f;
+    public float sprintSpeed = 10f;
+    public float vaultSpeed = 10f;
 
     public float speedIncreaseMultiplier;
     public float slopeIncreaseMultiplier;
 
-    public float groundDrag;
-
+    public float groundDrag = 0f;
+//timwarhiertest
     [Header("Crouching")]
-    public float crouchSpeed;
-    public float crouchYScale;
+    public float crouchSpeed = 5f;
+    public float crouchYScale = 0.7f;
     private float startYScale;
 
     [Header("Keybinds")]
@@ -33,7 +36,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight;
+    public float playerHeight = 2;
     public LayerMask whatIsGround;
     public bool grounded;
 
@@ -77,8 +80,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Camera Cam;
     public GameObject lastHit;
 
-
-
+    private Collider[] hitColliders;
+    private float playerRadius = 1f;
 
     private void Start()
     {
@@ -87,14 +90,19 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         startYScale = transform.localScale.y;
 
-        
     }
 
     private void Update()
     {
         // ground check
+<<<<<<< HEAD
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
        
+=======
+        hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround);
+        grounded = 0 < hitColliders.Length;
+
+>>>>>>> 755b60c92de4802d038ba9745ada07d79c39573e
         MyInput();
         SpeedControl();
         StateHandler();
@@ -103,11 +111,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(positionFacing, out  hit))
+
+        if (Physics.Raycast(positionFacing, out hit))
         {
             lastHit = hit.transform.gameObject;
-            
-        }        
+
+        }
 
     }
 
@@ -241,7 +250,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (restricted) return;
 
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
+
 
         // on slope
         if (OnSlope() && !exitingSlope)
@@ -254,11 +264,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         // on ground
         else if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
 
         // in air
         else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
     }
 
     private void SpeedControl()
@@ -293,6 +303,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         return false;
+
     }
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)

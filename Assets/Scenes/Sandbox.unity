@@ -761,7 +761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemID: 0
-  InteractorSource: {fileID: 0}
   InteractRange: 100
   playerscript: {fileID: 1342876911}
 --- !u!43 &1193994380
@@ -1113,7 +1112,7 @@ MonoBehaviour:
   slopeIncreaseMultiplier: 2.5
   groundDrag: 0
   crouchSpeed: 3.5
-  crouchYScale: 0.5
+  crouchYScale: 0.7
   sprintKey: 304
   crouchKey: 306
   playerHeight: 2
@@ -1121,7 +1120,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
-  maxSlopeAngle: 40
+  maxSlopeAngle: 0
   orientation: {fileID: 1501051890}
   state: 0
   crouching: 0
