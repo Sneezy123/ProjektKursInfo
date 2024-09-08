@@ -94,7 +94,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Update()
     {
-        // ground check
         hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround | EnemyField);
         grounded = 0 < hitColliders.Length;
 
@@ -114,7 +113,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         onSlope = OnSlope();
-
     }
 
 
@@ -130,7 +128,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // start crouch
-        if (Input.GetKeyDown(crouchKey) && horizontalInput == 0 && verticalInput == 0)
+        if (Input.GetKeyDown(crouchKey) && horizontalInput == 0)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);

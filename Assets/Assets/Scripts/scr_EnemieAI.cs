@@ -8,6 +8,8 @@ public class scr_EnemieAI : MonoBehaviour
     public Transform player;
     private NavMeshAgent agent;
 
+    public scr_EnemieFOV EnemieFOV;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -15,6 +17,9 @@ public class scr_EnemieAI : MonoBehaviour
 
     void Update()
     {
-        agent.destination = player.position;
+        if (EnemieFOV.CanSeePlayer)
+        {
+            agent.destination = player.position;
+        }
     }
 }
