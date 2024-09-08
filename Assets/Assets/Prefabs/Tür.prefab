@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3977762892539774021}
   - component: {fileID: 203960570205763290}
   m_Layer: 0
-  m_Name: tuer1
+  m_Name: "T\xFCr"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 3332ae7b346dad9469d40d51530a935a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 1
@@ -129,7 +129,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8270172758720842535}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7df77647a677ee64fa093ed6525db6ed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
