@@ -10,6 +10,7 @@
                 "type": "UnityEngine.ProBuilder.SemVer, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "preferences.version",
                 "value": "{\"m_Value\":{\"m_Major\":5,\"m_Minor\":2,\"m_Patch\":3,\"m_Build\":-1,\"m_Type\":\"\",\"m_Metadata\":\"\",\"m_Date\":\"\"}}"
+<<<<<<< Updated upstream
             },
             {
                 "type": "UnityEngine.ProBuilder.LogLevel, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -25,6 +26,8 @@
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "log.path",
                 "value": "{\"m_Value\":\"ProBuilderLog.txt\"}"
+=======
+>>>>>>> Stashed changes
             }
         ]
     }
