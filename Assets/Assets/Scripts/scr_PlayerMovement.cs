@@ -38,14 +38,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float playerHeight = 2;
     public LayerMask EnemyField;
     public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
-    public LayerMask EnemyField;
-    public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
     public bool grounded;
 
     [Header("Slope Handling")]
 
     public bool onSlope;
-    public float maxSlopeAngle = 50;
     public float maxSlopeAngle = 50;
     private RaycastHit slopeHit;
     private bool exitingSlope;
@@ -68,7 +65,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         walking,
         sprinting,
         vaulting,
-        crouching
         crouching
     }
 
