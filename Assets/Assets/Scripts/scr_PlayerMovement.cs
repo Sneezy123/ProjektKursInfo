@@ -36,7 +36,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight = 2;
     public LayerMask EnemyField;
-    public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
+    public LayerMask whatIsGround = 64;
     public bool grounded;
 
     [Header("Slope Handling")]

@@ -248,9 +248,9 @@ public class scr_EnemieAI : MonoBehaviour
         // Normiere die Distanz (0 = nah, 1 = weit weg)
         float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance));
 
-        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 0.8f, t);
-        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.2f, 0.6f, t);
-        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(250f, 320f, t);
+        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f, t);
+        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f, t);
+        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f, t);
         if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f, t);
     }
 
