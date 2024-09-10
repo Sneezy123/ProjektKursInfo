@@ -35238,7 +35238,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7161995446492189191, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 6933539923913676400, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 6421659776590746457, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 2948334553929459346, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 4674596322568558952, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 803627142259733443, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 2405444041945132827, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 8630251879280491721, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 5782757587171049021, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 6793290621755792112, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 4481763361426314450, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 4142098074998621031, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 7958798019161857175, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 4998965850359355600, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 1300487143572579242, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 1760767122422870682, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 258616034101839553, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 6588165307768927580, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+    - {fileID: 7471445364570972977, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
