@@ -78,7 +78,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
 
     public Camera Cam;
-    public GameObject lastHit;
+    public RaycastHit hit;
 
     private Collider[] hitColliders;
     private float playerRadius = 1f;
@@ -103,14 +103,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         rb.drag = groundDrag;
 
-        Ray positionFacing = Cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(positionFacing, out hit))
-        {
-            lastHit = hit.transform.gameObject;
-
-        }
+        Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit);
+        Debug.DrawRay(Cam.transform.position, Cam.transform.forward*99f);
 
         onSlope = OnSlope();
     }
