@@ -9613,6 +9613,45 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &404371018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 446446751299153840, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+  m_PrefabInstance: {fileID: 1447302005}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &404371023
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404371018}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c76c1ab36d264a37896b50f03cb3a7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &404371024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404371018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299a7b1d7160b4c639b0a26783f3f165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &406976961
 Mesh:
   m_ObjectHideFlags: 0
@@ -35175,10 +35214,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 9136416553106075489, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136416553106075489, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136416553106075489, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136416553106075489, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136416553106075489, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136416553106075489, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 446446751299153840, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 404371023}
+    - targetCorrespondingSourceObject: {fileID: 446446751299153840, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 404371024}
   m_SourcePrefab: {fileID: 100100000, guid: 3d32e8cd686274682b000fb85e2d3b40, type: 3}
 --- !u!4 &1447302006 stripped
 Transform:
