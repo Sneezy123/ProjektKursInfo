@@ -31,7 +31,7 @@ public class scr_ItemBlueprint : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && playerscript.hit.transform != null)
         {
             Debug.Log(playerscript.hit.transform.name);
-            Debug.Log(playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable InteractObj) && playerscript.hit.distance <= InteractRange);
+            
             if(playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerscript.hit.distance <= InteractRange)
             {
                 Debug.Log("Interact" + interactObj);
