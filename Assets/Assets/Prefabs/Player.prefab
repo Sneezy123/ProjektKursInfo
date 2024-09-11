@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 8060937534254144472}
   - component: {fileID: 3573594969582121489}
   - component: {fileID: 8308874864948544000}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 3862854867383874744}
   - component: {fileID: 1848039143109540837}
   - component: {fileID: 6416785298207266710}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Glasses (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 4480948568362086984}
   - component: {fileID: 5859004976335944248}
   - component: {fileID: 1001388370939220140}
+  - component: {fileID: 8924679231958794659}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -433,7 +434,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.16522783, g: 0.39080483, b: 0.745283, a: 1}
+  m_BackGroundColor: {r: 0.1899832, g: 0.21698111, b: 0.18729973, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -454,7 +455,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.58
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -462,7 +463,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -498,6 +499,66 @@ MonoBehaviour:
   sensY: 700
   orientation: {fileID: 6448725459072811367}
   camHolder: {fileID: 3298289281577153092}
+--- !u!114 &8924679231958794659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6496659724126776522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 3288996169559542569}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &7082414234339181510
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,4 +695,3 @@ MonoBehaviour:
   unlimited: 0
   restricted: 0
   Cam: {fileID: 4480948568362086984}
-  lastHit: {fileID: 0}

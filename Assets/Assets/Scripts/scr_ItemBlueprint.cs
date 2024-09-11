@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor;
 using UnityEngine;
 
 interface IInteractable
@@ -27,10 +28,13 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && playerscript.hit.transform != null)
         {
-            if(playerscript.lastHit.TryGetComponent(out IInteractable interactObj))
+            Debug.Log(playerscript.hit.transform.name);
+            
+            if(playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerscript.hit.distance <= InteractRange)
             {
+                Debug.Log("Interact" + interactObj);
                 interactObj.Interact();
             }
         }

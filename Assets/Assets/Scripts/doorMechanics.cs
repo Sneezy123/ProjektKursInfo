@@ -14,7 +14,6 @@ public class doorMechanics : MonoBehaviour, IInteractable
 
    public void Interact()
     {
-                
 
         if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0)){
 

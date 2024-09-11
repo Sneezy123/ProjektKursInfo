@@ -1,38 +1,81 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class scr_EnemieAI : MonoBehaviour
 {
     [Header("Wide FOV")]
     public float wideViewRadius = 30f;
-    [Range(0, 360)]
-    public float wideViewAngle = 75f;
-    [Range(0, 180)]
-    public float wideViewVerticalAngle = 25f;
+    [Range(0, 360)] public float wideViewAngle = 75f;
+    [Range(0, 180)] public float wideViewVerticalAngle = 25f;
 
     [Header("Narrow FOV")]
     public float narrowViewRadius = 15f;
-    [Range(0, 360)]
-    public float narrowViewAngle = 270f;
-    [Range(0, 180)]
-    public float narrowViewVerticalAngle = 100f;
+    [Range(0, 360)] public float narrowViewAngle = 270f;
+    [Range(0, 180)] public float narrowViewVerticalAngle = 100f;
 
     [Header("FOV Settings")]
     public float viewHeightOffset = 0.37f;
     public float sightRetentionTime = 3f;
 
+    [Header("Patrolling Settings")]
+    public float smallPatrolRadius = 10f;
+    public float smallPatrolDuration = 5f;
+    public Transform[] waypoints;
+    public float waypointPauseTime = 2f;
+    public float narrowFOVAtWaypoint = 330f;
+
+    [Header("Speed Settings")]
+    public float chaseSpeed = 5f;
+    public float patrolSpeed = 2f;
+
+    [Header("Audio")]
+    public AudioSource chaseAudio;
+
+    [Header("Post-Processing")]
+    public PostProcessVolume Volume;
+    private Grain grain;
+    private Vignette vignette;
+    private MotionBlur motionBlur;
+    private ChromaticAberration chromaticAberration;
+
     public Transform player;
     private NavMeshAgent agent;
 
-    private bool canSeePlayer;
+    private bool canSeePlayer = false;
     private float sightRetentionTimer;
-    private bool isChasing;
+    private bool isChasing = false;
+    private bool isPatrolling = false;
+    private bool isSearching = false;
+
+    private Vector3 lastKnownPlayerPosition;
+    private int currentWaypointIndex = 0;
+    private float smallPatrolTimer = 0f;
+    private float waypointWaitTimer = 0f;
+    private float originalNarrowViewAngle;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         sightRetentionTimer = 0f;
+        canSeePlayer = false;
         isChasing = false;
+        isSearching = false;
+        originalNarrowViewAngle = narrowViewAngle;
+        Volume = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<PostProcessVolume>();
+
+        agent.speed = patrolSpeed;
+
+        if (Volume != null)
+        {
+            Volume.profile.TryGetSettings(out grain);
+            Volume.profile.TryGetSettings(out vignette);
+            Volume.profile.TryGetSettings(out motionBlur);
+            Volume.profile.TryGetSettings(out chromaticAberration);
+        }
     }
 
     void Update()
@@ -41,30 +84,58 @@ public class scr_EnemieAI : MonoBehaviour
 
         if (canSeePlayer)
         {
+            agent.speed = chaseSpeed;
             agent.destination = player.position;
             sightRetentionTimer = sightRetentionTime;
             isChasing = true;
+            isSearching = false;
+            isPatrolling = false;
+            ResetNarrowFOV();
+
+            if (!chaseAudio.isPlaying)
+            {
+                chaseAudio.Play();
+            }
         }
         else if (sightRetentionTimer > 0)
         {
             sightRetentionTimer -= Time.deltaTime;
+            agent.speed = chaseSpeed;
             agent.destination = player.position;
         }
-        else if (!isChasing && !canSeePlayer && sightRetentionTimer == 0)
+        else if (isChasing && sightRetentionTimer <= 0)
         {
-            //Patrollieren
-            isChasing = false;
-            agent.destination = transform.position;
+            if (!isSearching)
+            {
+                lastKnownPlayerPosition = player.position; // Speicher den letzten bekannten Spieler-Standort
+                agent.destination = lastKnownPlayerPosition; // Setze das Ziel auf diesen Punkt
+                isSearching = true; // Wechsel zum Suchmodus
+            }
+
+            if (chaseAudio.isPlaying && !isSearching)
+            {
+                chaseAudio.Stop();
+            }
+
+            if (Vector3.Distance(transform.position, lastKnownPlayerPosition) < 1f)
+            {
+                PerformSmallPatrol();
+            }
         }
+        else
+        {
+            PerformLargePatrol();
+        }
+
+        UpdatePostProcessingEffects();
     }
 
     void CheckIfPlayerInSight()
     {
         canSeePlayer = false;
-
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
-
         float distanceToPlayer = Vector3.Distance(origin, player.position);
+
         if (distanceToPlayer <= narrowViewRadius)
         {
             Vector3 directionToPlayer = (player.position - origin).normalized;
@@ -96,10 +167,96 @@ public class scr_EnemieAI : MonoBehaviour
         }
     }
 
+    void PerformSmallPatrol()
+    {
+        agent.speed = patrolSpeed;
+
+        if (smallPatrolTimer > 0)
+        {
+            smallPatrolTimer -= Time.deltaTime;
+
+            if (!agent.hasPath || agent.remainingDistance < 0.5f)
+            {
+                Vector3 randomPoint = lastKnownPlayerPosition + Random.insideUnitSphere * smallPatrolRadius;
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(randomPoint, out hit, smallPatrolRadius, NavMesh.AllAreas))
+                {
+                    agent.destination = hit.position;
+                }
+            }
+        }
+        else
+        {
+            isSearching = false;
+            isPatrolling = true;
+            FindNearestWaypoint();
+        }
+    }
+
+    void PerformLargePatrol()
+    {
+        if (waypoints.Length == 0) return;
+
+        agent.speed = patrolSpeed;
+
+        if (!agent.hasPath || agent.remainingDistance < 0.5f)
+        {
+            if (waypointWaitTimer <= 0f)
+            {
+                currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+                agent.destination = waypoints[currentWaypointIndex].position;
+                waypointWaitTimer = waypointPauseTime;
+                ResetNarrowFOV();
+            }
+            else
+            {
+                waypointWaitTimer -= Time.deltaTime;
+                narrowViewAngle = narrowFOVAtWaypoint;
+            }
+        }
+    }
+
+    void FindNearestWaypoint()
+    {
+        float closestDistance = Mathf.Infinity;
+        int closestIndex = 0;
+
+        for (int i = 0; i < waypoints.Length; i++)
+        {
+            float distance = Vector3.Distance(transform.position, waypoints[i].position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        }
+
+        currentWaypointIndex = closestIndex;
+        agent.destination = waypoints[currentWaypointIndex].position;
+    }
+
+    void ResetNarrowFOV()
+    {
+        narrowViewAngle = originalNarrowViewAngle;
+    }
+
+    void UpdatePostProcessingEffects()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float maxDistance = wideViewRadius;
+
+        // Normiere die Distanz (0 = nah, 1 = weit weg)
+        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance));
+
+        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f, t);
+        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f, t);
+        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f, t);
+        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f, t);
+    }
+
     private void OnDrawGizmos()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(origin, wideViewRadius);
 
