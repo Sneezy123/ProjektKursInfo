@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8082223267975228447}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00016334711}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00016581298}
   m_LocalPosition: {x: 19.411509, y: 4.797965, z: 36.154285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -293,7 +293,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.51
-  m_Speed: 300
+  m_Speed: 200
   m_Acceleration: 70
   avoidancePriority: 99
   m_AngularSpeed: 10000
@@ -325,4 +325,13 @@ MonoBehaviour:
   narrowViewVerticalAngle: 100
   viewHeightOffset: 0.37
   sightRetentionTime: 2
+  smallPatrolRadius: 10
+  smallPatrolDuration: 5
+  waypoints: []
+  waypointPauseTime: 2
+  narrowFOVAtWaypoint: 330
+  chaseSpeed: 5
+  patrolSpeed: 2
+  chaseAudio: {fileID: 0}
+  Volume: {fileID: 0}
   player: {fileID: 0}
