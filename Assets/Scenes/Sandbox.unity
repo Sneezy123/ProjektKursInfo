@@ -4116,7 +4116,7 @@ Transform:
   m_GameObject: {fileID: 189540611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.92846, y: 3.7979648, z: 21.1639}
+  m_LocalPosition: {x: 27.925068, y: 3.7979648, z: 24.16391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52407,7 +52407,7 @@ PrefabInstance:
       objectReference: {fileID: 1776204071}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: waypointPauseTime
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: smallPatrolDuration
@@ -52449,6 +52449,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[8]'
       value: 
       objectReference: {fileID: 813729496}
+    - target: {fileID: 8517337271117577338, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
