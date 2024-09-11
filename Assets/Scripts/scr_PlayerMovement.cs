@@ -95,14 +95,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void Update()
     {
         // ground check
-<<<<<<< HEAD
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-       
-=======
+
+
         hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround);
         grounded = 0 < hitColliders.Length;
 
->>>>>>> 755b60c92de4802d038ba9745ada07d79c39573e
+
         MyInput();
         SpeedControl();
         StateHandler();
