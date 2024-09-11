@@ -44235,76 +44235,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 15440469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1793482420 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6496659724126776522, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-  m_PrefabInstance: {fileID: 8803309423044778905}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1793482421 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3288996169559542569, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-  m_PrefabInstance: {fileID: 8803309423044778905}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1793482425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793482420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1793482421}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!1 &1796680435
 GameObject:
   m_ObjectHideFlags: 0
@@ -52461,14 +52391,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemie
       objectReference: {fileID: 0}
-    - target: {fileID: 8275601523347635452, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
-    - target: {fileID: 8275601523347635452, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: Volume
       value: 
@@ -52477,22 +52399,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1776204071}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: smallPatrolRadius
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: sightRetentionTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: smallPatrolDuration
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: waypoints.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 
@@ -52529,26 +52435,6 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[8]'
       value: 
       objectReference: {fileID: 813729496}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: 'waypoints.Array.data[9]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: 'waypoints.Array.data[10]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: 'waypoints.Array.data[11]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: PostProcessingEffectsDistance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
-      propertyPath: PostProcessingEffectsIntensety
-      value: 0.7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52647,30 +52533,6 @@ PrefabInstance:
       propertyPath: Volume
       value: 
       objectReference: {fileID: 1286138483}
-    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      propertyPath: sprintSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      propertyPath: vignettePulseSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      propertyPath: vignetteMaxIntensity
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      propertyPath: vignetteMinIntensity
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6416785298207266710, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 8c75f1596665dd14f9e09c18f924487a, type: 2}
-    - target: {fileID: 6496659724126776522, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7082414234339181510, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -52718,10 +52580,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6496659724126776522, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1793482425}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

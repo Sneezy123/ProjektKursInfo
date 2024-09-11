@@ -325,13 +325,10 @@ MonoBehaviour:
   narrowViewAngle: 270
   narrowViewVerticalAngle: 100
   viewHeightOffset: 0.37
-  sightRetentionTime: 2
-  smallPatrolRadius: 10
-  smallPatrolDuration: 5
+  sightRetentionTime: 1
+  smallPatrolRadius: 5
+  smallPatrolDuration: 6
   waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -347,7 +344,13 @@ MonoBehaviour:
   patrolSpeed: 3
   chaseAudio: {fileID: 8275601523347635452}
   Volume: {fileID: 0}
+  PostProcessingEffectsDistance: 0.4
+  PostProcessingEffectsIntensety: 0.7
   player: {fileID: 0}
+  canSeePlayer: 0
+  isChasing: 0
+  isPatrolling: 0
+  isSearching: 0
 --- !u!82 &8275601523347635452
 AudioSource:
   m_ObjectHideFlags: 0
@@ -358,8 +361,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9e6c2a6ba60a0ea449cc399fda5c5498, type: 3}
-  m_Resource: {fileID: 8300000, guid: 9e6c2a6ba60a0ea449cc399fda5c5498, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -274,7 +274,7 @@ public class scr_EnemieAI : MonoBehaviour
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin, wideViewRadius);
 
         Vector3 wideViewAngleA = DirFromAngle(-wideViewAngle / 2, false);
@@ -283,7 +283,7 @@ public class scr_EnemieAI : MonoBehaviour
         Gizmos.DrawLine(origin, origin + wideViewAngleA * wideViewRadius);
         Gizmos.DrawLine(origin, origin + wideViewAngleB * wideViewRadius);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin, narrowViewRadius);
 
         Vector3 narrowViewAngleA = DirFromAngle(-narrowViewAngle / 2, false);
@@ -294,7 +294,7 @@ public class scr_EnemieAI : MonoBehaviour
 
         if (canSeePlayer | isChasing && sightRetentionTimer > 0)
         {
-            Gizmos.color = Color.black;
+            Gizmos.color = Color.red;
             Gizmos.DrawLine(origin, player.position);
         }
     }
