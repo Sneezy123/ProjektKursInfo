@@ -50,10 +50,10 @@ public class scr_EnemieAI : MonoBehaviour
     public Transform player;
     private NavMeshAgent agent;
 
-    private bool canSeePlayer = false;
-    private bool isChasing = false;
-    private bool isPatrolling = false;
-    private bool isSearching = false;
+    public bool canSeePlayer = false;
+    public bool isChasing = false;
+    public bool isPatrolling = false;
+    public bool isSearching = false;
 
     private Vector3 lastKnownPlayerPosition;
     private int currentWaypointIndex = 0;
@@ -66,7 +66,6 @@ public class scr_EnemieAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         sightRetentionTimer = 0f;
-        canSeePlayer = false;
 
         isChasing = false;
         isSearching = false;
@@ -93,6 +92,7 @@ public class scr_EnemieAI : MonoBehaviour
 
         if (canSeePlayer)
         {
+            // Der Gegner jagt den Spieler
             agent.speed = chaseSpeed;
             agent.destination = player.position;
             sightRetentionTimer = sightRetentionTime;
@@ -108,17 +108,19 @@ public class scr_EnemieAI : MonoBehaviour
         }
         else if (sightRetentionTimer > 0)
         {
-            sightRetentionTimer -= Time.deltaTime;
+            // Behalte das Ziel, bis der Timer abläuft
             agent.speed = chaseSpeed;
+            sightRetentionTimer -= Time.deltaTime;
             agent.destination = player.position;
         }
         else if (isChasing && sightRetentionTimer <= 0)
         {
+            // Der Gegner sucht nach dem Spieler
             if (!isSearching)
             {
-                lastKnownPlayerPosition = player.position; // Speicher den letzten bekannten Spieler-Standort
-                agent.destination = lastKnownPlayerPosition; // Setze das Ziel auf diesen Punkt
-                isSearching = true; // Wechsel zum Suchmodus
+                lastKnownPlayerPosition = player.position;
+                agent.destination = lastKnownPlayerPosition;
+                isSearching = true;
             }
 
             if (chaseAudio.isPlaying && !isSearching)
@@ -131,16 +133,16 @@ public class scr_EnemieAI : MonoBehaviour
                 PerformSmallPatrol();
             }
         }
-        else if (!isChasing && !canSeePlayer && sightRetentionTimer == 0)
+        else if (!isChasing && !canSeePlayer && sightRetentionTimer <= 0)
         {
+            // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
+            isPatrolling = true;
             PerformLargePatrol();
-            //Patrollieren
-            isChasing = false;
-            agent.destination = transform.position;
         }
 
         UpdatePostProcessingEffects();
     }
+
 
     void CheckIfPlayerInSight()
     {
@@ -149,7 +151,7 @@ public class scr_EnemieAI : MonoBehaviour
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
         float distanceToPlayer = Vector3.Distance(origin, player.position);
 
-        if (distanceToPlayer <= narrowViewAngle)
+        if (distanceToPlayer <= narrowViewRadius)
         {
             Vector3 directionToPlayer = (player.position - origin).normalized;
             float horizontalAngle = Vector3.Angle(transform.forward, directionToPlayer);
