@@ -14,25 +14,25 @@ public class scr_EnemieAI : MonoBehaviour
 
 
     [Header("Narrow FOV")]
-    public float narrowViewRadius = 45f;
+    public float narrowViewRadius = 15;
     [Range(0, 360)] public float narrowViewAngle = 270f;
     [Range(0, 180)] public float narrowViewVerticalAngle = 100f;
 
 
     [Header("FOV Settings")]
     public float viewHeightOffset = 0.37f;
-    public float sightRetentionTime = 3f;
+    public float sightRetentionTime = 1.5f;
 
     [Header("Patrolling Settings")]
-    public float smallPatrolRadius = 10f;
-    public float smallPatrolDuration = 5f;
+    public float smallPatrolRadius = 5;
+    public float smallPatrolDuration = 2f;
     public Transform[] waypoints;
     public float waypointPauseTime = 2f;
     public float narrowFOVAtWaypoint = 330f;
 
     [Header("Speed Settings")]
-    public float chaseSpeed = 5f;
-    public float patrolSpeed = 2f;
+    public float chaseSpeed = 7f;
+    public float patrolSpeed = 3f;
 
     [Header("Audio")]
     public AudioSource chaseAudio;
@@ -44,8 +44,8 @@ public class scr_EnemieAI : MonoBehaviour
     private MotionBlur motionBlur;
     private ChromaticAberration chromaticAberration;
 
-    [Range(0, 1)] public float PostProcessingEffectsDistance = 0.25f;
-    [Range(0, 1)] public float PostProcessingEffectsIntensety = 2;
+    [Range(0, 1)] public float PostProcessingEffectsDistance = 0.5f;
+    [Range(0, 1)] public float PostProcessingEffectsIntensety = 1;
 
     public Transform player;
     private NavMeshAgent agent;
