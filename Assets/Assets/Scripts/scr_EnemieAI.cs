@@ -44,6 +44,9 @@ public class scr_EnemieAI : MonoBehaviour
     private MotionBlur motionBlur;
     private ChromaticAberration chromaticAberration;
 
+    [Range(0, 1)] public float PostProcessingEffectsDistance = 0.25f;
+    [Range(0, 1)] public float PostProcessingEffectsIntensety = 2;
+
     public Transform player;
     private NavMeshAgent agent;
 
@@ -256,12 +259,12 @@ public class scr_EnemieAI : MonoBehaviour
         float maxDistance = wideViewRadius;
 
         // Normiere die Distanz (0 = nah, 1 = weit weg)
-        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance));
+        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance)) + PostProcessingEffectsDistance;
 
-        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f, t);
-        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f, t);
-        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f, t);
-        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f, t);
+        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f * PostProcessingEffectsIntensety, t);
+        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t);
+        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f * PostProcessingEffectsIntensety, t);
+        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t);
     }
 
     private void OnDrawGizmos()
