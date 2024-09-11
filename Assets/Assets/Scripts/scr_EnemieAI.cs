@@ -23,6 +23,7 @@ public class scr_EnemieAI : MonoBehaviour
     public float viewHeightOffset = 0.37f;
     public float sightRetentionTime = 1.5f;
 
+
     [Header("Patrolling Settings")]
     public float smallPatrolRadius = 5;
     public float smallPatrolDuration = 2f;
@@ -205,7 +206,20 @@ public class scr_EnemieAI : MonoBehaviour
             isChasing = false;
             canSeePlayer = false;
             isPatrolling = true;
+
             FindNearestWaypoint();
+
+            if (waypointWaitTimer <= 0f)
+            {
+                agent.destination = waypoints[currentWaypointIndex].position;
+                waypointWaitTimer = waypointPauseTime;
+                ResetNarrowFOV();
+            }
+            else
+            {
+                waypointWaitTimer -= Time.deltaTime;
+                narrowViewAngle = narrowFOVAtWaypoint;
+            }            
         }
     }
 
