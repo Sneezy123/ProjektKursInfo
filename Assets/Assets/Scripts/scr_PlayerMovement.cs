@@ -18,8 +18,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float sprintSpeed = 10f;
     public float vaultSpeed = 15f;
 
-    public float speedIncreaseMultiplier = 1.5f;
-    public float slopeIncreaseMultiplier = 2.5f;
+    private float speedIncreaseMultiplier = 1.5f;
+    private float slopeIncreaseMultiplier = 1f;
 
     public float groundDrag = 0f;
     //timwarhiertest
@@ -36,11 +36,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float playerHeight = 2;
     public LayerMask EnemyField;
     public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
-    public bool grounded;
+    private bool grounded;
 
     [Header("Slope Handling")]
 
-    public bool onSlope;
+    private bool onSlope;
     public float maxSlopeAngle = 50;
     private RaycastHit slopeHit;
     private bool exitingSlope;
@@ -57,7 +57,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public float vignetteMinIntensity = 0.2f; // Vignette, wenn die Ausdauer voll ist
     public float vignetteMaxIntensity = 0.6f; // Vignette, wenn die Ausdauer leer ist
-    public float vignettePulseSpeed = 2f; // Pulsfrequenz
+    public float vignettePulseSpeed = 6f; // Pulsfrequenz
 
     [Header("References")]
     public Transform orientation;
