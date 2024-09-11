@@ -4,11 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-
-
 public class PlayerMovementAdvanced : MonoBehaviour
 {
-
     // Give them default values!
 
     [Header("Movement")]
@@ -104,7 +101,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb.drag = groundDrag;
 
         Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit);
-        Debug.DrawRay(Cam.transform.position, Cam.transform.forward*99f);
+        Debug.DrawRay(Cam.transform.position, Cam.transform.forward * 99f);
 
         onSlope = OnSlope();
     }
