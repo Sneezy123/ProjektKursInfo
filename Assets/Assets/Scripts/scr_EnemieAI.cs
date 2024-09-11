@@ -270,7 +270,7 @@ public class scr_EnemieAI : MonoBehaviour
         if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
 
