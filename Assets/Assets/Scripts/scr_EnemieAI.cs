@@ -14,6 +14,7 @@ public class scr_EnemieAI : MonoBehaviour
 
 
     [Header("Narrow FOV")]
+    public float narrowViewRadius = 45f;
     [Range(0, 360)] public float narrowViewAngle = 270f;
     [Range(0, 180)] public float narrowViewVerticalAngle = 100f;
 
@@ -47,7 +48,6 @@ public class scr_EnemieAI : MonoBehaviour
     private NavMeshAgent agent;
 
     private bool canSeePlayer = false;
-    private float sightRetentionTimer;
     private bool isChasing = false;
     private bool isPatrolling = false;
     private bool isSearching = false;
@@ -58,7 +58,6 @@ public class scr_EnemieAI : MonoBehaviour
     private float waypointWaitTimer = 0f;
     private float originalNarrowViewAngle;
     private float sightRetentionTimer;
-    private bool isChasing;
 
     void Start()
     {
@@ -129,7 +128,6 @@ public class scr_EnemieAI : MonoBehaviour
                 PerformSmallPatrol();
             }
         }
-        else
         else if (!isChasing && !canSeePlayer && sightRetentionTimer == 0)
         {
             PerformLargePatrol();
@@ -148,8 +146,7 @@ public class scr_EnemieAI : MonoBehaviour
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
         float distanceToPlayer = Vector3.Distance(origin, player.position);
 
-        float distanceToPlayer = Vector3.Distance(origin, player.position);
-        if (distanceToPlayer <= narrowViewRadius)
+        if (distanceToPlayer <= narrowViewAngle)
         {
             Vector3 directionToPlayer = (player.position - origin).normalized;
             float horizontalAngle = Vector3.Angle(transform.forward, directionToPlayer);
