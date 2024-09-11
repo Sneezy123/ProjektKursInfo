@@ -108,12 +108,11 @@ public class scr_EnemieAI : MonoBehaviour
         }
         else if (sightRetentionTimer > 0)
         {
-            // Behalte das Ziel, bis der Timer abläuft
             agent.speed = chaseSpeed;
             sightRetentionTimer -= Time.deltaTime;
             agent.destination = player.position;
         }
-        else if (isChasing && sightRetentionTimer <= 0)
+        else if (isChasing && sightRetentionTimer <= 0 && !canSeePlayer)
         {
             // Der Gegner sucht nach dem Spieler
             if (!isSearching)
@@ -133,7 +132,7 @@ public class scr_EnemieAI : MonoBehaviour
                 PerformSmallPatrol();
             }
         }
-        else if (!isChasing && !canSeePlayer && sightRetentionTimer <= 0)
+        else if (!isChasing && !canSeePlayer && !isSearching && sightRetentionTimer <= 0)
         {
             // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
             isPatrolling = true;
@@ -184,7 +183,7 @@ public class scr_EnemieAI : MonoBehaviour
 
     void PerformSmallPatrol()
     {
-        agent.speed = patrolSpeed;
+        agent.speed = chaseSpeed;
 
         if (smallPatrolTimer > 0)
         {
@@ -203,6 +202,8 @@ public class scr_EnemieAI : MonoBehaviour
         else
         {
             isSearching = false;
+            isChasing = false;
+            canSeePlayer = false;
             isPatrolling = true;
             FindNearestWaypoint();
         }
