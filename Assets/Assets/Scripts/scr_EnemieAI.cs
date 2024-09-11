@@ -188,7 +188,7 @@ public class scr_EnemieAI : MonoBehaviour
         {
             smallPatrolTimer -= Time.deltaTime;
 
-            if (!agent.hasPath || agent.remainingDistance < 0.5f)
+            if (!agent.hasPath || agent.remainingDistance < 0.2f)
             {
                 Vector3 randomPoint = lastKnownPlayerPosition + Random.insideUnitSphere * smallPatrolRadius;
                 NavMeshHit hit;
