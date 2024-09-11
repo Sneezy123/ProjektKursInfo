@@ -205,7 +205,20 @@ public class scr_EnemieAI : MonoBehaviour
             isChasing = false;
             canSeePlayer = false;
             isPatrolling = true;
+
             FindNearestWaypoint();
+
+            if (waypointWaitTimer <= 0f)
+            {
+                agent.destination = waypoints[currentWaypointIndex].position;
+                waypointWaitTimer = waypointPauseTime;
+                ResetNarrowFOV();
+            }
+            else
+            {
+                waypointWaitTimer -= Time.deltaTime;
+                narrowViewAngle = narrowFOVAtWaypoint;
+            }            
         }
     }
 
