@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
-
     // Give them default values!
 
     [Header("Movement")]
@@ -45,6 +44,20 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float maxSlopeAngle = 50;
     private RaycastHit slopeHit;
     private bool exitingSlope;
+
+    [Header("Stamina")]
+    public float maxStamina = 100f;
+    private float currentStamina = 100f;
+    public float staminaDrain = 20f; // Ausdauerverbrauch pro Sekunde
+    public float staminaRegen = 10f; // Regenerationsrate pro Sekunde
+
+    [Header("Post-Processing")]
+    public PostProcessVolume Volume;
+    private Vignette vignetteEffect;
+
+    public float vignetteMinIntensity = 0.2f; // Vignette, wenn die Ausdauer voll ist
+    public float vignetteMaxIntensity = 0.6f; // Vignette, wenn die Ausdauer leer ist
+    public float vignettePulseSpeed = 2f; // Pulsfrequenz
 
     [Header("References")]
     public Transform orientation;
@@ -90,6 +103,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         startYScale = transform.localScale.y;
 
+        Volume = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<PostProcessVolume>();
+
+
+        if (Volume != null)
+        {
+            Volume.profile.TryGetSettings(out vignetteEffect);
+        }
     }
 
     private void Update()
@@ -104,12 +124,19 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb.drag = groundDrag;
 
         Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit);
-        Debug.DrawRay(Cam.transform.position, Cam.transform.forward*99f);
+        Debug.DrawRay(Cam.transform.position, Cam.transform.forward * 99f);
 
         onSlope = OnSlope();
+
+        // Regeneriere die Ausdauer, wenn nicht gesprintet wird
+        if (state != MovementState.sprinting && currentStamina < maxStamina)
+        {
+            RegenerateStamina();
+        }
+
+        // Update die Post-Processing-Effekte basierend auf der Ausdauer
+        UpdatePostProcessingEffects();
     }
-
-
 
     private void FixedUpdate()
     {
@@ -121,7 +148,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // start crouch
+        // Crouch
         if (Input.GetKeyDown(crouchKey) && horizontalInput == 0)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -130,151 +157,94 @@ public class PlayerMovementAdvanced : MonoBehaviour
             crouching = true;
         }
 
-        // stop crouch
+        // Stop crouch
         if (Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
-
             crouching = false;
         }
     }
 
-    bool keepMomentum;
     private void StateHandler()
     {
-        // Mode - Freeze
+        // Freeze state
         if (freeze)
         {
             state = MovementState.freeze;
             rb.velocity = Vector3.zero;
             desiredMoveSpeed = 0f;
         }
-
-        // Mode - Unlimited
         else if (unlimited)
         {
             state = MovementState.unlimited;
             desiredMoveSpeed = 999f;
         }
-
-        // Mode - Vaulting
         else if (vaulting)
         {
             state = MovementState.vaulting;
             desiredMoveSpeed = vaultSpeed;
         }
-
-        // Mode - Crouching
         else if (crouching)
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
         }
-
-        // Mode - Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetKey(sprintKey) && currentStamina > 0)
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
+            DrainStamina(); // Ausdauer verbrauchen
         }
-
-        // Mode - Walking
         else if (grounded)
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
 
-
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
 
         if (desiredMoveSpeedHasChanged)
         {
-            if (keepMomentum)
-            {
-                StopAllCoroutines();
-                StartCoroutine(SmoothlyLerpMoveSpeed());
-            }
-            else
-            {
-                moveSpeed = desiredMoveSpeed;
-            }
+            moveSpeed = desiredMoveSpeed;
         }
 
         lastDesiredMoveSpeed = desiredMoveSpeed;
-
-        // deactivate keepMomentum
-        if (Mathf.Abs(desiredMoveSpeed - moveSpeed) < 0.1f) keepMomentum = false;
-    }
-
-    private IEnumerator SmoothlyLerpMoveSpeed()
-    {
-        // smoothly lerp movementSpeed to desired value
-        float time = 0;
-        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
-        float startValue = moveSpeed;
-
-        while (time < difference)
-        {
-            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
-
-            if (OnSlope())
-            {
-                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
-                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
-
-                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
-            }
-            else
-                time += Time.deltaTime * speedIncreaseMultiplier;
-
-            yield return null;
-        }
-
-        moveSpeed = desiredMoveSpeed;
     }
 
     private void MovePlayer()
     {
         if (restricted) return;
 
-        // calculate movement direction
         moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
 
-
-        // on slope
+        // Slope movement
         if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
-
-            if (rb.velocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            if (rb.velocity.y > 0) rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-
-        // on ground
         else if (grounded)
+        {
             rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
-
-        // in air
+        }
         else if (!grounded)
+        {
             rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+        }
     }
 
     private void SpeedControl()
     {
-        // limiting speed on slope
+        // Slope limit
         if (OnSlope() && !exitingSlope)
         {
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
         }
-
-        // limiting speed on ground or in air
         else
         {
             Vector3 flatVel = new Vector3(rb.velocity.x, 4f, rb.velocity.z);
 
-            // limit velocity if needed
             if (flatVel.magnitude > moveSpeed)
             {
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
@@ -283,28 +253,46 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
     }
 
+    private void DrainStamina()
+    {
+        currentStamina -= staminaDrain * Time.deltaTime;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+    }
+
+    private void RegenerateStamina()
+    {
+        currentStamina += staminaRegen * Time.deltaTime;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+    }
+
+    private void UpdatePostProcessingEffects()
+    {
+        if (vignetteEffect != null)
+        {
+            // Pulsierende Vignette basierend auf der Ausdauer
+            float staminaRatio = currentStamina / maxStamina;
+
+            // Die Intensität wird stärker, je weniger Ausdauer man hat, und sie pulsiert mit einer Sinuskurve
+            float pulse = Mathf.Sin(Time.time * vignettePulseSpeed) * (1 - staminaRatio);
+            float vignetteIntensity = Mathf.Lerp(vignetteMaxIntensity, vignetteMinIntensity, staminaRatio) + pulse * 0.1f;
+
+            vignetteEffect.intensity.Override(vignetteIntensity);
+        }
+    }
+
     public bool OnSlope()
     {
         if (Physics.Raycast(transform.position + Vector3.up * playerHeight / 2, Vector3.down, out slopeHit))
         {
-            Debug.DrawRay(transform.position + Vector3.up * playerHeight / 2, Vector3.down * 999f);
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
 
         return false;
-
     }
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
-    }
-
-
-    public static float Round(float value, int digits)
-    {
-        float mult = Mathf.Pow(10.0f, (float)digits);
-        return Mathf.Round(value * mult) / mult;
     }
 }

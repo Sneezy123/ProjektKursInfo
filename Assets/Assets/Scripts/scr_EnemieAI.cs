@@ -44,13 +44,16 @@ public class scr_EnemieAI : MonoBehaviour
     private MotionBlur motionBlur;
     private ChromaticAberration chromaticAberration;
 
+    [Range(0, 1)] public float PostProcessingEffectsDistance = 0.25f;
+    [Range(0, 1)] public float PostProcessingEffectsIntensety = 2;
+
     public Transform player;
     private NavMeshAgent agent;
 
-    private bool canSeePlayer = false;
-    private bool isChasing = false;
-    private bool isPatrolling = false;
-    private bool isSearching = false;
+    public bool canSeePlayer = false;
+    public bool isChasing = false;
+    public bool isPatrolling = false;
+    public bool isSearching = false;
 
     private Vector3 lastKnownPlayerPosition;
     private int currentWaypointIndex = 0;
@@ -63,7 +66,6 @@ public class scr_EnemieAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         sightRetentionTimer = 0f;
-        canSeePlayer = false;
 
         isChasing = false;
         isSearching = false;
@@ -90,6 +92,7 @@ public class scr_EnemieAI : MonoBehaviour
 
         if (canSeePlayer)
         {
+            // Der Gegner jagt den Spieler
             agent.speed = chaseSpeed;
             agent.destination = player.position;
             sightRetentionTimer = sightRetentionTime;
@@ -105,17 +108,18 @@ public class scr_EnemieAI : MonoBehaviour
         }
         else if (sightRetentionTimer > 0)
         {
-            sightRetentionTimer -= Time.deltaTime;
             agent.speed = chaseSpeed;
+            sightRetentionTimer -= Time.deltaTime;
             agent.destination = player.position;
         }
-        else if (isChasing && sightRetentionTimer <= 0)
+        else if (isChasing && sightRetentionTimer <= 0 && !canSeePlayer)
         {
+            // Der Gegner sucht nach dem Spieler
             if (!isSearching)
             {
-                lastKnownPlayerPosition = player.position; // Speicher den letzten bekannten Spieler-Standort
-                agent.destination = lastKnownPlayerPosition; // Setze das Ziel auf diesen Punkt
-                isSearching = true; // Wechsel zum Suchmodus
+                lastKnownPlayerPosition = player.position;
+                agent.destination = lastKnownPlayerPosition;
+                isSearching = true;
             }
 
             if (chaseAudio.isPlaying && !isSearching)
@@ -128,16 +132,16 @@ public class scr_EnemieAI : MonoBehaviour
                 PerformSmallPatrol();
             }
         }
-        else if (!isChasing && !canSeePlayer && sightRetentionTimer == 0)
+        else if (!isChasing && !canSeePlayer && !isSearching && sightRetentionTimer <= 0)
         {
+            // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
+            isPatrolling = true;
             PerformLargePatrol();
-            //Patrollieren
-            isChasing = false;
-            agent.destination = transform.position;
         }
 
         UpdatePostProcessingEffects();
     }
+
 
     void CheckIfPlayerInSight()
     {
@@ -146,7 +150,7 @@ public class scr_EnemieAI : MonoBehaviour
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
         float distanceToPlayer = Vector3.Distance(origin, player.position);
 
-        if (distanceToPlayer <= narrowViewAngle)
+        if (distanceToPlayer <= narrowViewRadius)
         {
             Vector3 directionToPlayer = (player.position - origin).normalized;
             float horizontalAngle = Vector3.Angle(transform.forward, directionToPlayer);
@@ -179,13 +183,13 @@ public class scr_EnemieAI : MonoBehaviour
 
     void PerformSmallPatrol()
     {
-        agent.speed = patrolSpeed;
+        agent.speed = chaseSpeed;
 
         if (smallPatrolTimer > 0)
         {
             smallPatrolTimer -= Time.deltaTime;
 
-            if (!agent.hasPath || agent.remainingDistance < 0.5f)
+            if (!agent.hasPath || agent.remainingDistance < 0.2f)
             {
                 Vector3 randomPoint = lastKnownPlayerPosition + Random.insideUnitSphere * smallPatrolRadius;
                 NavMeshHit hit;
@@ -198,6 +202,8 @@ public class scr_EnemieAI : MonoBehaviour
         else
         {
             isSearching = false;
+            isChasing = false;
+            canSeePlayer = false;
             isPatrolling = true;
             FindNearestWaypoint();
         }
@@ -256,19 +262,19 @@ public class scr_EnemieAI : MonoBehaviour
         float maxDistance = wideViewRadius;
 
         // Normiere die Distanz (0 = nah, 1 = weit weg)
-        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance));
+        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance)) + PostProcessingEffectsDistance;
 
-        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f, t);
-        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f, t);
-        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f, t);
-        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f, t);
+        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f * PostProcessingEffectsIntensety, t);
+        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t);
+        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f * PostProcessingEffectsIntensety, t);
+        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t);
     }
 
     private void OnDrawGizmos()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin, wideViewRadius);
 
         Vector3 wideViewAngleA = DirFromAngle(-wideViewAngle / 2, false);
@@ -277,7 +283,7 @@ public class scr_EnemieAI : MonoBehaviour
         Gizmos.DrawLine(origin, origin + wideViewAngleA * wideViewRadius);
         Gizmos.DrawLine(origin, origin + wideViewAngleB * wideViewRadius);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin, narrowViewRadius);
 
         Vector3 narrowViewAngleA = DirFromAngle(-narrowViewAngle / 2, false);
@@ -288,7 +294,7 @@ public class scr_EnemieAI : MonoBehaviour
 
         if (canSeePlayer | isChasing && sightRetentionTimer > 0)
         {
-            Gizmos.color = Color.black;
+            Gizmos.color = Color.red;
             Gizmos.DrawLine(origin, player.position);
         }
     }
