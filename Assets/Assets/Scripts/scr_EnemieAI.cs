@@ -12,10 +12,11 @@ public class scr_EnemieAI : MonoBehaviour
     [Range(0, 360)] public float wideViewAngle = 75f;
     [Range(0, 180)] public float wideViewVerticalAngle = 25f;
 
+
     [Header("Narrow FOV")]
-    public float narrowViewRadius = 15f;
     [Range(0, 360)] public float narrowViewAngle = 270f;
     [Range(0, 180)] public float narrowViewVerticalAngle = 100f;
+
 
     [Header("FOV Settings")]
     public float viewHeightOffset = 0.37f;
@@ -56,14 +57,19 @@ public class scr_EnemieAI : MonoBehaviour
     private float smallPatrolTimer = 0f;
     private float waypointWaitTimer = 0f;
     private float originalNarrowViewAngle;
+    private float sightRetentionTimer;
+    private bool isChasing;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         sightRetentionTimer = 0f;
         canSeePlayer = false;
+
         isChasing = false;
         isSearching = false;
+        canSeePlayer = false;
+
         originalNarrowViewAngle = narrowViewAngle;
         Volume = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<PostProcessVolume>();
 
@@ -76,6 +82,7 @@ public class scr_EnemieAI : MonoBehaviour
             Volume.profile.TryGetSettings(out motionBlur);
             Volume.profile.TryGetSettings(out chromaticAberration);
         }
+        isChasing = false;
     }
 
     void Update()
@@ -123,8 +130,12 @@ public class scr_EnemieAI : MonoBehaviour
             }
         }
         else
+        else if (!isChasing && !canSeePlayer && sightRetentionTimer == 0)
         {
             PerformLargePatrol();
+            //Patrollieren
+            isChasing = false;
+            agent.destination = transform.position;
         }
 
         UpdatePostProcessingEffects();
@@ -133,9 +144,11 @@ public class scr_EnemieAI : MonoBehaviour
     void CheckIfPlayerInSight()
     {
         canSeePlayer = false;
+
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
         float distanceToPlayer = Vector3.Distance(origin, player.position);
 
+        float distanceToPlayer = Vector3.Distance(origin, player.position);
         if (distanceToPlayer <= narrowViewRadius)
         {
             Vector3 directionToPlayer = (player.position - origin).normalized;
@@ -257,6 +270,7 @@ public class scr_EnemieAI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(origin, wideViewRadius);
 
