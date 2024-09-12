@@ -14139,16 +14139,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 3
   hitRange: 2
-  hitDelay: 0.5
+  hitDelay: 1
   damage: 1
   enemy: {fileID: 1564888349118855657}
   player: {fileID: 914962530}
+  pPController: {fileID: 1286138484}
   image: {fileID: 1072540700}
   IndicatorChoices:
   - {fileID: 21300000, guid: 6fa5d3e6fcda81b48a237a7d39e18434, type: 3}
   - {fileID: 21300000, guid: b241cf5776fc83f4abb85028f039b886, type: 3}
   - {fileID: 21300000, guid: abade9f4c64ff08418a4e324f3e0df07, type: 3}
   - {fileID: 21300000, guid: 5a15ecc9b4f9b3f47993299e438368cd, type: 3}
+  hurtColor1: {r: 0.15686275, g: 0, b: 0, a: 0.78431374}
+  hurtColor2: {r: 0.3137255, g: 0, b: 0, a: 0.78431374}
+  hurtColor3: {r: 0.47058824, g: 0, b: 0, a: 0.78431374}
+  PostProcessingEffectsIntensety: 1
+  Volume: {fileID: 1286138483}
 --- !u!1 &644144590
 GameObject:
   m_ObjectHideFlags: 0
@@ -31719,6 +31725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286138482}
+  - component: {fileID: 1286138484}
   - component: {fileID: 1286138483}
   m_Layer: 10
   m_Name: PostProcessing
@@ -31759,6 +31766,26 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &1286138484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286138481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44adba005256f240b1e3b66f782a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Volume: {fileID: 0}
+  grainIntensity: 0.02
+  vignetteIntensity: 0.02
+  motionBlurIntensity: 0.5
+  chromaticAberrationIntensity: 0.02
+  PostProcessingEffectsDistance: 0.5
+  PostProcessingEffectsIntensety: 1
+  vignetterColor: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.78431374}
 --- !u!43 &1293396654
 Mesh:
   m_ObjectHideFlags: 0
@@ -52395,6 +52422,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: pPController
+      value: 
+      objectReference: {fileID: 1286138484}
+    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 
       objectReference: {fileID: 585504673}
@@ -52541,6 +52572,14 @@ PrefabInstance:
       propertyPath: Volume
       value: 
       objectReference: {fileID: 1286138483}
+    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: staminaDrain
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: vignettePulseSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7082414234339181510, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: m_Icon
       value: 

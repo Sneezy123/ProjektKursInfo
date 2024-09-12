@@ -39,15 +39,19 @@ public class scr_EnemieAI : MonoBehaviour
     public AudioSource chaseAudio;
 
     [Header("Post-Processing")]
-    public PostProcessVolume Volume;
-    private Grain grain;
-    private Vignette vignette;
-    private MotionBlur motionBlur;
-    private ChromaticAberration chromaticAberration;
+    private float grainIntensity;
+    private float vignetteIntensity;
+    private float motionBlurIntensity;
+    private float chromaticAberrationIntensity;
+    private float t;
+    private float t2;
 
     [Range(0, 1)] public float PostProcessingEffectsDistance = 0.5f;
     [Range(0, 1)] public float PostProcessingEffectsIntensety = 1;
 
+
+    [Header("References")]
+    public scr_PostProcessingController pPController;
     public Transform player;
     private NavMeshAgent agent;
 
@@ -75,17 +79,9 @@ public class scr_EnemieAI : MonoBehaviour
         canSeePlayer = false;
 
         originalNarrowViewAngle = narrowViewAngle;
-        Volume = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<PostProcessVolume>();
+        pPController = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<scr_PostProcessingController>();
 
         agent.speed = patrolSpeed;
-
-        if (Volume != null)
-        {
-            Volume.profile.TryGetSettings(out grain);
-            Volume.profile.TryGetSettings(out vignette);
-            Volume.profile.TryGetSettings(out motionBlur);
-            Volume.profile.TryGetSettings(out chromaticAberration);
-        }
         isChasing = false;
     }
 
@@ -283,14 +279,24 @@ public class scr_EnemieAI : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         float maxDistance = wideViewRadius;
 
-        // Normiere die Distanz (0 = nah, 1 = weit weg)
-        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance)) + PostProcessingEffectsDistance;
+        if(t != null) t2 = t;
+        t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance)) + PostProcessingEffectsDistance;
 
-        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f * PostProcessingEffectsIntensety, t);
-        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t);
-        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f * PostProcessingEffectsIntensety, t);
-        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t);
+        int activeEffects = 0;
+
+        if (distanceToPlayer < narrowViewRadius) activeEffects++;
+
+        pPController.UpdateActiveEffectCount(activeEffects);
+
+        if(t2 != null) 
+        {
+            pPController.grainIntensity = pPController.grainIntensity + (Mathf.Lerp(0.05f, 1f * PostProcessingEffectsIntensety, t) - t2);
+            pPController.vignetteIntensity = pPController.vignetteIntensity + (Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t) - t2);
+            pPController.motionBlurIntensity = pPController.motionBlurIntensity + (Mathf.Lerp(0f, 320f * PostProcessingEffectsIntensety, t) - t2);
+            pPController.chromaticAberrationIntensity = pPController.chromaticAberrationIntensity + (Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t) - t2);
+        }
     }
+
 
     private void OnDrawGizmosSelected()
     {
