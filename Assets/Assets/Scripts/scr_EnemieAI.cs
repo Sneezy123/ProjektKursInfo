@@ -56,6 +56,8 @@ public class scr_EnemieAI : MonoBehaviour
     public bool isPatrolling = false;
     public bool isSearching = false;
 
+    public bool canMove = true;
+
     private Vector3 lastKnownPlayerPosition;
     private int currentWaypointIndex = 0;
     private float smallPatrolTimer = 0f;
@@ -89,58 +91,64 @@ public class scr_EnemieAI : MonoBehaviour
 
     void Update()
     {
-        CheckIfPlayerInSight();
-
-        if (canSeePlayer)
+        if(!canMove)
         {
-            // Der Gegner jagt den Spieler
-            agent.speed = chaseSpeed;
-            agent.destination = player.position;
-            sightRetentionTimer = sightRetentionTime;
-            isChasing = true;
-            isSearching = false;
-            isPatrolling = false;
-            ResetNarrowFOV();
-
-            if (!chaseAudio.isPlaying)
-            {
-                chaseAudio.Play();
-            }
+            agent.transform.position = transform.position;
         }
-        else if (sightRetentionTimer > 0)
+        else
         {
-            agent.speed = chaseSpeed;
-            sightRetentionTimer -= Time.deltaTime;
-            agent.destination = player.position;
-        }
-        else if (isChasing && sightRetentionTimer <= 0 && !canSeePlayer)
-        {
-            // Der Gegner sucht nach dem Spieler
-            if (!isSearching)
+            CheckIfPlayerInSight();
+
+            if (canSeePlayer)
             {
-                lastKnownPlayerPosition = player.position;
-                agent.destination = lastKnownPlayerPosition;
-                isSearching = true;
+                agent.speed = chaseSpeed;
+                agent.destination = player.position;
+                sightRetentionTimer = sightRetentionTime;
+                isChasing = true;
+                isSearching = false;
+                isPatrolling = false;
+                ResetNarrowFOV();
+
+                if (!chaseAudio.isPlaying)
+                {
+                    chaseAudio.Play();
+                }
+            }
+            else if (sightRetentionTimer > 0)
+            {
+                agent.speed = chaseSpeed;
+                sightRetentionTimer -= Time.deltaTime;
+                agent.destination = player.position;
+            }
+            else if (isChasing && sightRetentionTimer <= 0 && !canSeePlayer)
+            {
+                // Der Gegner sucht nach dem Spieler
+                if (!isSearching)
+                {
+                    lastKnownPlayerPosition = player.position;
+                    agent.destination = lastKnownPlayerPosition;
+                    isSearching = true;
+                }
+
+                if (chaseAudio.isPlaying && !isSearching)
+                {
+                    chaseAudio.Stop();
+                }
+
+                if (Vector3.Distance(transform.position, lastKnownPlayerPosition) < 1f)
+                {
+                    PerformSmallPatrol();
+                }
+            }
+            else if (!isChasing && !canSeePlayer && !isSearching && sightRetentionTimer <= 0)
+            {
+                // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
+                isPatrolling = true;
+                PerformLargePatrol();
             }
 
-            if (chaseAudio.isPlaying && !isSearching)
-            {
-                chaseAudio.Stop();
-            }
-
-            if (Vector3.Distance(transform.position, lastKnownPlayerPosition) < 1f)
-            {
-                PerformSmallPatrol();
-            }
+            UpdatePostProcessingEffects();
         }
-        else if (!isChasing && !canSeePlayer && !isSearching && sightRetentionTimer <= 0)
-        {
-            // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
-            isPatrolling = true;
-            PerformLargePatrol();
-        }
-
-        UpdatePostProcessingEffects();
     }
 
 

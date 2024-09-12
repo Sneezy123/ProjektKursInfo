@@ -8,8 +8,6 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
-    // Give them default values!
-
     [Header("Movement")]
     private float moveSpeed;
     private float desiredMoveSpeed;
@@ -17,9 +15,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
     public float vaultSpeed = 15f;
-
-    private float speedIncreaseMultiplier = 1.5f;
-    private float slopeIncreaseMultiplier = 1f;
 
     public float groundDrag = 0f;
     //timwarhiertest
@@ -167,7 +162,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void StateHandler()
     {
-        // Freeze state
         if (freeze)
         {
             state = MovementState.freeze;
@@ -193,7 +187,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
-            DrainStamina(); // Ausdauer verbrauchen
+            DrainStamina(); 
         }
         else if (grounded)
         {

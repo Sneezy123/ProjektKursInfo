@@ -8,10 +8,12 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
     [Header("Player Setup")]
 
     [Range (1, 10)] public int playerHealth = 3;
+    
 
     #region Privates
 
     private int hurtLvl = 0;
+    private bool playerIsDead = false;
 
     #endregion
 
@@ -50,7 +52,7 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
 
     void Update()
     {
-        if (canAttack && playerHealth != 0)
+        if (canAttack && playerHealth != 0 && !playerIsDead)
         {
             float distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
 
@@ -64,6 +66,8 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
 
     public void hurtPlayer()
     {
+        
+
         if(hurtLvl < playerHealth)
         {
             currentSprite++;
@@ -73,6 +77,9 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
         else
         {
             print("Player Died");
+            playerIsDead = true;
+            player.GetComponent<PlayerMovementAdvanced>().freeze = true;
+            enemy.GetComponent<scr_EnemieAI>().canMove = false; 
         }
 
         canAttack = false;
