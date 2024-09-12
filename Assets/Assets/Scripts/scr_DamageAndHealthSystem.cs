@@ -45,12 +45,21 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
 
     void Start()
     {
-
+        nextHitTime = Time.time;
     }
 
     void Update()
     {
-        
+        if (canAttack && playerHealth != 0)
+        {
+            float distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
+
+            if (distanceToPlayer <= hitRange && Time.time >= nextHitTime)
+            {
+                hurtPlayer();
+                nextHitTime = Time.time + hitDelay;
+            }
+        }
     }
 
     public void hurtPlayer()
@@ -65,6 +74,15 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
         {
             print("Player Died");
         }
+
+        canAttack = false;
+        StartCoroutine(AttackPause());
+    }
+
+    IEnumerator AttackPause()
+    {
+        yield return new WaitForSeconds(hitDelay);
+        canAttack = true;
     }
 
     #region Debug

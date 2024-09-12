@@ -14139,7 +14139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 3
   hitRange: 2
-  hitDelay: 1.5
+  hitDelay: 0.5
   damage: 1
   enemy: {fileID: 1564888349118855657}
   player: {fileID: 914962530}
