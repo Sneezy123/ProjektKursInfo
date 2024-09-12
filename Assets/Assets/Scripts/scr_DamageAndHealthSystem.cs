@@ -1,0 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class scr_DamageAndHealthSystem : MonoBehaviour
+{
+    [Header("Player Setup")]
+
+    [Range (1, 10)] public int playerHealth = 3;
+
+    #region Privates
+
+    private int hurtLvl = 0;
+
+    #endregion
+
+    [Header("Enemy Setup")]
+
+    [Range (0, 10)] public float hitRange = 2f;
+    [Range (0, 10)] public float hitDelay = 1.5f;
+    [Range (1, 10)] public int damage = 1;
+
+    #region Privates
+
+    private float nextHitTime;
+    private bool canAttack = true;
+
+    #endregion
+
+
+    [Header("References")]
+
+    public GameObject enemy;
+    public GameObject player;
+
+
+    [Header("Hurt Indicators")]
+
+    public Image image;
+    public List<Sprite> IndicatorChoices;
+
+    private int currentSprite = 0;
+
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        
+    }
+
+    public void hurtPlayer()
+    {
+        if(hurtLvl < playerHealth)
+        {
+            currentSprite++;
+            hurtLvl++;
+            image.sprite = IndicatorChoices[currentSprite];
+        } 
+        else
+        {
+            print("Player Died");
+        }
+    }
+
+    #region Debug
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(enemy.transform.position, hitRange);
+    }
+
+    #endregion
+}
