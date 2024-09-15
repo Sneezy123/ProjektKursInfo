@@ -298,6 +298,7 @@ public class scr_EnemieAI : MonoBehaviour
     }
 
 
+
     private void OnDrawGizmosSelected()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + viewHeightOffset, transform.position.z);

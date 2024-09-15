@@ -9,9 +9,8 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
 {
     [Header("Player Setup")]
     [Range (1, 10)] public int playerHealth = 3;
-    private int hurtLvl = 0;
+    public int hurtLvl = 0;
     private bool playerIsDead = false;
-
 
     [Header("Enemy Setup")]
     [Range (0, 10)] public float hitRange = 2f;
@@ -88,35 +87,36 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
     }
 
     void UpdatePostProcessingEffects()
-{
-    float t = Mathf.Clamp01(1);
-
-    int activeEffects = 0;
-
-    if (hurtLvl >= 1) activeEffects++;
-
-    pPController.UpdateActiveEffectCount(activeEffects);
-
-    if (hurtLvl == 1) 
     {
-        pPController.vignetterColor = hurtColor1;
-        tmp1 = Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t)
-        pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t)) / 2;
-        pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.2f * PostProcessingEffectsIntensety, t)) / 2;
+        float t = Mathf.Clamp01(1);
+
+        int activeEffects = 0;
+
+        if (hurtLvl >= 1) activeEffects++;
+
+        pPController.UpdateActiveEffectCount(activeEffects);
+
+        if (hurtLvl == 1) 
+        {
+            pPController.vignetterColor = hurtColor1;
+            tmp1 = Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t);
+            pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t)) / 2;
+            pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.2f * PostProcessingEffectsIntensety, t)) / 2;
+        }
+        else if (hurtLvl == 2) 
+        {
+            pPController.vignetterColor = hurtColor2;
+            pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.4f * PostProcessingEffectsIntensety, t)) / 2;
+            pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.3f * PostProcessingEffectsIntensety, t)) / 2;
+        }
+        else if (hurtLvl == 3)
+        {
+            pPController.vignetterColor = hurtColor3;
+            pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t)) / 2;
+            pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.5f * PostProcessingEffectsIntensety, t)) / 2;
+        }
     }
-    else if (hurtLvl == 2) 
-    {
-        pPController.vignetterColor = hurtColor2;
-        pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.4f * PostProcessingEffectsIntensety, t)) / 2;
-        pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.3f * PostProcessingEffectsIntensety, t)) / 2;
-    }
-    else if (hurtLvl == 3)
-    {
-        pPController.vignetterColor = hurtColor3;
-        pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t)) / 2;
-        pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.5f * PostProcessingEffectsIntensety, t)) / 2;
-    }
-}
+
 
 
     IEnumerator AttackPause()

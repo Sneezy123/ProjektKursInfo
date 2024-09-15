@@ -38,7 +38,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     [Header("Stamina")]
     public float maxStamina = 100f;
-    private float currentStamina;
+    public float currentStamina;
     public float staminaDrain = 20f; // Ausdauerverbrauch pro Sekunde
     public float staminaRegen = 10f; // Regenerationsrate pro Sekunde
 
@@ -254,6 +254,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
             }
         }
     }
+
+
 
     public bool OnSlope()
     {

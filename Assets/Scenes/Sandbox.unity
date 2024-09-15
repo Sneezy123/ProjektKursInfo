@@ -14138,6 +14138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 3
+  hurtLvl: 0
   hitRange: 2
   hitDelay: 1
   damage: 1
@@ -31778,14 +31779,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44adba005256f240b1e3b66f782a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Volume: {fileID: 0}
+  Volume: {fileID: 1286138483}
   grainIntensity: 0.02
   vignetteIntensity: 0.02
   motionBlurIntensity: 0.5
   chromaticAberrationIntensity: 0.02
   PostProcessingEffectsDistance: 0.5
   PostProcessingEffectsIntensety: 1
-  vignetterColor: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.78431374}
+  maxGrainIntensity: 0.5
+  maxVignetteIntensity: 0.75
+  maxMotionBlurIntensity: 0.85
+  maxChromaticAberrationIntensity: 0.25
+  vignetterColor: {r: 0, g: 0, b: 0, a: 0}
+  pulseSpeed: 1
+  DmgHealthSystem: {fileID: 627755045}
+  PlayerController: {fileID: 1342876911}
+  EnemieController: {fileID: 1564888349118855659}
 --- !u!43 &1293396654
 Mesh:
   m_ObjectHideFlags: 0
@@ -52479,6 +52488,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8082223267975228447, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
   m_PrefabInstance: {fileID: 1564888349118855656}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564888349118855659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+  m_PrefabInstance: {fileID: 1564888349118855656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564888349118855657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ba518b7bf856c469433f2a4aec8571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4520200754876567148
 PrefabInstance:
   m_ObjectHideFlags: 0
