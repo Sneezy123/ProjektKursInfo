@@ -12,8 +12,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private float lastDesiredMoveSpeed;
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
-    public float vaultSpeed = 15f;
-    public float groundDrag = 0f;
+    [HideInInspector] public float vaultSpeed = 15f;
+    [HideInInspector] public float groundDrag = 0f;
 
     [Header("Crouching")]
     public float crouchSpeed = 3.5f;
@@ -28,39 +28,30 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
     public LayerMask enemyField;
-    private bool grounded;
+    [HideInInspector] private bool grounded;
 
     [Header("Slope Handling")]
-    private bool onSlope;
+    [HideInInspector] private bool onSlope;
     public float maxSlopeAngle = 50f;
-    private RaycastHit slopeHit;
-    private bool exitingSlope;
+    [HideInInspector] private RaycastHit slopeHit;
+    [HideInInspector] private bool exitingSlope;
 
     [Header("Stamina")]
-    public float maxStamina = 100f;
-    public float currentStamina;
-    public float staminaDrain = 20f; // Ausdauerverbrauch pro Sekunde
-    public float staminaRegen = 10f; // Regenerationsrate pro Sekunde
-
-    [Header("Post-Processing")]
-    public float vignetteMinIntensity = 0.2f;
-    public float vignetteMaxIntensity = 0.6f;
-    public float vignettePulseSpeed = 6f;
-    private Vignette vignetteEffect;
-    private PostProcessVolume volume;
-    private float t;
-    private float t2;
+    [HideInInspector] public float maxStamina = 100f;
+    [HideInInspector] public float currentStamina;
+    public float staminaDrain = 20f;
+    public float staminaRegen = 10f; 
+    [HideInInspector] public float staminaRatio;
 
     [Header("References")]
     public Transform orientation;
     public Camera cam;
-    public scr_PostProcessingController pPController;
 
-    float horizontalInput;
-    float verticalInput;
+    [HideInInspector] float horizontalInput;
+    [HideInInspector] float verticalInput;
 
-    Vector3 moveDirection;
-    Rigidbody rb;
+    [HideInInspector] Vector3 moveDirection;
+    [HideInInspector] Rigidbody rb;
 
     public MovementState state;
     public enum MovementState
@@ -68,18 +59,17 @@ public class PlayerMovementAdvanced : MonoBehaviour
         freeze,
         unlimited,
         walking,
-        sprinting,
+        sprinting,  
         vaulting,
         crouching
     }
 
-    public bool crouching;
-    public bool vaulting;
-    public bool freeze;
-    public bool unlimited;
-    public bool restricted;
+    [HideInInspector] public bool crouching;
+    [HideInInspector] public bool vaulting;
+    [HideInInspector] public bool freeze;
+    [HideInInspector] public bool unlimited;
+    [HideInInspector] public bool restricted;
 
-    public Camera Cam;
     public RaycastHit hit;
     private Collider[] hitColliders;
 
@@ -89,14 +79,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb.freezeRotation = true;
         startYScale = transform.localScale.y;
 
-        pPController = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<scr_PostProcessingController>();
-
         currentStamina = maxStamina;
     }
 
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.1f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.1f, whatIsGround | enemyField);
         MyInput();
         SpeedControl();
         StateHandler();
@@ -109,8 +97,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
             RegenerateStamina();
         }
 
+        staminaRatio = currentStamina / maxStamina;
+
         // Update Post-Processing basierend auf der Ausdauer
-        UpdatePostProcessingEffects();
+        //UpdatePostProcessingEffects();
     }
 
     private void FixedUpdate()
@@ -225,37 +215,21 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void DrainStamina()
     {
-        currentStamina -= staminaDrain * Time.deltaTime;
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        if(state == MovementState.sprinting)
+        {
+            currentStamina -= staminaDrain * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        }
     }
 
     private void RegenerateStamina()
     {
-        currentStamina += staminaRegen * Time.deltaTime;
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
-    }
-
-    private void UpdatePostProcessingEffects()
-    {
-        if (vignetteEffect != null)
+        if(state != MovementState.sprinting )
         {
-            float staminaRatio = currentStamina / maxStamina;
-
-            if (staminaRatio < 0.3f)
-            {
-                if(t != null) t2 = t;
-                float pulse = Mathf.Sin(Time.time * vignettePulseSpeed) * (1 - staminaRatio);
-
-                pPController.vignetteIntensity = pPController.vignetteIntensity + ((Mathf.Lerp(vignetteMaxIntensity, vignetteMinIntensity, staminaRatio) + pulse * 0.05f) - t2);
-            }
-            else
-            {
-                pPController.vignetteIntensity = t;
-            }
+            currentStamina += staminaRegen * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         }
     }
-
-
 
     public bool OnSlope()
     {

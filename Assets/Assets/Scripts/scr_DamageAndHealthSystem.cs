@@ -23,31 +23,17 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
     [Header("References")]
     public GameObject enemy;
     public GameObject player;
-    public scr_PostProcessingController pPController;
 
 
     [Header("Hurt Indicators")]
     public Image image;
     public List<Sprite> IndicatorChoices;
     private int currentSprite = 0;
-    public Color hurtColor1;
-    public Color hurtColor2;
-    public Color hurtColor3;
-
-
-    [Header("Post-Processing")]
-    [Range(0, 1)] public float PostProcessingEffectsIntensety = 1f;
-    public PostProcessVolume Volume;
-    private float vignetteIntensity;
-    private float chromaticAberrationIntensity;
-    private float tmp1;
-    private float tmp2;
 
 
     void Start()
     {
         nextHitTime = Time.time;
-        pPController = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<scr_PostProcessingController>();
     }
 
     void Update()
@@ -62,8 +48,6 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
                 nextHitTime = Time.time + hitDelay;
             }
         }
-
-        UpdatePostProcessingEffects();
     }
 
     public void hurtPlayer()
@@ -85,39 +69,6 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
         canAttack = false;
         StartCoroutine(AttackPause());
     }
-
-    void UpdatePostProcessingEffects()
-    {
-        float t = Mathf.Clamp01(1);
-
-        int activeEffects = 0;
-
-        if (hurtLvl >= 1) activeEffects++;
-
-        pPController.UpdateActiveEffectCount(activeEffects);
-
-        if (hurtLvl == 1) 
-        {
-            pPController.vignetterColor = hurtColor1;
-            tmp1 = Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t);
-            pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t)) / 2;
-            pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.2f * PostProcessingEffectsIntensety, t)) / 2;
-        }
-        else if (hurtLvl == 2) 
-        {
-            pPController.vignetterColor = hurtColor2;
-            pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.4f * PostProcessingEffectsIntensety, t)) / 2;
-            pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.3f * PostProcessingEffectsIntensety, t)) / 2;
-        }
-        else if (hurtLvl == 3)
-        {
-            pPController.vignetterColor = hurtColor3;
-            pPController.vignetteIntensity = (pPController.vignetteIntensity + Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t)) / 2;
-            pPController.chromaticAberrationIntensity = (pPController.chromaticAberrationIntensity + Mathf.Lerp(0.1f, 0.5f * PostProcessingEffectsIntensety, t)) / 2;
-        }
-    }
-
-
 
     IEnumerator AttackPause()
     {

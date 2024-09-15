@@ -14144,18 +14144,12 @@ MonoBehaviour:
   damage: 1
   enemy: {fileID: 1564888349118855657}
   player: {fileID: 914962530}
-  pPController: {fileID: 1286138484}
   image: {fileID: 1072540700}
   IndicatorChoices:
   - {fileID: 21300000, guid: 6fa5d3e6fcda81b48a237a7d39e18434, type: 3}
   - {fileID: 21300000, guid: b241cf5776fc83f4abb85028f039b886, type: 3}
   - {fileID: 21300000, guid: abade9f4c64ff08418a4e324f3e0df07, type: 3}
   - {fileID: 21300000, guid: 5a15ecc9b4f9b3f47993299e438368cd, type: 3}
-  hurtColor1: {r: 0.15686275, g: 0, b: 0, a: 0.78431374}
-  hurtColor2: {r: 0.3137255, g: 0, b: 0, a: 0.78431374}
-  hurtColor3: {r: 0.47058824, g: 0, b: 0, a: 0.78431374}
-  PostProcessingEffectsIntensety: 1
-  Volume: {fileID: 1286138483}
 --- !u!1 &644144590
 GameObject:
   m_ObjectHideFlags: 0
@@ -31784,14 +31778,17 @@ MonoBehaviour:
   vignetteIntensity: 0.02
   motionBlurIntensity: 0.5
   chromaticAberrationIntensity: 0.02
-  PostProcessingEffectsDistance: 0.5
-  PostProcessingEffectsIntensety: 1
   maxGrainIntensity: 0.5
-  maxVignetteIntensity: 0.75
+  maxVignetteIntensity: 0.6
   maxMotionBlurIntensity: 0.85
   maxChromaticAberrationIntensity: 0.25
-  vignetterColor: {r: 0, g: 0, b: 0, a: 0}
-  pulseSpeed: 1
+  PostProcessingEffectsDistance: 0.5
+  PostProcessingEffectsIntensety: 1
+  startVignetterColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}
+  hurtColor1: {r: 0.31132078, g: 0, b: 0, a: 1}
+  hurtColor2: {r: 0.37254903, g: 0, b: 0, a: 1}
+  hurtColor3: {r: 0.43137255, g: 0, b: 0, a: 1}
+  vignettePulseSpeed: 6
   DmgHealthSystem: {fileID: 627755045}
   PlayerController: {fileID: 1342876911}
   EnemieController: {fileID: 1564888349118855659}
@@ -38176,6 +38173,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!20 &1495274588 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4480948568362086984, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+  m_PrefabInstance: {fileID: 8803309423044778905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1508318166
 Mesh:
   m_ObjectHideFlags: 0
@@ -52589,12 +52591,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1495274588}
+    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: Volume
       value: 
       objectReference: {fileID: 1286138483}
     - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: staminaDrain
-      value: 15
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: enemyField.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: vignettePulseSpeed

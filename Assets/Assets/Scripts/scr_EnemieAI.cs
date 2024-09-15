@@ -142,8 +142,6 @@ public class scr_EnemieAI : MonoBehaviour
                 isPatrolling = true;
                 PerformLargePatrol();
             }
-
-            UpdatePostProcessingEffects();
         }
     }
 
@@ -273,31 +271,6 @@ public class scr_EnemieAI : MonoBehaviour
     {
         narrowViewAngle = originalNarrowViewAngle;
     }
-
-    void UpdatePostProcessingEffects()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        float maxDistance = wideViewRadius;
-
-        if(t != null) t2 = t;
-        t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance)) + PostProcessingEffectsDistance;
-
-        int activeEffects = 0;
-
-        if (distanceToPlayer < narrowViewRadius) activeEffects++;
-
-        pPController.UpdateActiveEffectCount(activeEffects);
-
-        if(t2 != null) 
-        {
-            pPController.grainIntensity = pPController.grainIntensity + (Mathf.Lerp(0.05f, 1f * PostProcessingEffectsIntensety, t) - t2);
-            pPController.vignetteIntensity = pPController.vignetteIntensity + (Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t) - t2);
-            pPController.motionBlurIntensity = pPController.motionBlurIntensity + (Mathf.Lerp(0f, 320f * PostProcessingEffectsIntensety, t) - t2);
-            pPController.chromaticAberrationIntensity = pPController.chromaticAberrationIntensity + (Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t) - t2);
-        }
-    }
-
-
 
     private void OnDrawGizmosSelected()
     {
