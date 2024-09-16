@@ -26,10 +26,10 @@ public class scr_PostProcessingController : MonoBehaviour
     [Range(0, 2)] public float PostProcessingEffectsDistance = 0.5f;
     [Range(0, 2)] public float PostProcessingEffectsIntensety = 1;
 
-    public Color startVignetterColor;
-    public Color hurtColor1;
-    public Color hurtColor2;
-    public Color hurtColor3;
+    public Color startVignetterColor = new Color(90, 90, 90);
+    public Color hurtColor1 = new Color(80, 0, 0);
+    public Color hurtColor2 = new Color(95, 0, 0);
+    public Color hurtColor3 = new Color(105, 0, 0);
     private Color vignetteColor;
     public float vignettePulseSpeed;
 
@@ -110,19 +110,19 @@ public class scr_PostProcessingController : MonoBehaviour
         if (DmgHealthSystem.hurtLvl == 1)
         {
             vignetteColor = hurtColor1;
-            vignetteIntensity += Mathf.Lerp(0.05f, 0.2f * PostProcessingEffectsIntensety, t);
+            vignetteIntensity += 0.1f * PostProcessingEffectsIntensety;
             chromaticAberrationIntensity += Mathf.Lerp(0.1f, 0.2f * PostProcessingEffectsIntensety, t);
         }
         else if (DmgHealthSystem.hurtLvl == 2)
         {
             vignetteColor = hurtColor2;
-            vignetteIntensity += Mathf.Lerp(0.05f, 0.4f * PostProcessingEffectsIntensety, t);
+            vignetteIntensity += 0.15f * PostProcessingEffectsIntensety;
             chromaticAberrationIntensity += Mathf.Lerp(0.1f, 0.3f * PostProcessingEffectsIntensety, t);
         }
         else if (DmgHealthSystem.hurtLvl == 3)
         {
             vignetteColor = hurtColor3;
-            vignetteIntensity += Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t);
+            vignetteIntensity += 0.15f * PostProcessingEffectsIntensety;
             chromaticAberrationIntensity += Mathf.Lerp(0.1f, 0.4f * PostProcessingEffectsIntensety, t);
         }
     }
