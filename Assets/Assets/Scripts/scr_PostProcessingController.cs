@@ -26,10 +26,10 @@ public class scr_PostProcessingController : MonoBehaviour
     [Range(0, 2)] public float PostProcessingEffectsDistance = 0.5f;
     [Range(0, 2)] public float PostProcessingEffectsIntensety = 1;
 
-    public Color startVignetterColor = new Color(90, 90, 90);
-    public Color hurtColor1 = new Color(80, 0, 0);
-    public Color hurtColor2 = new Color(95, 0, 0);
-    public Color hurtColor3 = new Color(105, 0, 0);
+    public Color startVignetterColor;
+    public Color hurtColor1;
+    public Color hurtColor2;
+    public Color hurtColor3;
     private Color vignetteColor;
     public float vignettePulseSpeed;
 
