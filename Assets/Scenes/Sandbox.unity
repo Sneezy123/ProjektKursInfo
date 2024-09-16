@@ -39811,6 +39811,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1776204071}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: chaseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: patrolSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: pPController
       value: 
       objectReference: {fileID: 1286138484}
@@ -76984,6 +76992,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1776204071}
+    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: chaseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: patrolSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: pPController
       value: 
@@ -123114,6 +123130,14 @@ PrefabInstance:
       propertyPath: Volume
       value: 
       objectReference: {fileID: 1286138483}
+    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: walkSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: sprintSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1328593861561533613, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: staminaDrain
       value: 20
