@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8322695616913443953
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Nick5_{-8322695616913443953}
+  m_AudioClip: {fileID: 8300000, guid: 7bbd2cd66b8173347a632647ebb345a9, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5888152739564033250
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Nick3_{-5888152739564033250}
+  m_AudioClip: {fileID: 8300000, guid: 11941edf4d316f744a989d92be84edad, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1847290178553115230
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Nick2_{-1847290178553115230}
+  m_AudioClip: {fileID: 8300000, guid: 551e56f0655ac834caf7044e0218ec1c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1113872242431473557
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Nick4_{1113872242431473557}
+  m_AudioClip: {fileID: 8300000, guid: 800bad4c23e4c5747bc7b50e7b58b49c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Creepy Sounds
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 13.9
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: -9.268298, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 8638792763597841131}
+  - {fileID: -1847290178553115230}
+  - {fileID: -5888152739564033250}
+  - {fileID: 1113872242431473557}
+  - {fileID: -8322695616913443953}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 0
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &8638792763597841131
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Nick1_{8638792763597841131}
+  m_AudioClip: {fileID: 8300000, guid: 0bb4a91766446a74b92ea49e15157154, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
