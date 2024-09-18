@@ -7,6 +7,9 @@ public class doorMechanics : MonoBehaviour, IInteractable
     private Animator tuerAnim;
     private bool tueroffen = false;
 
+    private bool islocket = true;
+
+    public PlayerMovementAdvanced playerscript;     
     private void Awake(){
     tuerAnim = gameObject.GetComponent<Animator>();
 
@@ -14,17 +17,29 @@ public class doorMechanics : MonoBehaviour, IInteractable
 
    public void Interact()
     {
-
-        if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0)){
-
-            tuerAnim.Play("tueranimation",0,0.0f);
-            tueroffen = true;
-        }
-        else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
+        if (playerscript.currentItem == 1)
         {
-           tuerAnim.Play("tuerSchliessenAnimation",0,0.0f);
-            tueroffen = false;
-
+            islocket = false;
         }
+        
+        
+
+        if (!islocket){
+            if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0)){
+
+                tuerAnim.Play("tueranimation",0,0.0f);
+                tueroffen = true;
+            }
+            else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
+            {
+              tuerAnim.Play("tuerSchliessenAnimation",0,0.0f);
+                tueroffen = false;
+
+            }
+        }else
+        {
+            Debug.Log("doorisLocked");
+        }
+        
     }
 }

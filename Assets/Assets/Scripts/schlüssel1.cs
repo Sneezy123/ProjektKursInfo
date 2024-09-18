@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,7 @@ public class schlüssel_1_test : MonoBehaviour, IInteractable
 
     public PlayerMovementAdvanced playerscript;
     // Start is called before the first frame update
+    public int schlüsselnummer;
     void Start()
     {
         
@@ -20,7 +20,7 @@ public class schlüssel_1_test : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        playerscript.currentItem = 1;
+        playerscript.currentItem = schlüsselnummer;
         
     }
 }

@@ -73,6 +73,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public RaycastHit hit;
     private Collider[] hitColliders;
 
+    public int currentItem;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
