@@ -11,17 +11,20 @@ public class Crosshair : MonoBehaviour
     Color imgColor;
     public Color interactingColor;
 
-    void Start() {
-        image = GetComponent<Image> ();
+    void Start()
+    {
+        image = GetComponent<Image>();
         imgColor = image.color;
     }
 
     void Update()
     {
-        if(playerscript.hit.transform != null && playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerscript.hit.distance <= item.InteractRange) {
+        if (playerscript.hit.transform != null && playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerscript.hit.distance <= item.InteractRange)
+        {
             image.color = interactingColor;
         }
-        else {
+        else
+        {
             image.color = imgColor;
         }
 

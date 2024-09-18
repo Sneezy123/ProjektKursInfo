@@ -10,17 +10,17 @@ public class schlüssel_1_test : MonoBehaviour, IInteractable
     public int schlüsselnummer;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Interact()
     {
         playerscript.currentItem = schlüsselnummer;
-        
+
     }
 }

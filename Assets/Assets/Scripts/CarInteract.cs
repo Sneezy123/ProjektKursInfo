@@ -8,42 +8,49 @@ public class CarInteract : MonoBehaviour, IInteractable
     private bool isCarDoorOpen = false;
     private bool isTrunkDoorOpen = false;
 
-    private void Awake(){
-    doorAnim = gameObject.GetComponent<Animator>();
+    private void Awake()
+    {
+        doorAnim = gameObject.GetComponent<Animator>();
 
     }
 
-   public void Interact()
+    public void Interact()
     {
-        if (transform.name == "tuer_l") {
-    
+        if (transform.name == "tuer_l")
+        {
+
             Debug.Log("interact!");
 
-            if (!isCarDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0)) {
+            if (!isCarDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0))
+            {
 
-                doorAnim.Play("OpenCarDoor",0,0.0f);
+                doorAnim.Play("OpenCarDoor", 0, 0.0f);
                 isCarDoorOpen = true;
             }
 
-            else if (isCarDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0)) {
-            doorAnim.Play("CloseCarDoor",0,0.0f);
+            else if (isCarDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0))
+            {
+                doorAnim.Play("CloseCarDoor", 0, 0.0f);
                 isCarDoorOpen = false;
 
             }
         }
 
-        else if (transform.name == "kofferraum") {
-    
+        else if (transform.name == "kofferraum")
+        {
+
             Debug.Log("interact!");
 
-            if (!isTrunkDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0)) {
+            if (!isTrunkDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0))
+            {
 
-                doorAnim.Play("OpenCarTrunk",0,0.0f);
+                doorAnim.Play("OpenCarTrunk", 0, 0.0f);
                 isTrunkDoorOpen = true;
             }
 
-            else if (isTrunkDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0)) {
-            doorAnim.Play("CloseCarTrunk",0,0.0f);
+            else if (isTrunkDoorOpen && doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !doorAnim.IsInTransition(0))
+            {
+                doorAnim.Play("CloseCarTrunk", 0, 0.0f);
                 isTrunkDoorOpen = false;
 
             }
