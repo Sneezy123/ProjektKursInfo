@@ -52400,11 +52400,11 @@ PrefabInstance:
     - target: {fileID: 8275601523347635452, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
+      objectReference: {fileID: 8300000, guid: d4263e9f133900046806ca0bbc2e6ce1, type: 3}
     - target: {fileID: 8275601523347635452, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
+      objectReference: {fileID: 8300000, guid: d4263e9f133900046806ca0bbc2e6ce1, type: 3}
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: Volume
       value: 
@@ -52465,6 +52465,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[8]'
       value: 
       objectReference: {fileID: 813729496}
+    - target: {fileID: 8517337271117577338, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+      propertyPath: m_Speed
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8517337271117577338, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: m_StoppingDistance
       value: 0
