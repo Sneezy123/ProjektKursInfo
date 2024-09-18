@@ -7940,7 +7940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemID: 0
-  InteractRange: 100
+  InteractRange: 5
   playerscript: {fileID: 1342876911}
 --- !u!4 &166740598
 Transform:
@@ -105106,7 +105106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerscript: {fileID: 1342876911}
   item: {fileID: 166740597}
-  interactingColor: {r: 1, g: 1, b: 1, a: 1}
+  interactingColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!43 &1856199653
 Mesh:
   m_ObjectHideFlags: 0
