@@ -11,7 +11,7 @@ interface IInteractable
 public class scr_ItemBlueprint : MonoBehaviour
 {
 
-    public int itemID;
+
     private string itemName;
 
     public float InteractRange = 100;
