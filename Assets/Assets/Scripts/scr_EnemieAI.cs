@@ -39,15 +39,19 @@ public class scr_EnemieAI : MonoBehaviour
     public AudioSource chaseAudio;
 
     [Header("Post-Processing")]
-    public PostProcessVolume Volume;
-    private Grain grain;
-    private Vignette vignette;
-    private MotionBlur motionBlur;
-    private ChromaticAberration chromaticAberration;
+    private float grainIntensity;
+    private float vignetteIntensity;
+    private float motionBlurIntensity;
+    private float chromaticAberrationIntensity;
+    private float t;
+    private float t2;
 
     [Range(0, 1)] public float PostProcessingEffectsDistance = 0.5f;
     [Range(0, 1)] public float PostProcessingEffectsIntensety = 1;
 
+
+    [Header("References")]
+    public scr_PostProcessingController pPController;
     public Transform player;
     private NavMeshAgent agent;
 
@@ -55,6 +59,8 @@ public class scr_EnemieAI : MonoBehaviour
     public bool isChasing = false;
     public bool isPatrolling = false;
     public bool isSearching = false;
+
+    public bool canMove = true;
 
     private Vector3 lastKnownPlayerPosition;
     private int currentWaypointIndex = 0;
@@ -73,74 +79,70 @@ public class scr_EnemieAI : MonoBehaviour
         canSeePlayer = false;
 
         originalNarrowViewAngle = narrowViewAngle;
-        Volume = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<PostProcessVolume>();
+        pPController = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<scr_PostProcessingController>();
 
         agent.speed = patrolSpeed;
-
-        if (Volume != null)
-        {
-            Volume.profile.TryGetSettings(out grain);
-            Volume.profile.TryGetSettings(out vignette);
-            Volume.profile.TryGetSettings(out motionBlur);
-            Volume.profile.TryGetSettings(out chromaticAberration);
-        }
         isChasing = false;
     }
 
     void Update()
     {
-        CheckIfPlayerInSight();
-
-        if (canSeePlayer)
+        if(!canMove)
         {
-            // Der Gegner jagt den Spieler
-            agent.speed = chaseSpeed;
-            agent.destination = player.position;
-            sightRetentionTimer = sightRetentionTime;
-            isChasing = true;
-            isSearching = false;
-            isPatrolling = false;
-            ResetNarrowFOV();
+            agent.transform.position = transform.position;
+        }
+        else
+        {
+            CheckIfPlayerInSight();
 
-            if (!chaseAudio.isPlaying)
+            if (canSeePlayer)
             {
-                chaseAudio.Play();
+                agent.speed = chaseSpeed;
+                agent.destination = player.position;
+                sightRetentionTimer = sightRetentionTime;
+                isChasing = true;
+                isSearching = false;
+                isPatrolling = false;
+                ResetNarrowFOV();
+
+                if (!chaseAudio.isPlaying)
+                {
+                    chaseAudio.Play();
+                }
+            }
+            else if (sightRetentionTimer > 0)
+            {
+                agent.speed = chaseSpeed;
+                sightRetentionTimer -= Time.deltaTime;
+                agent.destination = player.position;
+            }
+            else if (isChasing && sightRetentionTimer <= 0 && !canSeePlayer)
+            {
+                // Der Gegner sucht nach dem Spieler
+                if (!isSearching)
+                {
+                    lastKnownPlayerPosition = player.position;
+                    agent.destination = lastKnownPlayerPosition;
+                    isSearching = true;
+                }
+
+                if (chaseAudio.isPlaying && !isSearching)
+                {
+                    chaseAudio.Stop();
+                }
+
+                if (Vector3.Distance(transform.position, lastKnownPlayerPosition) < 1f)
+                {
+                    PerformSmallPatrol();
+                }
+            }
+            else if (!isChasing && !canSeePlayer && !isSearching && sightRetentionTimer <= 0)
+            {
+                // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
+                isPatrolling = true;
+                PerformLargePatrol();
             }
         }
-        else if (sightRetentionTimer > 0)
-        {
-            agent.speed = chaseSpeed;
-            sightRetentionTimer -= Time.deltaTime;
-            agent.destination = player.position;
-        }
-        else if (isChasing && sightRetentionTimer <= 0 && !canSeePlayer)
-        {
-            // Der Gegner sucht nach dem Spieler
-            if (!isSearching)
-            {
-                lastKnownPlayerPosition = player.position;
-                agent.destination = lastKnownPlayerPosition;
-                isSearching = true;
-            }
-
-            if (chaseAudio.isPlaying && !isSearching)
-            {
-                chaseAudio.Stop();
-            }
-
-            if (Vector3.Distance(transform.position, lastKnownPlayerPosition) < 1f)
-            {
-                PerformSmallPatrol();
-            }
-        }
-        else if (!isChasing && !canSeePlayer && !isSearching && sightRetentionTimer <= 0)
-        {
-            // Der Gegner patrouilliert, wenn er den Spieler nicht sieht
-            isPatrolling = true;
-            PerformLargePatrol();
-        }
-
-        UpdatePostProcessingEffects();
     }
 
 
@@ -268,20 +270,6 @@ public class scr_EnemieAI : MonoBehaviour
     void ResetNarrowFOV()
     {
         narrowViewAngle = originalNarrowViewAngle;
-    }
-
-    void UpdatePostProcessingEffects()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        float maxDistance = wideViewRadius;
-
-        // Normiere die Distanz (0 = nah, 1 = weit weg)
-        float t = Mathf.Clamp01(1 - (distanceToPlayer / maxDistance)) + PostProcessingEffectsDistance;
-
-        if (grain != null) grain.intensity.value = Mathf.Lerp(0.05f, 1f * PostProcessingEffectsIntensety, t);
-        if (vignette != null) vignette.intensity.value = Mathf.Lerp(0.05f, 0.6f * PostProcessingEffectsIntensety, t);
-        if (motionBlur != null) motionBlur.shutterAngle.value = Mathf.Lerp(0f, 320f * PostProcessingEffectsIntensety, t);
-        if (chromaticAberration != null) chromaticAberration.intensity.value = Mathf.Lerp(0.1f, 0.85f * PostProcessingEffectsIntensety, t);
     }
 
     private void OnDrawGizmosSelected()
