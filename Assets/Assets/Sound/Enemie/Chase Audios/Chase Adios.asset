@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-7815975131677258527
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Chase Audio_{-7815975131677258527}
+  m_AudioClip: {fileID: 8300000, guid: 613c5146bdfa7804dbdc1cf4ec9497fa, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-6140952380504826690
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - Deja Vu (Initial D)_{-6140952380504826690}
+  m_AudioClip: {fileID: 8300000, guid: d059a660b191c96479d0806ac67f4a0f, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5077593908392007016
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - El Sonidito_{-5077593908392007016}
+  m_AudioClip: {fileID: 8300000, guid: 9e6c2a6ba60a0ea449cc399fda5c5498, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3199104680286533544
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - Greazy Unicorn_{-3199104680286533544}
+  m_AudioClip: {fileID: 8300000, guid: d4263e9f133900046806ca0bbc2e6ce1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2879855935980783661
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - RUNNING IN THE _90S_ - EXTENDED MIX_{-2879855935980783661}
+  m_AudioClip: {fileID: 8300000, guid: d7ba5e28715230b439cc6ea75743086c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2834609425293246502
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - Heroin an Heiligabend_{-2834609425293246502}
+  m_AudioClip: {fileID: 8300000, guid: 80ed78a807bf91342bd993d6dd7ec037, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-765877603502468056
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - The Time Is Now_{-765877603502468056}
+  m_AudioClip: {fileID: 8300000, guid: 0f23149023e6c7f428362f0bf0227631, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-20901285081984772
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - Fuck This Shit I'm Out_{-20901285081984772}
+  m_AudioClip: {fileID: 8300000, guid: 1e1165b7a27f3ea43bc6300088e6787c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5859725222587407284
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - The Imperial March (Darth Vader's Theme)_{5859725222587407284}
+  m_AudioClip: {fileID: 8300000, guid: 042e750190148af4694c1a62cc8ff8f8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Chase Adios
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -7815975131677258527}
+  - {fileID: -6140952380504826690}
+  - {fileID: -5077593908392007016}
+  - {fileID: -20901285081984772}
+  - {fileID: -3199104680286533544}
+  - {fileID: -2834609425293246502}
+  - {fileID: 7794232831729075955}
+  - {fileID: -2879855935980783661}
+  - {fileID: 5859725222587407284}
+  - {fileID: -765877603502468056}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7794232831729075955
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spotifydown.com - Release The Kraken - Sefa Remix_{7794232831729075955}
+  m_AudioClip: {fileID: 8300000, guid: 6f419d1e7b63d654880ffa03ca3b657a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

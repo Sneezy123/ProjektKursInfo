@@ -495,8 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7da07a22a0a34e4ab4cab6b66b51d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 700
-  sensY: 700
+  sensX: 400
+  sensY: 400
   orientation: {fileID: 6448725459072811367}
   camHolder: {fileID: 3298289281577153092}
 --- !u!114 &2104662823544393845
@@ -554,7 +554,7 @@ MonoBehaviour:
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 7666165210694491234}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,8 +670,6 @@ MonoBehaviour:
   walkSpeed: 7
   sprintSpeed: 10
   vaultSpeed: 15
-  speedIncreaseMultiplier: 1.5
-  slopeIncreaseMultiplier: 2.5
   groundDrag: 0
   crouchSpeed: 5
   crouchYScale: 0.7
@@ -684,8 +682,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  grounded: 0
-  onSlope: 0
   maxSlopeAngle: 60
   maxStamina: 100
   staminaDrain: 20

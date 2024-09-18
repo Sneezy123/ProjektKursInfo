@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - PostProcessing
+  - Hurt_0
+  - Hurt_1
+  - Hurt_2
+  - Hurt_3
+  - Enemy
   layers:
   - Default
   - TransparentFX
