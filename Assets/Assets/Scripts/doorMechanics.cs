@@ -9,6 +9,11 @@ public class doorMechanics : MonoBehaviour, IInteractable
 
     private bool islocket = true;
 
+    [Header("Audio")]
+    public AudioSource doorOpen;
+    public AudioSource doorClose;
+    public AudioSource doorLocked;
+
     public PlayerMovementAdvanced playerscript;     
     private void Awake(){
     tuerAnim = gameObject.GetComponent<Animator>();
@@ -29,16 +34,18 @@ public class doorMechanics : MonoBehaviour, IInteractable
 
                 tuerAnim.Play("tueranimation",0,0.0f);
                 tueroffen = true;
+                doorOpen.Play();
             }
             else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
             {
               tuerAnim.Play("tuerSchliessenAnimation",0,0.0f);
                 tueroffen = false;
-
+                doorClose.Play();
             }
         }else
         {
             Debug.Log("doorisLocked");
+            doorLocked.Play();
         }
         
     }
