@@ -91,6 +91,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb.drag = groundDrag;
         onSlope = OnSlope();
 
+        Physics.Raycast(cam.transform.position, cam.transform.forward, out hit);
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * 99f);
+
         // Regeneriere die Ausdauer, wenn nicht gesprintet wird
         if (state != MovementState.sprinting && currentStamina < maxStamina)
         {
