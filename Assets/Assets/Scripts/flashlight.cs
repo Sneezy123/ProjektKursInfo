@@ -10,24 +10,24 @@ public class flashlight : MonoBehaviour, IInteractable
     // Start is called before the first frame update
 
     private PlayerMovementAdvanced playerscript;
-    private GameObject itemHolder;
+    private GameObject flashlightHolder;
     public bool isHolding = false;
 
 
     void Start()
     {
-        itemHolder = GameObject.Find("ItemHolder");
+        flashlightHolder = GameObject.Find("FlashlightHolder");
         playerscript = GameObject.Find("Player").GetComponent<PlayerMovementAdvanced>();
 
     }
 
     public void Interact()
     {
-        transform.SetParent(itemHolder.transform);
+        transform.SetParent(flashlightHolder.transform);
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<MeshCollider>().enabled = false;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<MeshCollider>().enabled = false;
 
         isHolding = true;
     }
