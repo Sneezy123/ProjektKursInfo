@@ -23446,7 +23446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Last Update:\n16.09.24 \n(Beta 1.9)"
+  m_text: "Last Update:\n16.09.24 \n(Alpha 2.01)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -123205,15 +123205,19 @@ PrefabInstance:
     - target: {fileID: 625140872216235269, guid: 9613430cb9a2840feac101c4db918ad3, type: 3}
       propertyPath: doorClose
       value: 
-      objectReference: {fileID: 4520200754876567152}
+      objectReference: {fileID: 4520200754876567150}
     - target: {fileID: 625140872216235269, guid: 9613430cb9a2840feac101c4db918ad3, type: 3}
       propertyPath: doorLocked
       value: 
-      objectReference: {fileID: 4520200754876567150}
+      objectReference: {fileID: 4520200754876567152}
     - target: {fileID: 625140872216235269, guid: 9613430cb9a2840feac101c4db918ad3, type: 3}
       propertyPath: playerscript
       value: 
       objectReference: {fileID: 1342876911}
+    - target: {fileID: 1196411967261728435, guid: 9613430cb9a2840feac101c4db918ad3, type: 3}
+      propertyPath: m_Name
+      value: door
+      objectReference: {fileID: 0}
     - target: {fileID: 2004474521160582153, guid: 9613430cb9a2840feac101c4db918ad3, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -123311,8 +123315,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2b5d65e1fe8101140950bd1815e0ac66, type: 3}
-  m_Resource: {fileID: 8300000, guid: 2b5d65e1fe8101140950bd1815e0ac66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: caf4f1ed7f133c4488d65802e130a576, type: 3}
+  m_Resource: {fileID: 8300000, guid: caf4f1ed7f133c4488d65802e130a576, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -123408,8 +123412,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b4c18d2978f0974459ff8d9d4aaa45c6, type: 3}
-  m_Resource: {fileID: 8300000, guid: b4c18d2978f0974459ff8d9d4aaa45c6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 97dbb36fdc7c65145ba39c78ee962120, type: 3}
+  m_Resource: {fileID: 8300000, guid: 97dbb36fdc7c65145ba39c78ee962120, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -123505,8 +123509,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fcdd177191a68e245aa82f2db0a2761b, type: 3}
-  m_Resource: {fileID: 8300000, guid: fcdd177191a68e245aa82f2db0a2761b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a82d1cd82852d3141a38ed9d2636396e, type: 3}
+  m_Resource: {fileID: 8300000, guid: a82d1cd82852d3141a38ed9d2636396e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
