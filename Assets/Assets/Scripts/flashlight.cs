@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
-using UnityEditor.Callbacks;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class flashlight : MonoBehaviour, IInteractable

@@ -8,7 +8,7 @@ public class CarInteract : MonoBehaviour, IInteractable
     private bool isCarDoorOpen = false;
     private bool isTrunkDoorOpen = false;
 
-    private void Awake()
+    private void Start()
     {
         doorAnim = gameObject.GetComponent<Animator>();
 
