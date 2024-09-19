@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d935253d4904b014292243da9b5c4d9f, type: 2}
     - target: {fileID: 919132149155446097, guid: 93970da60ed8d154f9c2dad04ca54d41, type: 3}
       propertyPath: m_Name
-      value: doors (1)
+      value: scr_door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98,10 +98,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 93970da60ed8d154f9c2dad04ca54d41, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 625140872216235269}
+      addedObject: {fileID: 8520286399235772717}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 93970da60ed8d154f9c2dad04ca54d41, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8520286399235772717}
+      addedObject: {fileID: 2033476553364453768}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 93970da60ed8d154f9c2dad04ca54d41, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4400547682434603160}
@@ -111,18 +111,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 93970da60ed8d154f9c2dad04ca54d41, type: 3}
   m_PrefabInstance: {fileID: 2043485831962059746}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &625140872216235269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196411967261728435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0061006b8b281c642ad77d3d0d963cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &8520286399235772717
 Animator:
   serializedVersion: 7
@@ -145,6 +133,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2033476553364453768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196411967261728435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0061006b8b281c642ad77d3d0d963cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorOpen: {fileID: 0}
+  doorClose: {fileID: 0}
+  doorLocked: {fileID: 0}
+  playerscript: {fileID: 0}
 --- !u!64 &4400547682434603160
 MeshCollider:
   m_ObjectHideFlags: 0
