@@ -257,9 +257,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public void DropItem()
     {
-        if (cam.transform.parent.GetChild(1).childCount >= 1)
+        Transform itemHolder = cam.transform.parent.GetChild(2);
+
+        if (itemHolder.childCount >= 1)
         {
-            holdingItem = cam.transform.parent.GetChild(1).GetChild(0).gameObject;
+            holdingItem = itemHolder.GetChild(0).gameObject;
         }
         if (Input.GetAxisRaw("Drop") == 1)
         {

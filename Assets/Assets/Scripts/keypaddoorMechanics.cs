@@ -2,31 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class doorMechanics : MonoBehaviour, IInteractable
+public class keypaddoorMechanics : MonoBehaviour, IInteractable
 {
     private Animator tuerAnim;
     private bool tueroffen = false;
 
-    private bool isLocked = true;
+    public bool isLocked = true;
 
     [Header("Audio")]
     public AudioSource doorOpen;
     public AudioSource doorClose;
     public AudioSource doorLocked;
+    
+    private void Awake(){
+    tuerAnim = gameObject.GetComponent<Animator>();
 
-    public PlayerMovementAdvanced playerscript;
-    private void Start()
-    {
-        tuerAnim = gameObject.GetComponent<Animator>();
-        playerscript = GameObject.Find("Player").GetComponent<PlayerMovementAdvanced>();
     }
 
     public void Interact()
     {
-        if (playerscript.currentItem == 1)
-        {
-            isLocked = false;
-        }
+        
 
 
 
@@ -44,6 +39,7 @@ public class doorMechanics : MonoBehaviour, IInteractable
                 tuerAnim.Play("tuerSchliessenAnimation", 0, 0.0f);
                 tueroffen = false;
                 doorClose.Play();
+                isLocked = true;
             }
         }
         else
