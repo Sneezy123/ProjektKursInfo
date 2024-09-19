@@ -1,28 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
+using UnityEngine.Animations;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UIElements;
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
-    // Give them default values!
-
     [Header("Movement")]
     private float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
-    public float vaultSpeed = 15f;
+    [HideInInspector] public float vaultSpeed = 15f;
+    [HideInInspector] public float groundDrag = 0f;
 
-    private float speedIncreaseMultiplier = 1.5f;
-    private float slopeIncreaseMultiplier = 1f;
-
-    public float groundDrag = 0f;
-    //timwarhiertest
     [Header("Crouching")]
     public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.7f;
@@ -33,41 +27,33 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight = 2;
-    public LayerMask EnemyField;
-    public LayerMask whatIsGround = 64; // LayerMask 64: WhatIsGround
-    private bool grounded;
+    public float playerHeight = 2f;
+    public LayerMask whatIsGround;
+    public LayerMask enemyField;
+    [HideInInspector] private bool grounded;
 
     [Header("Slope Handling")]
-
-    private bool onSlope;
-    public float maxSlopeAngle = 50;
-    private RaycastHit slopeHit;
-    private bool exitingSlope;
+    [HideInInspector] private bool onSlope;
+    public float maxSlopeAngle = 50f;
+    [HideInInspector] private RaycastHit slopeHit;
+    [HideInInspector] private bool exitingSlope;
 
     [Header("Stamina")]
-    public float maxStamina = 100f;
-    private float currentStamina = 100f;
-    public float staminaDrain = 20f; // Ausdauerverbrauch pro Sekunde
-    public float staminaRegen = 10f; // Regenerationsrate pro Sekunde
-
-    [Header("Post-Processing")]
-    public PostProcessVolume Volume;
-    private Vignette vignetteEffect;
-
-    public float vignetteMinIntensity = 0.2f; // Vignette, wenn die Ausdauer voll ist
-    public float vignetteMaxIntensity = 0.6f; // Vignette, wenn die Ausdauer leer ist
-    public float vignettePulseSpeed = 6f; // Pulsfrequenz
+    [HideInInspector] public float maxStamina = 100f;
+    [HideInInspector] public float currentStamina;
+    public float staminaDrain = 20f;
+    public float staminaRegen = 10f;
+    [HideInInspector] public float staminaRatio;
 
     [Header("References")]
     public Transform orientation;
+    public Camera cam;
 
-    float horizontalInput;
-    float verticalInput;
+    [HideInInspector] float horizontalInput;
+    [HideInInspector] float verticalInput;
 
-    Vector3 moveDirection;
-
-    Rigidbody rb;
+    [HideInInspector] Vector3 moveDirection;
+    [HideInInspector] Rigidbody rb;
 
     public MovementState state;
     public enum MovementState
@@ -80,53 +66,39 @@ public class PlayerMovementAdvanced : MonoBehaviour
         crouching
     }
 
-    public bool crouching;
-    public bool vaulting;
+    [HideInInspector] public bool crouching;
+    [HideInInspector] public bool vaulting;
+    [HideInInspector] public bool freeze;
+    [HideInInspector] public bool unlimited;
+    [HideInInspector] public bool restricted;
 
-    public bool freeze;
-    public bool unlimited;
-
-    public bool restricted;
-
-
-
-    public Camera Cam;
     public RaycastHit hit;
-
     private Collider[] hitColliders;
-    private float playerRadius = 1f;
+
+    public int currentItem;
+    public GameObject holdingItem;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
         startYScale = transform.localScale.y;
 
-        Volume = GameObject.FindGameObjectWithTag("PostProcessing").GetComponent<PostProcessVolume>();
-
-
-        if (Volume != null)
-        {
-            Volume.profile.TryGetSettings(out vignetteEffect);
-        }
+        currentStamina = maxStamina;
     }
 
     private void Update()
     {
-        hitColliders = Physics.OverlapSphere(transform.position + (Vector3.up * (playerRadius / 2 - 0.02f * 2)), playerRadius * (1f - 0.02f) / 2, whatIsGround | EnemyField);
-        grounded = 0 < hitColliders.Length;
-
+        grounded = Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.1f, whatIsGround | enemyField);
         MyInput();
         SpeedControl();
         StateHandler();
-
+        DropItem();
         rb.drag = groundDrag;
-
-        Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit);
-        Debug.DrawRay(Cam.transform.position, Cam.transform.forward * 99f);
-
         onSlope = OnSlope();
+
+        Physics.Raycast(cam.transform.position, cam.transform.forward, out hit);
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * 99f);
 
         // Regeneriere die Ausdauer, wenn nicht gesprintet wird
         if (state != MovementState.sprinting && currentStamina < maxStamina)
@@ -134,8 +106,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
             RegenerateStamina();
         }
 
-        // Update die Post-Processing-Effekte basierend auf der Ausdauer
-        UpdatePostProcessingEffects();
+        staminaRatio = currentStamina / maxStamina;
+
+        // Update Post-Processing basierend auf der Ausdauer
+        //UpdatePostProcessingEffects();
     }
 
     private void FixedUpdate()
@@ -153,7 +127,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-
             crouching = true;
         }
 
@@ -167,7 +140,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void StateHandler()
     {
-        // Freeze state
         if (freeze)
         {
             state = MovementState.freeze;
@@ -193,7 +165,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
-            DrainStamina(); // Ausdauer verbrauchen
+            DrainStamina();
         }
         else if (grounded)
         {
@@ -201,13 +173,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
             desiredMoveSpeed = walkSpeed;
         }
 
-        bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
-
-        if (desiredMoveSpeedHasChanged)
+        if (desiredMoveSpeed != lastDesiredMoveSpeed)
         {
             moveSpeed = desiredMoveSpeed;
         }
-
         lastDesiredMoveSpeed = desiredMoveSpeed;
     }
 
@@ -243,7 +212,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
         else
         {
-            Vector3 flatVel = new Vector3(rb.velocity.x, 4f, rb.velocity.z);
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             if (flatVel.magnitude > moveSpeed)
             {
@@ -255,44 +224,46 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void DrainStamina()
     {
-        currentStamina -= staminaDrain * Time.deltaTime;
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        if (state == MovementState.sprinting)
+        {
+            currentStamina -= staminaDrain * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        }
     }
 
     private void RegenerateStamina()
     {
-        currentStamina += staminaRegen * Time.deltaTime;
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
-    }
-
-    private void UpdatePostProcessingEffects()
-    {
-        if (vignetteEffect != null)
+        if (state != MovementState.sprinting)
         {
-            // Pulsierende Vignette basierend auf der Ausdauer
-            float staminaRatio = currentStamina / maxStamina;
-
-            // Die Intensität wird stärker, je weniger Ausdauer man hat, und sie pulsiert mit einer Sinuskurve
-            float pulse = Mathf.Sin(Time.time * vignettePulseSpeed) * (1 - staminaRatio);
-            float vignetteIntensity = Mathf.Lerp(vignetteMaxIntensity, vignetteMinIntensity, staminaRatio) + pulse * 0.1f;
-
-            vignetteEffect.intensity.Override(vignetteIntensity);
+            currentStamina += staminaRegen * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         }
     }
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position + Vector3.up * playerHeight / 2, Vector3.down, out slopeHit))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.1f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
-
         return false;
     }
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    public void DropItem()
+    {
+        if (cam.transform.parent.GetChild(1).childCount >= 1)
+        {
+            holdingItem = cam.transform.parent.GetChild(1).GetChild(0).gameObject;
+        }
+        if (Input.GetAxisRaw("Drop") == 1)
+        {
+            Debug.Log(holdingItem.GetComponent<MonoBehaviour>());
+        }
     }
 }

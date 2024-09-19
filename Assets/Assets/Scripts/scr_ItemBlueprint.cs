@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor;
 using UnityEngine;
 
 interface IInteractable
@@ -12,7 +11,7 @@ interface IInteractable
 public class scr_ItemBlueprint : MonoBehaviour
 {
 
-    public int itemID;
+
     private string itemName;
 
     public float InteractRange = 100;
