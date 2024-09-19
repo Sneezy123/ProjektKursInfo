@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7174300718192841411}
   m_Layer: 7
-  m_Name: ItemHolder
+  m_Name: FlashlightHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 4112880569636306294}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34, y: -0.21, z: 0.44}
+  m_LocalPosition: {x: -0.35, y: -0.21, z: 0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -206,12 +206,13 @@ Transform:
   m_GameObject: {fileID: 5326119997359087829}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3288996169559542569}
   - {fileID: 7174300718192841411}
+  - {fileID: 6908216640715653440}
   m_Father: {fileID: 7666165210694491234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8862959299356978884
@@ -336,6 +337,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6178246067718782563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6908216640715653440}
+  m_Layer: 7
+  m_Name: ItemHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6908216640715653440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178246067718782563}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32, y: -0.21, z: 0.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3298289281577153092}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6258410050221696568
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,8 +634,8 @@ GameObject:
   - component: {fileID: 7666165210694491234}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -699,8 +731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9a52cdd6cd5794d8cd5ffda52be6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
-  sprintSpeed: 10
+  walkSpeed: 4
+  sprintSpeed: 6
   vaultSpeed: 15
   groundDrag: 0
   crouchSpeed: 5
@@ -713,7 +745,7 @@ MonoBehaviour:
     m_Bits: 64
   enemyField:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   maxSlopeAngle: 60
   maxStamina: 100
   currentStamina: 0
@@ -729,3 +761,4 @@ MonoBehaviour:
   unlimited: 0
   restricted: 0
   currentItem: 0
+  holdingItem: {fileID: 0}
