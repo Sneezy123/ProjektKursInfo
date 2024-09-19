@@ -24,10 +24,10 @@ public class flashlight : MonoBehaviour, IInteractable
     public void Interact()
     {
         transform.SetParent(itemHolder.transform);
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<MeshCollider>().enabled = false;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<MeshCollider>().enabled = false;
 
         isHolding = true;
     }
