@@ -19,7 +19,7 @@ public class settingsMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateSensValue();
+        // UpdateSensValue();
     }
 
     public void CloseMenu()
@@ -29,8 +29,8 @@ public class settingsMenu : MonoBehaviour
         pauseMenu.gamePaused = false;
     }
 
-    public void UpdateSensValue()
-    {
-        sensDisplay.text = settingsValues.mouseSensitivity.ToString();
-    }
+    // public void UpdateSensValue()
+    // {
+    //     sensDisplay.text = settingsValues.mouseSensitivity.ToString();
+    // }
 }
