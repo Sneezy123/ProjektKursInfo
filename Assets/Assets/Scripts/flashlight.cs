@@ -14,7 +14,7 @@ public class flashlight : MonoBehaviour, IInteractable
     void Start()
     {
         flashlightHolder = GameObject.Find("FlashlightHolder");
-        playerScript = PlayerMovementAdvanced.playerScript;
+        playerScript = getPlayerscript.playerScript;
     }
 
     public void Interact()

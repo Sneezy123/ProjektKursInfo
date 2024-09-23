@@ -16,12 +16,12 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     public float InteractRange = 100;
 
-    private PlayerMovementAdvanced playerScript;
+    public PlayerMovementAdvanced playerScript;
   
 
     void Start()
     {
-        playerScript = PlayerMovementAdvanced.playerScript;
+        playerScript = getPlayerscript.playerScript;
     }
 
 

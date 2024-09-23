@@ -16,7 +16,7 @@ public class Crosshair : MonoBehaviour
         image = GetComponent<Image>();
         imgColor = image.color;
 
-        playerScript = PlayerMovementAdvanced.playerScript;
+        playerScript = getPlayerscript.playerScript;
     }
 
     void Update()

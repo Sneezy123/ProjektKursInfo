@@ -10,7 +10,7 @@ public class schlüssel_1_test : MonoBehaviour, IInteractable
     public int schlüsselnummer;
     void Start()
     {
-        playerScript = PlayerMovementAdvanced.playerScript;
+        playerScript = getPlayerscript.playerScript;
     }
 
     // Update is called once per frame

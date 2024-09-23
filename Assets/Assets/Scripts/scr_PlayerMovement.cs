@@ -78,8 +78,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public int currentItem;
     public GameObject holdingItem;
 
-    public static PlayerMovementAdvanced playerScript;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -87,8 +85,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         startYScale = transform.localScale.y;
 
         currentStamina = maxStamina;
-
-        playerScript = GetComponent<PlayerMovementAdvanced>();
     }
 
     private void Update()
