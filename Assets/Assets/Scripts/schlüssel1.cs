@@ -5,12 +5,12 @@ using UnityEngine;
 public class schlüssel_1_test : MonoBehaviour, IInteractable
 {
 
-    public PlayerMovementAdvanced playerscript;
+    private PlayerMovementAdvanced playerScript;
     // Start is called before the first frame update
     public int schlüsselnummer;
     void Start()
     {
-
+        playerScript = PlayerMovementAdvanced.playerScript;
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class schlüssel_1_test : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        playerscript.currentItem = schlüsselnummer;
+        playerScript.currentItem = schlüsselnummer;
 
     }
 }
