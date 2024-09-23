@@ -6,7 +6,7 @@ public class flashlight : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
 
-    private PlayerMovementAdvanced playerScript;
+    public scr_PlayerMovement playerScript;
     private GameObject flashlightHolder;
     public bool isHolding = false;
 
@@ -14,7 +14,6 @@ public class flashlight : MonoBehaviour, IInteractable
     void Start()
     {
         flashlightHolder = GameObject.Find("FlashlightHolder");
-        playerScript = getPlayerscript.playerScript;
     }
 
     public void Interact()

@@ -40,7 +40,7 @@ public class scr_PostProcessingController : MonoBehaviour
 
     [Header("Script Reference")]
     public scr_DamageAndHealthSystem DmgHealthSystem;
-    public PlayerMovementAdvanced PlayerController;
+    public scr_PlayerMovement PlayerController;
     public scr_EnemieAI EnemieController;
 
     void Start()

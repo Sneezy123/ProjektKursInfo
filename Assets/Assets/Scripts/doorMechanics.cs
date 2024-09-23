@@ -14,11 +14,10 @@ public class doorMechanics : MonoBehaviour, IInteractable
     public AudioSource doorClose;
     public AudioSource doorLocked;
 
-    public PlayerMovementAdvanced playerScript;
+    public scr_PlayerMovement playerScript;
     private void Start()
     {
         tuerAnim = gameObject.GetComponent<Animator>();
-        playerScript = getPlayerscript.playerScript;
     }
 
     public void Interact()

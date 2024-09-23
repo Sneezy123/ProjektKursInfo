@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class pauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject settingsMenuUI;
     public static bool gamePaused = false;
 
     void Start()
@@ -22,25 +23,40 @@ public class pauseMenu : MonoBehaviour
             if (gamePaused)
             {
                 ResumeGame();
-                gamePaused = false;
+
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.visible = true;
             }
             else
             {
                 PauseGame();
-                gamePaused = true;
             }
         }
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        gamePaused = true;
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        gamePaused = false;
+    }
+
+    public void LoadSettingsMenu()
+    {
+        settingsMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit Game!");
+        Application.Quit();
     }
 }

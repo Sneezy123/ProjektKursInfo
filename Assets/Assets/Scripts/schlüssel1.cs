@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class schlüssel_1_test : MonoBehaviour, IInteractable
+public class schlüssel_1 : MonoBehaviour, IInteractable
 {
 
-    private PlayerMovementAdvanced playerScript;
+    public scr_PlayerMovement playerScript;
     // Start is called before the first frame update
     public int schlüsselnummer;
     void Start()
     {
-        playerScript = getPlayerscript.playerScript;
+
     }
 
     // Update is called once per frame

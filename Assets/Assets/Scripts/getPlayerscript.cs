@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class getPlayerscript : MonoBehaviour
 {
-    public static PlayerMovementAdvanced playerScript;
+    //public static scr_PlayerMovement playerScript;
     void Start()
     {
-        playerScript = GetComponent<PlayerMovementAdvanced>();
+        //playerScript = GetComponent<scr_PlayerMovement>();
+        //Debug.Log(playerScript);
     }
 }

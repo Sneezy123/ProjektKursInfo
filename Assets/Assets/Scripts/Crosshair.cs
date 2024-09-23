@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
-    private PlayerMovementAdvanced playerScript;
+    public scr_PlayerMovement playerScript;
     public scr_ItemBlueprint item;
     Image image;
     Color imgColor;
@@ -15,8 +15,6 @@ public class Crosshair : MonoBehaviour
     {
         image = GetComponent<Image>();
         imgColor = image.color;
-
-        playerScript = getPlayerscript.playerScript;
     }
 
     void Update()
