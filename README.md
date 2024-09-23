@@ -4,6 +4,7 @@
 ![68,75%](https://progress-bar.xyz/69?title=Base+Features)
 
 **Game Engine:** [Unity](https://unity.com/de) [(Download)](https://unity.com/de/download)
+**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
 
 **Bisherige Features:** 
 * Laufen
@@ -31,5 +32,3 @@
 * Andere Sprache als Englisch
 * Über Objekte springen
 * Weitere Rätsel
-
-**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
