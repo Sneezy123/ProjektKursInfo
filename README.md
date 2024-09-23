@@ -14,13 +14,22 @@
 * Auto mit Interaktion
 * Fadenkreuz mit Farbänderung bei Interaktion
 * Sandbox Szene
+* Türgeräusche
+* Simples Pause-Menu (Anfänge eines Einstellungen-Menus)
+* Taschenlampe, die man aufheben kann
+* Tür mit Schlüssel und mit Zahlenschloss
 
 **Work in Progress:**
 * Haus
-* Auto (hat Anzeigeprobleme)
+* Auto (hat nur noch leichte Anzeigeprobleme)
 * Straße
-* Ton wenn Gegner kommt
-* Soundeffekte
+* Soundeffekte (Teile sind schon implementiert)
 * Spielermodelle
+* User Interface
+
+**Vorhaben:**
+* Andere Sprache als Englisch
+* Über Objekte springen
+* Weitere Rätsel
 
 **Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
