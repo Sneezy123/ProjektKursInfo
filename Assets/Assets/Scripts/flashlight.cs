@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
-using UnityEditor.Callbacks;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class flashlight : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
 
-    private PlayerMovementAdvanced playerscript;
+    public scr_PlayerMovement playerScript;
     private GameObject flashlightHolder;
     public bool isHolding = false;
 
@@ -17,8 +14,6 @@ public class flashlight : MonoBehaviour, IInteractable
     void Start()
     {
         flashlightHolder = GameObject.Find("FlashlightHolder");
-        playerscript = GameObject.Find("Player").GetComponent<PlayerMovementAdvanced>();
-
     }
 
     public void Interact()

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
-    public PlayerMovementAdvanced playerscript;
+    public scr_PlayerMovement playerScript;
     public scr_ItemBlueprint item;
     Image image;
     Color imgColor;
@@ -19,7 +19,7 @@ public class Crosshair : MonoBehaviour
 
     void Update()
     {
-        if (playerscript.hit.transform != null && playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerscript.hit.distance <= item.InteractRange)
+        if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= item.InteractRange)
         {
             image.color = interactingColor;
         }

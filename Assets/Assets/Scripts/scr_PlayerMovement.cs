@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
 
-public class PlayerMovementAdvanced : MonoBehaviour
+public class scr_PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     private float moveSpeed;
@@ -73,6 +73,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [HideInInspector] public bool restricted;
 
     public RaycastHit hit;
+    public GameObject hitObject;
     private Collider[] hitColliders;
 
     public int currentItem;

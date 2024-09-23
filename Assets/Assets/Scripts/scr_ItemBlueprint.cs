@@ -16,7 +16,7 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     public float InteractRange = 100;
 
-    public PlayerMovementAdvanced playerscript;
+    public scr_PlayerMovement playerScript;
   
 
     void Start()
@@ -27,11 +27,11 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerscript.hit.transform != null)
+        if (Input.GetKeyDown(KeyCode.E) && playerScript.hit.transform != null)
         {
-            Debug.Log(playerscript.hit.transform.name);
+            Debug.Log(playerScript.hit.transform.name);
             
-            if(playerscript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerscript.hit.distance <= InteractRange)
+            if(playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= InteractRange)
             {
                 Debug.Log("Interact" + interactObj);
                 interactObj.Interact();
