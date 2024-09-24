@@ -27661,6 +27661,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494393130}
   m_CullTransparentMesh: 1
+--- !u!1 &497676399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4112880569636306294, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+  m_PrefabInstance: {fileID: 8803309423044778905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &497676401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497676399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bffddfc448f476d83acb33b7294129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHolding: 0
 --- !u!1 &504237195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8376888327017635834, guid: eaba8add266f641188d33e4c98a9dcee, type: 3}
@@ -41681,7 +41699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60000000000
+  m_text: 600
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -126431,7 +126449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2292918280476866618, guid: 655861b7ea99f3c43aad2e977829fc9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0.297
       objectReference: {fileID: 0}
     - target: {fileID: 2292918280476866618, guid: 655861b7ea99f3c43aad2e977829fc9a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -126700,6 +126718,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4112880569636306294, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 497676401}
     - targetCorrespondingSourceObject: {fileID: 6178246067718782563, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 509679898}
