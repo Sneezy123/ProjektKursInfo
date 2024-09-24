@@ -5,25 +5,25 @@ using UnityEngine;
 public class flashlight : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
-
-    public scr_PlayerMovement playerScript;
-    private GameObject flashlightHolder;
+    public itemPickupManager itemPickupManager;
     public bool isHolding = false;
 
 
     void Start()
     {
-        flashlightHolder = GameObject.Find("FlashlightHolder");
+        itemPickupManager = GameObject.Find("ItemHolder").GetComponent<itemPickupManager>();
     }
 
     public void Interact()
     {
-        transform.SetParent(flashlightHolder.transform);
-        GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<MeshCollider>().enabled = false;
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        itemPickupManager.PickupItem(this.gameObject);
+    }
 
-        isHolding = true;
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            itemPickupManager.DropItem(this.gameObject);
+        }
     }
 }
