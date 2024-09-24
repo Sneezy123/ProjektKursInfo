@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class scr_DamageAndHealthSystem : MonoBehaviour
@@ -20,6 +22,8 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
     [Header("References")]
     public List<GameObject> enemies = new List<GameObject>(); // List of enemies
     public GameObject player;
+
+    public TextMeshProUGUI youHaveDiedText;
 
     [Header("Hurt Indicators")]
     public Image image;
@@ -60,11 +64,12 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
         {
             Debug.Log("Player Died");
             playerIsDead = true;
-            player.GetComponent<PlayerMovementAdvanced>().freeze = true;
+            player.GetComponent<scr_PlayerMovement>().freeze = true;
             foreach (GameObject enemy in enemies)
             {
                 enemy.GetComponent<scr_EnemieAI>().canMove = false;
             }
+            youHaveDiedText.enabled = true;
         }
 
         canAttack = false;

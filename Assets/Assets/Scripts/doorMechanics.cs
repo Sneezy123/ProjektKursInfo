@@ -7,24 +7,49 @@ public class doorMechanics : MonoBehaviour, IInteractable
     private Animator tuerAnim;
     private bool tueroffen = false;
 
-    private void Awake(){
-    tuerAnim = gameObject.GetComponent<Animator>();
+    private bool isLocked = true;
 
+    [Header("Audio")]
+    public AudioSource doorOpen;
+    public AudioSource doorClose;
+    public AudioSource doorLocked;
+
+    public scr_PlayerMovement playerScript;
+    private void Start()
+    {
+        tuerAnim = gameObject.GetComponent<Animator>();
     }
 
-   public void Interact()
+    public void Interact()
     {
-
-        if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0)){
-
-            tuerAnim.Play("tueranimation",0,0.0f);
-            tueroffen = true;
-        }
-        else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
+        if (playerScript.currentItem == 1)
         {
-           tuerAnim.Play("tuerSchliessenAnimation",0,0.0f);
-            tueroffen = false;
-
+            isLocked = false;
         }
+
+
+
+        if (!isLocked)
+        {
+            if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
+            {
+
+                tuerAnim.Play("tueranimation", 0, 0.0f);
+                tueroffen = true;
+                doorOpen.Play();
+            }
+            else if (tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))
+            {
+                tuerAnim.Play("tuerSchliessenAnimation", 0, 0.0f);
+                tueroffen = false;
+                doorClose.Play();
+            }
+        }
+        else
+        {
+            Debug.Log("doorisLocked");
+            doorLocked.Play();
+        }
+
     }
 }
