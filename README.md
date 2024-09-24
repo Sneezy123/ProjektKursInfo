@@ -10,6 +10,10 @@
 
 ---
 
+**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
+
+---
+
 **Bisherige Features:** 
 * Laufen
 * Crouchen, Sprinten
