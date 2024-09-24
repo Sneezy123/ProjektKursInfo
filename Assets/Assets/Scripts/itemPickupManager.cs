@@ -16,7 +16,7 @@ public class itemPickupManager : MonoBehaviour
     {
         item.transform.SetParent(this.transform);
         item.GetComponent<Rigidbody>().isKinematic = true;
-        item.GetComponent<MeshCollider>().enabled = false;
+        item.GetComponent<Collider>().enabled = false;
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
@@ -27,7 +27,7 @@ public class itemPickupManager : MonoBehaviour
     {
         item.transform.parent.DetachChildren();
         item.GetComponent<Rigidbody>().isKinematic = false;
-        item.GetComponent<MeshCollider>().enabled = true;
+        item.GetComponent<Collider>().enabled = true;
         // item.transform.localPosition = Vector3.zero;
         // item.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 

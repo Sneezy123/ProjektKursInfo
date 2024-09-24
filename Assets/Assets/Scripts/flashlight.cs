@@ -5,13 +5,12 @@ using UnityEngine;
 public class flashlight : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
-    public itemPickupManager itemPickupManager;
-    public bool isHolding = false;
+    private itemPickupManager itemPickupManager;
 
 
     void Start()
     {
-        itemPickupManager = GameObject.Find("ItemHolder").GetComponent<itemPickupManager>();
+        itemPickupManager = GameObject.Find("FlashlightHolder").GetComponent<itemPickupManager>();
     }
 
     public void Interact()
@@ -19,11 +18,12 @@ public class flashlight : MonoBehaviour, IInteractable
         itemPickupManager.PickupItem(this.gameObject);
     }
 
-    void Update()
+    // Flashlight can't be dropped so
+    /* void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             itemPickupManager.DropItem(this.gameObject);
         }
-    }
+    } */
 }
