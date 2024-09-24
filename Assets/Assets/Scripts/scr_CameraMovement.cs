@@ -19,6 +19,7 @@ public class scr_CameraMovement : MonoBehaviour
 
     private void Update()
     {
+        sens = SettingsValues.mouseSensitivity;
         // get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sens;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sens;
@@ -31,10 +32,5 @@ public class scr_CameraMovement : MonoBehaviour
         // rotate cam and orientation
         camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-    }
-
-    public void changeSens(float newSens)
-    {
-        sens = newSens;
     }
 }

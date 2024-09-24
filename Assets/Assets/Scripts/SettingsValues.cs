@@ -6,5 +6,5 @@ using UnityEngine;
 public class SettingsValues : MonoBehaviour
 {
     [Header("Settings")]
-    public float mouseSensitivity = 600;
+    public static float mouseSensitivity = 600;
 }
