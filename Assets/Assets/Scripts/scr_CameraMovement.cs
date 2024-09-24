@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class scr_CameraMovement : MonoBehaviour
 {
-    public float sensX;
-    public float sensY;
+    public float sens;
 
     public Transform orientation;
     public Transform camHolder;
@@ -15,15 +14,14 @@ public class scr_CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     private void Update()
     {
         // get mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sens;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sens;
 
         yRotation += mouseX;
 
@@ -33,5 +31,10 @@ public class scr_CameraMovement : MonoBehaviour
         // rotate cam and orientation
         camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+    public void changeSens(float newSens)
+    {
+        sens = newSens;
     }
 }

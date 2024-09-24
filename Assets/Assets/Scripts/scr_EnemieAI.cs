@@ -87,7 +87,7 @@ public class scr_EnemieAI : MonoBehaviour
 
     void Update()
     {
-        if(!canMove)
+        if (!canMove)
         {
             agent.transform.position = transform.position;
         }
@@ -221,7 +221,7 @@ public class scr_EnemieAI : MonoBehaviour
             {
                 waypointWaitTimer -= Time.deltaTime;
                 narrowViewAngle = narrowFOVAtWaypoint;
-            }            
+            }
         }
     }
 

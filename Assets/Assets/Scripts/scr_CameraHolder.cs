@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_MoveCamera : MonoBehaviour
+public class scr_CameraHolder : MonoBehaviour
 {
     public Transform cameraPosition;
 

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UIElements;
 
-public class PlayerMovementAdvanced : MonoBehaviour
+public class scr_PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     private float moveSpeed;
@@ -40,7 +42,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [HideInInspector] public float maxStamina = 100f;
     [HideInInspector] public float currentStamina;
     public float staminaDrain = 20f;
-    public float staminaRegen = 10f; 
+    public float staminaRegen = 10f;
     [HideInInspector] public float staminaRatio;
 
     [Header("References")]
@@ -59,7 +61,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         freeze,
         unlimited,
         walking,
-        sprinting,  
+        sprinting,
         vaulting,
         crouching
     }
@@ -71,9 +73,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [HideInInspector] public bool restricted;
 
     public RaycastHit hit;
+    public GameObject hitObject;
     private Collider[] hitColliders;
 
     public int currentItem;
+    public GameObject holdingItem;
 
     private void Start()
     {
@@ -90,6 +94,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        DropItem();
         rb.drag = groundDrag;
         onSlope = OnSlope();
 
@@ -220,7 +225,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void DrainStamina()
     {
-        if(state == MovementState.sprinting)
+        if (state == MovementState.sprinting)
         {
             currentStamina -= staminaDrain * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
@@ -229,7 +234,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void RegenerateStamina()
     {
-        if(state != MovementState.sprinting )
+        if (state != MovementState.sprinting)
         {
             currentStamina += staminaRegen * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
@@ -249,5 +254,19 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    public void DropItem()
+    {
+        Transform itemHolder = cam.transform.parent.GetChild(2);
+
+        if (itemHolder.childCount >= 1)
+        {
+            holdingItem = itemHolder.GetChild(0).gameObject;
+        }
+        if (Input.GetAxisRaw("Drop") == 1)
+        {
+            Debug.Log(holdingItem.GetComponent<MonoBehaviour>());
+        }
     }
 }
