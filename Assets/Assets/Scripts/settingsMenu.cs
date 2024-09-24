@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class settingsMenu : MonoBehaviour
 {
     public GameObject settingsMenuUI;
-    public GameObject sceneManager;
-    private SettingsValues settingsValues;
-    public TextMeshProUGUI sensDisplay;
+    private GameObject sensInputPanel;
+    private TextMeshProUGUI sensDisplay;
+    private Slider sensSlider;
+    private TMP_InputField sensTextField;
     void Start()
     {
-        sensDisplay = settingsMenuUI.transform.Find("SensInputPanel/CurrentValueDisplay").GetComponent<TextMeshProUGUI>();
-        SettingsValues settingsValues = sceneManager.GetComponent<SettingsValues>();
+        sensInputPanel = settingsMenuUI.transform.Find("SensInputPanel").gameObject;
+
+        sensDisplay = sensInputPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        sensSlider = sensInputPanel.transform.GetChild(1).GetComponent<Slider>();
+        sensTextField = sensInputPanel.transform.GetChild(0).GetComponent<TMP_InputField>();
     }
 
     // Update is called once per frame
@@ -29,8 +34,30 @@ public class settingsMenu : MonoBehaviour
         pauseMenu.gamePaused = false;
     }
 
-    // public void UpdateSensValue()
-    // {
-    //     sensDisplay.text = settingsValues.mouseSensitivity.ToString();
-    // }
+    public void changeSensSlider(float newSens)
+    {
+        SettingsValues.mouseSensitivity = newSens;
+    }
+
+    public void changeSensTextField(string newSens)
+    {
+        SettingsValues.mouseSensitivity = float.Parse(newSens);
+    }
+
+
+
+    public void updateSensDisplay()
+    {
+        sensDisplay.SetText(SettingsValues.mouseSensitivity.ToString());
+    }
+
+    public void updateSensSliderValue()
+    {
+        sensSlider.value = SettingsValues.mouseSensitivity;
+    }
+
+    public void updateSensTextFieldValue()
+    {
+        sensTextField.text = SettingsValues.mouseSensitivity.ToString();
+    }
 }

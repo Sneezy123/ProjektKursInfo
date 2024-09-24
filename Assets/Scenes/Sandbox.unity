@@ -2722,7 +2722,7 @@ GameObject:
   - component: {fileID: 67345201}
   - component: {fileID: 67345200}
   m_Layer: 5
-  m_Name: OptionDescription
+  m_Name: 3 OptionDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2744,8 +2744,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 172.65, y: 0}
-  m_SizeDelta: {x: 315.3, y: 50}
+  m_AnchoredPosition: {x: 140.14346, y: 0}
+  m_SizeDelta: {x: 250.2869, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67345200
 MonoBehaviour:
@@ -8368,7 +8368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1baa69a1cf544feb7046958f8dc41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 600
 --- !u!1 &171309671
 GameObject:
   m_ObjectHideFlags: 0
@@ -10305,7 +10304,7 @@ GameObject:
   - component: {fileID: 207249562}
   - component: {fileID: 207249563}
   m_Layer: 5
-  m_Name: InputSlider
+  m_Name: 1 InputSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10384,10 +10383,34 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1209315353}
-        m_TargetAssemblyTypeName: scr_CameraMovement, Assembly-CSharp
-        m_MethodName: changeSens
+      - m_Target: {fileID: 1475302738}
+        m_TargetAssemblyTypeName: settingsMenu, Assembly-CSharp
+        m_MethodName: changeSensSlider
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1475302738}
+        m_TargetAssemblyTypeName: settingsMenu, Assembly-CSharp
+        m_MethodName: updateSensDisplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1475302738}
+        m_TargetAssemblyTypeName: settingsMenu, Assembly-CSharp
+        m_MethodName: updateSensTextFieldValue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -41595,7 +41618,7 @@ GameObject:
   - component: {fileID: 766960075}
   - component: {fileID: 766960074}
   m_Layer: 5
-  m_Name: CurrentValueDisplay
+  m_Name: 2 CurrentValueDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41617,8 +41640,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -493.77155, y: 0}
-  m_SizeDelta: {x: 76.45691, y: 50}
+  m_AnchoredPosition: {x: -517.5065, y: 0}
+  m_SizeDelta: {x: 123.9268, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &766960074
 MonoBehaviour:
@@ -41640,7 +41663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 600
+  m_text: 60000000000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -62532,7 +62555,7 @@ GameObject:
   - component: {fileID: 1126676151}
   - component: {fileID: 1126676150}
   m_Layer: 5
-  m_Name: ChangeInput
+  m_Name: 0 ChangeInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62638,10 +62661,34 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1209315350}
+      - m_Target: {fileID: 1475302738}
         m_TargetAssemblyTypeName: settingsMenu, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 5
+        m_MethodName: changeSensTextField
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1475302738}
+        m_TargetAssemblyTypeName: settingsMenu, Assembly-CSharp
+        m_MethodName: updateSensDisplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1475302738}
+        m_TargetAssemblyTypeName: settingsMenu, Assembly-CSharp
+        m_MethodName: updateSensSliderValue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -66283,22 +66330,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1209315350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6496659724126776522, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-  m_PrefabInstance: {fileID: 8803309423044778905}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1209315353 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1001388370939220140, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-  m_PrefabInstance: {fileID: 8803309423044778905}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209315350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7da07a22a0a34e4ab4cab6b66b51d89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1209824647
 GameObject:
   m_ObjectHideFlags: 0
@@ -86124,8 +86155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenuUI: {fileID: 171309671}
-  sceneManager: {fileID: 166740596}
-  sensDisplay: {fileID: 0}
 --- !u!114 &1475302739
 MonoBehaviour:
   m_ObjectHideFlags: 0

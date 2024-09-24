@@ -4,6 +4,11 @@
 ![68,75%](https://progress-bar.xyz/69?title=Base+Features)
 
 **Game Engine:** [Unity](https://unity.com/de) [(Download)](https://unity.com/de/download)
+**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
+
+**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
+
+---
 
 **Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
 
