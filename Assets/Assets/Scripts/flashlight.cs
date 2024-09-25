@@ -6,24 +6,39 @@ public class flashlight : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
     private itemPickupManager itemPickupManager;
+    private Light lightCone;
 
+    [Header("Audio")]
+
+    public AudioSource turnOn;
+    public AudioSource turnOff;
 
     void Start()
     {
         itemPickupManager = GameObject.Find("FlashlightHolder").GetComponent<itemPickupManager>();
+        lightCone = transform.GetChild(0).GetComponent<Light>();
     }
 
     public void Interact()
     {
-        itemPickupManager.PickupItem(this.gameObject);
+        if (!itemPickupManager.isHolding) itemPickupManager.PickupItem(this.gameObject);
     }
 
     // Flashlight can't be dropped so
-    /* void Update()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        /* if (Input.GetKeyDown(KeyCode.Q))
         {
             itemPickupManager.DropItem(this.gameObject);
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.F) && itemPickupManager.isHolding)
+        {
+            lightCone.enabled =  !lightCone.enabled;
+
+            if (lightCone.enabled) turnOn.Play();
+            else if (!lightCone.enabled) turnOff.Play();
         }
-    } */
+
+    }
 }

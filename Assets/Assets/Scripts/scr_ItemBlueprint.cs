@@ -17,11 +17,11 @@ public class scr_ItemBlueprint : MonoBehaviour
     public float InteractRange = 100;
 
     public scr_PlayerMovement playerScript;
-  
+
 
     void Start()
     {
-        
+
     }
 
 
@@ -29,15 +29,13 @@ public class scr_ItemBlueprint : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerScript.hit.transform != null)
         {
-            Debug.Log(playerScript.hit.transform.name);
-            
-            if(playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= InteractRange)
+            if (playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= InteractRange)
             {
-                Debug.Log("Interact" + interactObj);
+                // Debug.Log("Interact " + interactObj);
                 interactObj.Interact();
             }
         }
-  
+
 
     }
 

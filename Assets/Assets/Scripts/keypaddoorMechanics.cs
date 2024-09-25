@@ -21,9 +21,6 @@ public class keypaddoorMechanics : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        
-
-
 
         if (!isLocked)
         {

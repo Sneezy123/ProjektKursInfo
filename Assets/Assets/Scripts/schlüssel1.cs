@@ -18,15 +18,17 @@ public class schlüssel_1 : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && itemPickupManager.isHolding)
         {
             itemPickupManager.DropItem(this.gameObject);
         }
     }
     public void Interact()
     {
-        playerScript.currentItem = schlüsselnummer;
-        itemPickupManager.PickupItem(this.gameObject);
-
+        if (!itemPickupManager.isHolding)
+        {
+            playerScript.currentItem = schlüsselnummer;
+            itemPickupManager.PickupItem(this.gameObject);
+        }
     }
 }

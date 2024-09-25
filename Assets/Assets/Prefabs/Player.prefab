@@ -559,8 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7da07a22a0a34e4ab4cab6b66b51d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 400
-  sensY: 400
+  sens: 0
   orientation: {fileID: 6448725459072811367}
   camHolder: {fileID: 3298289281577153092}
 --- !u!114 &2104662823544393845
@@ -736,7 +735,7 @@ MonoBehaviour:
   sprintSpeed: 6
   vaultSpeed: 15
   groundDrag: 0
-  crouchSpeed: 5
+  crouchSpeed: 2.5
   crouchYScale: 0.7
   sprintKey: 304
   crouchKey: 306
@@ -761,6 +760,7 @@ MonoBehaviour:
   freeze: 0
   unlimited: 0
   restricted: 0
+  hitObject: {fileID: 0}
   currentItem: 0
   holdingItem: {fileID: 0}
 --- !u!114 &1232407506686309580
