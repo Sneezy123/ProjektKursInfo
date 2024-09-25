@@ -11,12 +11,6 @@ public class keypadNumber : MonoBehaviour, IInteractable
     {
         manager = transform.parent.GetComponent<KeypadManager>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Interact()
     {
         manager.input(number);

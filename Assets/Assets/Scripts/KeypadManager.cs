@@ -1,69 +1,50 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 public class KeypadManager : MonoBehaviour
 {
-    public int firstnumber;
-    public int secondnumber;
-    public int thirdnumber;
-    public int fourthnumber;
-    private int numbercounter = 0;
-    public int number;
-    public keypaddoorMechanics keypaddoorMechanics;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private List<int> currentCombination = new List<int>{};
+    public List<int> requiredCombination = new List<int>{1, 2, 3, 4};
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public keypaddoorMechanics keypaddoorMechanics;
+
 
     public void input(int number)
     {
-        
-        if(number == 10)
+
+        if (number == 10)
         {
-            if (firstnumber == 1 && secondnumber == 2 && thirdnumber == 3 && fourthnumber == 4)
+            if (currentCombination.SequenceEqual(requiredCombination))
             {
                 keypaddoorMechanics.isLocked = false;
-            }else{
-                Debug.Log("Wrong combination");
+                Debug.Log("Door unlocked");
+                currentCombination.Clear();
             }
-            
-        }else{
-            if (numbercounter == 0)
+            else
             {
-                numbercounter++;
-                firstnumber = number;
-                Debug.Log("input:" + firstnumber);
-            }else if (numbercounter == 1)
+                Debug.Log("Wrong combination");
+                currentCombination.Clear();
+            }
+
+        }
+        else if (number == 11)
+        {
+            if (currentCombination.Count >= 1)
             {
-                numbercounter++;
-                secondnumber = number;
-                Debug.Log("input:" + firstnumber + secondnumber);
-            }else if (numbercounter == 2)
+                currentCombination.RemoveAt(currentCombination.Count - 1);
+                Debug.Log(string.Join(",", currentCombination) + "\n");
+            }
+        }
+        else
+        {
+            if (currentCombination.Count < 4)
             {
-                numbercounter++;
-                thirdnumber = number;
-                Debug.Log("input:" + firstnumber + secondnumber + thirdnumber);
-            }else if (numbercounter == 3)
-            {
-                numbercounter++;
-                fourthnumber = number;
-                Debug.Log("input:" + firstnumber + secondnumber + thirdnumber + fourthnumber);
-            }else
-            {
-                Debug.Log("numpad is full, now its resetted");
-                firstnumber = 0;
-                secondnumber = 0;
-                thirdnumber = 0;
-                fourthnumber = 0;
-                numbercounter = 0;
+                currentCombination.Add(number);
+                Debug.Log(string.Join(",", currentCombination) + "\n");
             }
         }
     }

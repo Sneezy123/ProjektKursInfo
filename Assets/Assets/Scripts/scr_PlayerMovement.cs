@@ -77,7 +77,6 @@ public class scr_PlayerMovement : MonoBehaviour
     private Collider[] hitColliders;
 
     public int currentItem;
-    public GameObject holdingItem;
 
     private void Start()
     {
@@ -90,11 +89,13 @@ public class scr_PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // crouchSpeed = walkSpeed * 0.7f;
+
+
         grounded = Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.1f, whatIsGround | enemyField);
         MyInput();
         SpeedControl();
         StateHandler();
-        DropItem();
         rb.drag = groundDrag;
         onSlope = OnSlope();
 
@@ -160,7 +161,7 @@ public class scr_PlayerMovement : MonoBehaviour
         else if (crouching)
         {
             state = MovementState.crouching;
-            desiredMoveSpeed = crouchSpeed;
+            desiredMoveSpeed = walkSpeed * 0.7f;
         }
         else if (grounded && Input.GetKey(sprintKey) && currentStamina > 0)
         {
@@ -254,19 +255,5 @@ public class scr_PlayerMovement : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
-    }
-
-    public void DropItem()
-    {
-        Transform itemHolder = cam.transform.parent.GetChild(2);
-
-        if (itemHolder.childCount >= 1)
-        {
-            holdingItem = itemHolder.GetChild(0).gameObject;
-        }
-        if (Input.GetAxisRaw("Drop") == 1)
-        {
-            Debug.Log(holdingItem.GetComponent<MonoBehaviour>());
-        }
     }
 }
