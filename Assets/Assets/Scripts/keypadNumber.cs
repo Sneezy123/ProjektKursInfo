@@ -14,5 +14,6 @@ public class keypadNumber : MonoBehaviour, IInteractable
     public void Interact()
     {
         manager.input(number);
+        manager.colorNumbers(-1);
     }
 }

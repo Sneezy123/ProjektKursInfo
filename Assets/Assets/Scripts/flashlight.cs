@@ -8,10 +8,14 @@ public class flashlight : MonoBehaviour, IInteractable
     private itemPickupManager itemPickupManager;
     private Light lightCone;
 
+    private bool hasHit = false;
+
     [Header("Audio")]
 
     public AudioSource turnOn;
     public AudioSource turnOff;
+
+    public AudioSource hitGround;
 
     void Start()
     {
@@ -31,6 +35,16 @@ public class flashlight : MonoBehaviour, IInteractable
         {
             itemPickupManager.DropItem(this.gameObject);
         }*/
+        
+        if (Mathf.Abs(GetComponent<Rigidbody>().velocity.y) > 0)
+        {
+            hasHit = false;
+        }
+        if (GetComponent<Rigidbody>().velocity.y == 0)
+        {
+            hitGround.Play();
+            hasHit = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.F) && itemPickupManager.isHolding)
         {
