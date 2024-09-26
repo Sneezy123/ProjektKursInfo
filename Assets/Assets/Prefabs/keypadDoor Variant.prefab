@@ -113,9 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 1
-  doorOpen: {fileID: 607077913756949530}
+  doorOpen: {fileID: 3023561324711708262}
   doorClose: {fileID: 8979328056063325545}
-  doorLocked: {fileID: 3023561324711708262}
+  doorLocked: {fileID: 607077913756949530}
 --- !u!82 &3023561324711708262 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3644611953495960082, guid: 9613430cb9a2840feac101c4db918ad3, type: 3}
