@@ -10,6 +10,7 @@ TagManager:
   - Hurt_2
   - Hurt_3
   - Enemy
+  - ground
   layers:
   - Default
   - TransparentFX
