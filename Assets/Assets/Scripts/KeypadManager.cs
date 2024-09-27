@@ -20,10 +20,11 @@ public class KeypadManager : MonoBehaviour
 
     public void input(int number)
     {
-        beep.Play();
+        
 
         if (number == 10)
         {
+            beep.Play();
             if (currentCombination.SequenceEqual(requiredCombination))
             {
                 keypaddoorMechanics.isLocked = false;
@@ -41,6 +42,7 @@ public class KeypadManager : MonoBehaviour
         }
         else if (number == 11)
         {
+            beep.Play();
             if (currentCombination.Count >= 1)
             {
                 currentCombination.RemoveAt(currentCombination.Count - 1);
@@ -54,6 +56,7 @@ public class KeypadManager : MonoBehaviour
             if (currentCombination.Count < 4)
             {
                 currentCombination.Add(number);
+                beep.Play();
                 stayCombination = currentCombination;
                 Debug.Log(string.Join(",", currentCombination) + "\n");
             }

@@ -10,6 +10,11 @@ public class schlüssel_1 : MonoBehaviour, IInteractable
 
     // Start is called before the first frame update
     public int schlüsselnummer;
+
+    [Header("Audio")]
+
+    public AudioSource hitGround;
+
     void Start()
     {
         itemPickupManager = GameObject.Find("ItemHolder").GetComponent<itemPickupManager>();
@@ -18,6 +23,9 @@ public class schlüssel_1 : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
+        if (itemPickupManager.itemCollider.CompareTag("ground")) hitGround.Play();
+
+
         if (Input.GetKeyDown(KeyCode.Q) && itemPickupManager.isHolding)
         {
             itemPickupManager.DropItem(this.gameObject);
