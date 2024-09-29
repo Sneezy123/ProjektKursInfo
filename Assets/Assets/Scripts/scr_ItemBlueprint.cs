@@ -27,7 +27,7 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerScript.hit.transform != null)
+        if (Input.GetKeyDown(KeyCode.E) | Input.GetMouseButtonDown(0) && playerScript.hit.transform != null)
         {
             if (playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= InteractRange)
             {

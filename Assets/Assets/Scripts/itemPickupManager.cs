@@ -37,7 +37,7 @@ public class itemPickupManager : MonoBehaviour
         itemCollider.enabled = true;
         // item.transform.localPosition = Vector3.zero;
         // item.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-
+        item = null;
         isHolding = false;
     }
 }

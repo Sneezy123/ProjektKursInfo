@@ -29,6 +29,7 @@ public class schlüssel_1 : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.Q) && itemPickupManager.isHolding)
         {
             itemPickupManager.DropItem(this.gameObject);
+            playerScript.currentItem = 0;
         }
     }
     public void Interact()
