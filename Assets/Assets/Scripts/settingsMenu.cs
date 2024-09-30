@@ -15,15 +15,19 @@ public class settingsMenu : MonoBehaviour
     {
         sensInputPanel = settingsMenuUI.transform.Find("SensInputPanel").gameObject;
 
-        sensDisplay = sensInputPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        sensSlider = sensInputPanel.transform.GetChild(1).GetComponent<Slider>();
-        sensTextField = sensInputPanel.transform.GetChild(0).GetComponent<TMP_InputField>();
+        sensDisplay = sensInputPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        sensSlider = sensInputPanel.transform.GetChild(0).GetComponent<Slider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // UpdateSensValue();
+        if (settingsMenuUI.activeSelf == true)
+        {
+            pauseMenu.menuOpen = true;
+            pauseMenu.gamePaused = true;
+            Time.timeScale = 0f;
+        }
     }
 
     public void CloseMenu()
@@ -31,32 +35,23 @@ public class settingsMenu : MonoBehaviour
         settingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         pauseMenu.gamePaused = false;
+        pauseMenu.menuOpen = false;
     }
 
     public void changeSensSlider(float newSens)
     {
-        SettingsValues.mouseSensitivity = newSens;
-    }
-
-    public void changeSensTextField(string newSens)
-    {
-        SettingsValues.mouseSensitivity = float.Parse(newSens);
+        SettingsValues.mouseSensitivity = newSens * 10f;
     }
 
 
 
     public void updateSensDisplay()
     {
-        sensDisplay.SetText(SettingsValues.mouseSensitivity.ToString());
+        sensDisplay.SetText((SettingsValues.mouseSensitivity / 10f).ToString());
     }
 
     public void updateSensSliderValue()
     {
-        sensSlider.value = SettingsValues.mouseSensitivity;
-    }
-
-    public void updateSensTextFieldValue()
-    {
-        sensTextField.text = SettingsValues.mouseSensitivity.ToString();
+        sensSlider.value = SettingsValues.mouseSensitivity / 10f;
     }
 }
