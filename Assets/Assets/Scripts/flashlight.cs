@@ -8,6 +8,8 @@ public class flashlight : MonoBehaviour, IInteractable
     private itemPickupManager itemPickupManager;
     private Light lightCone;
 
+    private Collider itemCollider;
+
     [Header("Audio")]
 
     public AudioSource turnOn;
@@ -19,11 +21,12 @@ public class flashlight : MonoBehaviour, IInteractable
     {
         itemPickupManager = GameObject.Find("FlashlightHolder").GetComponent<itemPickupManager>();
         lightCone = transform.GetChild(0).GetComponent<Light>();
+        itemCollider = GetComponent<Collider>();
     }
 
     public void Interact()
     {
-        if (!itemPickupManager.isHolding) itemPickupManager.PickupItem(this.gameObject);
+        if (!itemPickupManager.isHolding) itemPickupManager.PickupItem(this.transform);
     }
 
     // Flashlight can't be dropped so
@@ -34,7 +37,7 @@ public class flashlight : MonoBehaviour, IInteractable
             itemPickupManager.DropItem(this.gameObject);
         }*/
 
-        if (itemPickupManager.itemCollider.CompareTag("ground")) hitGround.Play();
+        if (itemCollider.CompareTag("ground")) hitGround.Play();
 
         if (Input.GetKeyDown(KeyCode.F) && itemPickupManager.isHolding)
         {

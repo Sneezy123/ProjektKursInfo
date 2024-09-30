@@ -9,6 +9,7 @@ public class pauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
     public static bool gamePaused = false;
+    public static bool menuOpen = false;
 
     void Start()
     {
@@ -20,14 +21,11 @@ public class pauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gamePaused)
+            if (gamePaused && menuOpen)
             {
                 ResumeGame();
-
-                UnityEngine.Cursor.lockState = CursorLockMode.None;
-                UnityEngine.Cursor.visible = true;
             }
-            else
+            else if (!menuOpen)
             {
                 PauseGame();
             }
@@ -39,6 +37,7 @@ public class pauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
+        menuOpen = true;
     }
 
     public void ResumeGame()
@@ -46,12 +45,14 @@ public class pauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
+        menuOpen = false;
     }
 
     public void LoadSettingsMenu()
     {
         settingsMenuUI.SetActive(true);
         pauseMenuUI.SetActive(false);
+        menuOpen = true;
     }
 
     public void QuitGame()

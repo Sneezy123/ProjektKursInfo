@@ -6,38 +6,35 @@ public class itemPickupManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isHolding = false;
+    private Transform currentItem;
 
-    public Rigidbody itemRB;
-    public Collider itemCollider;
-    void Start()
+    public void PickupItem(Transform item)
     {
-    }
+        Rigidbody itemRB = item.GetComponent<Rigidbody>();
+        Collider itemCollider = item.GetComponent<Collider>();
 
-    public void PickupItem(GameObject item)
-    {
-        itemRB = item.GetComponent<Rigidbody>();
-        itemCollider = item.GetComponent<Collider>();
-
-        item.transform.SetParent(this.transform);
+        item.SetParent(this.transform);
         itemRB.isKinematic = true;
         itemCollider.enabled = false;
-        item.transform.localPosition = Vector3.zero;
-        item.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        item.localPosition = Vector3.zero;
+        item.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
         isHolding = true;
+        currentItem = item;
     }
 
-    public void DropItem(GameObject item)
+    public void DropItem(Transform item)
     {
-        itemRB = item.GetComponent<Rigidbody>();
-        itemCollider = item.GetComponent<Collider>();
+        Rigidbody itemRB = currentItem.GetComponent<Rigidbody>();
+        Collider itemCollider = currentItem.GetComponent<Collider>();
+        Debug.Log(currentItem);
+        currentItem.parent = null;
 
-        item.transform.parent.DetachChildren();
         itemRB.isKinematic = false;
         itemCollider.enabled = true;
+        
         // item.transform.localPosition = Vector3.zero;
         // item.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        item = null;
         isHolding = false;
     }
 }

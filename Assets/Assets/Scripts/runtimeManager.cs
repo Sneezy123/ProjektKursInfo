@@ -14,7 +14,7 @@ public class runtimeManager : MonoBehaviour
 
     void Update()
     {
-        if (pauseMenu.gamePaused)
+        if (pauseMenu.gamePaused && pauseMenu.menuOpen)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
