@@ -27448,24 +27448,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494393130}
   m_CullTransparentMesh: 1
---- !u!1 &497676399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4112880569636306294, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-  m_PrefabInstance: {fileID: 8803309423044778905}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &497676401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497676399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13bffddfc448f476d83acb33b7294129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHolding: 0
 --- !u!1 &504237195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8376888327017635834, guid: eaba8add266f641188d33e4c98a9dcee, type: 3}
@@ -28004,24 +27986,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &509679896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6178246067718782563, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-  m_PrefabInstance: {fileID: 8803309423044778905}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &509679898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509679896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13bffddfc448f476d83acb33b7294129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHolding: 0
 --- !u!43 &510604784
 Mesh:
   m_ObjectHideFlags: 0
@@ -38239,6 +38203,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!20 &699106591 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4480948568362086984, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+  m_PrefabInstance: {fileID: 8803309423044778905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &699300812
 Mesh:
   m_ObjectHideFlags: 0
@@ -126419,6 +126388,14 @@ PrefabInstance:
       propertyPath: vignettePulseSpeed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3462783514205671881, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 699106591}
+    - target: {fileID: 3615675574057834218, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 699106591}
     - target: {fileID: 7082414234339181510, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
       propertyPath: m_Icon
       value: 
@@ -126474,13 +126451,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4112880569636306294, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 497676401}
-    - targetCorrespondingSourceObject: {fileID: 6178246067718782563, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 509679898}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

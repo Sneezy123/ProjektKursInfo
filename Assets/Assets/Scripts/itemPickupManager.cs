@@ -2,11 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public interface IItem
+{
+    public void OnCollisionEnter(Collision collision);
+}
+
+
 public class itemPickupManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isHolding = false;
+    public float throwFactor = 100f;
     private Transform currentItem;
+    public Camera mainCam;
 
     public void PickupItem(Transform item)
     {
@@ -23,7 +32,7 @@ public class itemPickupManager : MonoBehaviour
         currentItem = item;
     }
 
-    public void DropItem(Transform item)
+    public void DropItem()
     {
         Rigidbody itemRB = currentItem.GetComponent<Rigidbody>();
         Collider itemCollider = currentItem.GetComponent<Collider>();
@@ -31,6 +40,7 @@ public class itemPickupManager : MonoBehaviour
         currentItem.parent = null;
 
         itemRB.isKinematic = false;
+        itemRB.AddForce((mainCam.transform.forward * 5f + mainCam.transform.position - currentItem.position).normalized * throwFactor);
         itemCollider.enabled = true;
         
         // item.transform.localPosition = Vector3.zero;
