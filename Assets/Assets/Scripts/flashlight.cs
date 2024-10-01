@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class flashlight : MonoBehaviour, IInteractable
+public class flashlight : MonoBehaviour, IInteractable, IItem
 {
     // Start is called before the first frame update
     private itemPickupManager itemPickupManager;
     private Light lightCone;
-
-    private Collider itemCollider;
 
     [Header("Audio")]
 
@@ -21,7 +20,6 @@ public class flashlight : MonoBehaviour, IInteractable
     {
         itemPickupManager = GameObject.Find("FlashlightHolder").GetComponent<itemPickupManager>();
         lightCone = transform.GetChild(0).GetComponent<Light>();
-        itemCollider = GetComponent<Collider>();
     }
 
     public void Interact()
@@ -37,8 +35,6 @@ public class flashlight : MonoBehaviour, IInteractable
             itemPickupManager.DropItem(this.gameObject);
         }*/
 
-        if (itemCollider.CompareTag("ground")) hitGround.Play();
-
         if (Input.GetKeyDown(KeyCode.F) && itemPickupManager.isHolding)
         {
             lightCone.enabled =  !lightCone.enabled;
@@ -47,5 +43,14 @@ public class flashlight : MonoBehaviour, IInteractable
             else if (!lightCone.enabled) turnOff.Play();
         }
 
+    }
+
+    public void OnCollisionEnter (Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("WhatIsGround"))
+        {
+            Debug.Log("hit ground");
+            hitGround.Play();
+        }
     }
 }

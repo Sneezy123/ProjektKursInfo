@@ -30,7 +30,7 @@ public class scr_PlayerMovement : MonoBehaviour
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
     public LayerMask enemyField;
-    [HideInInspector] private bool grounded;
+    /* [HideInInspector] */ public bool grounded;
 
     [Header("Slope Handling")]
     [HideInInspector] private bool onSlope;
@@ -66,7 +66,7 @@ public class scr_PlayerMovement : MonoBehaviour
         crouching
     }
 
-    [HideInInspector] public bool crouching;
+    /* [HideInInspector] */ public bool crouching;
     [HideInInspector] public bool vaulting;
     [HideInInspector] public bool freeze;
     [HideInInspector] public bool unlimited;
@@ -92,7 +92,8 @@ public class scr_PlayerMovement : MonoBehaviour
         // crouchSpeed = walkSpeed * 0.7f;
 
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.1f, whatIsGround | enemyField);
+        grounded = Physics.Raycast(transform.position - Vector3.down * (playerHeight/2 - 0.3f), Vector3.down, out slopeHit, playerHeight / 2 - 0.1f, whatIsGround | enemyField);
+        Debug.DrawRay(transform.position - Vector3.down * (playerHeight/2 - 0.3f), Vector3.down * (playerHeight / 2 - 0.1f));
         MyInput();
         SpeedControl();
         StateHandler();
@@ -129,6 +130,7 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            playerHeight *= crouchYScale;
             crouching = true;
         }
 
@@ -137,6 +139,7 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
             crouching = false;
+            playerHeight /= crouchYScale;
         }
     }
 
@@ -158,21 +161,24 @@ public class scr_PlayerMovement : MonoBehaviour
             state = MovementState.vaulting;
             desiredMoveSpeed = vaultSpeed;
         }
-        else if (crouching)
-        {
-            state = MovementState.crouching;
-            desiredMoveSpeed = walkSpeed * 0.7f;
-        }
-        else if (grounded && Input.GetKey(sprintKey) && currentStamina > 0)
-        {
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-            DrainStamina();
-        }
         else if (grounded)
         {
-            state = MovementState.walking;
-            desiredMoveSpeed = walkSpeed;
+            if (grounded && Input.GetKey(sprintKey) && currentStamina > 0)
+            {
+                state = MovementState.sprinting;
+                desiredMoveSpeed = sprintSpeed;
+                DrainStamina();
+            }
+            else if (crouching)
+            {
+                state = MovementState.crouching;
+                desiredMoveSpeed = walkSpeed * 0.7f;
+            }
+            else
+            {
+                state = MovementState.walking;
+                desiredMoveSpeed = walkSpeed;
+            }
         }
 
         if (desiredMoveSpeed != lastDesiredMoveSpeed)
@@ -202,6 +208,8 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
         }
+
+        Debug.Log(rb.GetAccumulatedForce());
     }
 
     private void SpeedControl()
