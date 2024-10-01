@@ -172,7 +172,7 @@ public class scr_PlayerMovement : MonoBehaviour
             else if (crouching)
             {
                 state = MovementState.crouching;
-                desiredMoveSpeed = walkSpeed * 0.7f;
+                desiredMoveSpeed = walkSpeed * 0.6f;
             }
             else
             {
@@ -202,11 +202,11 @@ public class scr_PlayerMovement : MonoBehaviour
         }
         else if (grounded)
         {
-            rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
         }
         else if (!grounded)
         {
-            rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
         }
 
         Debug.Log(rb.GetAccumulatedForce());
