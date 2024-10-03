@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Rendering;
@@ -27,7 +29,7 @@ public class scr_PlayerMovement : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight = 2f;
+    public float playerHeight = 1.75f;
     public LayerMask whatIsGround;
     public LayerMask enemyField;
     /* [HideInInspector] */ public bool grounded;
@@ -48,12 +50,15 @@ public class scr_PlayerMovement : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Camera cam;
+    public Animator playerAnimator;
+    public CapsuleCollider playerCollider;
 
     [HideInInspector] float horizontalInput;
     [HideInInspector] float verticalInput;
 
     [HideInInspector] Vector3 moveDirection;
     [HideInInspector] Rigidbody rb;
+
 
     public MovementState state;
     public enum MovementState
@@ -66,7 +71,7 @@ public class scr_PlayerMovement : MonoBehaviour
         crouching
     }
 
-    /* [HideInInspector] */ public bool crouching;
+    [HideInInspector] public bool crouching;
     [HideInInspector] public bool vaulting;
     [HideInInspector] public bool freeze;
     [HideInInspector] public bool unlimited;
@@ -74,6 +79,9 @@ public class scr_PlayerMovement : MonoBehaviour
 
     public RaycastHit hit;
     public GameObject hitObject;
+
+
+
     private Collider[] hitColliders;
 
     public int currentItem;
@@ -128,18 +136,22 @@ public class scr_PlayerMovement : MonoBehaviour
         // Crouch
         if (Input.GetKeyDown(crouchKey) && horizontalInput == 0)
         {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             playerHeight *= crouchYScale;
+            playerCollider.height = playerHeight;
+            playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = true;
+            playerAnimator.SetBool("crouching", true);
         }
 
         // Stop crouch
         if (Input.GetKeyUp(crouchKey))
         {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
-            crouching = false;
             playerHeight /= crouchYScale;
+            playerCollider.height = playerHeight;
+            playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
+            crouching = false;
+            playerAnimator.SetBool("crouching", false);
+            
         }
     }
 
@@ -208,8 +220,6 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
         }
-
-        Debug.Log(rb.GetAccumulatedForce());
     }
 
     private void SpeedControl()
@@ -231,6 +241,8 @@ public class scr_PlayerMovement : MonoBehaviour
             }
         }
     }
+
+
 
     private void DrainStamina()
     {
