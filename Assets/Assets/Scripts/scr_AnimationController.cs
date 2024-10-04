@@ -6,6 +6,7 @@ public class scr_AnimationController : MonoBehaviour
 {
     public Animator animator;  // Der Animator des Spielers
     public scr_PlayerMovement playMovement;
+    public scr_DamageAndHealthSystem DmgHthSystem;
 
     public Rigidbody rb;
 
@@ -15,7 +16,7 @@ public class scr_AnimationController : MonoBehaviour
 
     void Update()
     {
-        speed = Mathf.Round(rb.velocity.magnitude * 10f) / 10f;
+        speed = Mathf.Round(rb.velocity.magnitude * 1f) / 1f;
         
         if(speed != previusSpeed)
         {
@@ -31,5 +32,10 @@ public class scr_AnimationController : MonoBehaviour
         float AnimationSpeed = Mathf.Clamp(speed, 0.1f, 1f);
 
         animator.SetFloat("AnimationSpeed", AnimationSpeed);
+
+        float staminaInfluence = ((playMovement.maxStamina - playMovement.currentStamina) / 12) + 1.2f;
+        animator.SetFloat("StaminaInfluence", Mathf.Clamp(staminaInfluence, 1f, 3.5f));
+
+        if(DmgHthSystem.playerIsDead) animator.SetBool("isDead", true);
     }
 }

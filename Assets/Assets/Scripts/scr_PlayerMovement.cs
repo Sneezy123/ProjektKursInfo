@@ -14,13 +14,13 @@ public class scr_PlayerMovement : MonoBehaviour
     private float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
-    public float walkSpeed = 7f;
-    public float sprintSpeed = 10f;
+    public float walkSpeed = 2f;
+    public float sprintSpeed = 6f;
     [HideInInspector] public float vaultSpeed = 15f;
     [HideInInspector] public float groundDrag = 0f;
 
     [Header("Crouching")]
-    public float crouchSpeed = 3.5f;
+    public float crouchSpeed = 1.5f;
     public float crouchYScale = 0.7f;
     private float startYScale;
 
@@ -29,14 +29,14 @@ public class scr_PlayerMovement : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight = 1.75f;
+    public float playerHeight = 2f;
     public LayerMask whatIsGround;
     public LayerMask enemyField;
     /* [HideInInspector] */ public bool grounded;
 
     [Header("Slope Handling")]
     [HideInInspector] private bool onSlope;
-    public float maxSlopeAngle = 50f;
+    public float maxSlopeAngle = 60f;
     [HideInInspector] private RaycastHit slopeHit;
     [HideInInspector] private bool exitingSlope;
 
