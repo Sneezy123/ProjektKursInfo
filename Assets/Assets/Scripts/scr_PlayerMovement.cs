@@ -50,7 +50,6 @@ public class scr_PlayerMovement : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Camera cam;
-    public Animator playerAnimator;
     public CapsuleCollider playerCollider;
 
     [HideInInspector] float horizontalInput;
@@ -140,7 +139,6 @@ public class scr_PlayerMovement : MonoBehaviour
             playerCollider.height = playerHeight;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = true;
-            playerAnimator.SetBool("crouching", true);
         }
 
         // Stop crouch
@@ -150,8 +148,6 @@ public class scr_PlayerMovement : MonoBehaviour
             playerCollider.height = playerHeight;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = false;
-            playerAnimator.SetBool("crouching", false);
-            
         }
     }
 
