@@ -13,17 +13,30 @@
 
 ---
 
-**Bisherige Features:** 
+# # Checkliste
+
+# Bisherige Features: 
+
+**Spieler**
+
 * Laufen
 * Crouchen, Sprinten
 * Interagieren
-* Gegner mit KI
+* Fadenkreuz mit Farbänderung bei Interaktion
+* Simples Pause-Menu (Anfänge eines Einstellungen-Menus)
+
+**Gegner**
+
+* Gegner mit Pathfinding
+* Gegner Patrouillieren
+* Gegner Sichtfeld
+
+**Gegenstände**
+
 * Tür mit Interaktion
 * Auto mit Interaktion
-* Fadenkreuz mit Farbänderung bei Interaktion
 * Sandbox Szene
 * Türgeräusche
-* Simples Pause-Menu (Anfänge eines Einstellungen-Menus)
 * Taschenlampe, die man aufheben kann
 * Tür mit Schlüssel und mit Zahlenschloss
 
