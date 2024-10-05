@@ -7,7 +7,7 @@
 
 ---
 
-**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Start)
+**Alle Infos hier:** [Wiki](https://github.com/Sneezy123/ProjektKursInfo/wiki/Home)
 
 **Kanban Board:** [Hier](https://tree.taiga.io/project/sneezy123-projektkurs-info/kanban)
 
