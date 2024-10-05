@@ -1,4 +1,4 @@
-# Was soll der Name sein??
+# Schizophrenia
 
 ![5%](https://progress-bar.xyz/5?title=Done)
 ![68,75%](https://progress-bar.xyz/69?title=Base+Features)
