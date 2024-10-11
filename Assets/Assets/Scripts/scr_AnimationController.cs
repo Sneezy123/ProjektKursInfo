@@ -8,20 +8,16 @@ public class scr_AnimationController : MonoBehaviour
     public scr_PlayerMovement playMovement;
     public scr_DamageAndHealthSystem DmgHthSystem;
 
-    public Rigidbody rb;
-
     private float speed;
     private float previusSpeed = 0;
     private float AnimationSpeed;
 
     void Update()
     {
-        speed = Mathf.Round(rb.velocity.magnitude * 1f) / 1f;
-        
+        speed = Mathf.Round(playMovement.rb.velocity.magnitude * 100f) / 100f;
         if(speed != previusSpeed)
         {
             animator.SetFloat("Speed", speed);
-            Debug.Log(speed + " " + previusSpeed);
         }
 
         previusSpeed = speed;
@@ -29,7 +25,7 @@ public class scr_AnimationController : MonoBehaviour
         if (Input.GetKeyDown(playMovement.crouchKey)) animator.SetBool("crouching", true);
         if (Input.GetKeyUp(playMovement.crouchKey)) animator.SetBool("crouching", false);
 
-        float AnimationSpeed = Mathf.Clamp(speed, 0.1f, 1f);
+        AnimationSpeed = Mathf.Clamp(speed, 0.1f, 1f);
 
         animator.SetFloat("AnimationSpeed", AnimationSpeed);
 

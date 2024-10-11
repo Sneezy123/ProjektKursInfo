@@ -14,22 +14,20 @@ public class scr_PlayerMovement : MonoBehaviour
     private float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
-    public float walkSpeed = 2f;
+    public float walkSpeed = 3f;
     public float sprintSpeed = 6f;
     [HideInInspector] public float vaultSpeed = 15f;
     [HideInInspector] public float groundDrag = 0f;
 
     [Header("Crouching")]
-    public float crouchSpeed = 1.5f;
     public float crouchYScale = 0.7f;
-    private float startYScale;
 
     [Header("Keybinds")]
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight = 2f;
+    public float playerHeight;
     public LayerMask whatIsGround;
     public LayerMask enemyField;
     /* [HideInInspector] */ public bool grounded;
@@ -56,7 +54,7 @@ public class scr_PlayerMovement : MonoBehaviour
     [HideInInspector] float verticalInput;
 
     [HideInInspector] Vector3 moveDirection;
-    [HideInInspector] Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
 
 
     public MovementState state;
@@ -89,9 +87,8 @@ public class scr_PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        startYScale = transform.localScale.y;
-
         currentStamina = maxStamina;
+        playerHeight = 1.75f;
     }
 
     private void Update()
@@ -205,16 +202,16 @@ public class scr_PlayerMovement : MonoBehaviour
         // Slope movement
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
+            rb.velocity = GetSlopeMoveDirection(moveDirection) * moveSpeed;
             if (rb.velocity.y > 0) rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
         else if (grounded)
         {
-            rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
+            rb.velocity = moveDirection * moveSpeed;
         }
         else if (!grounded)
         {
-            rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
+            rb.velocity = moveDirection * moveSpeed;
         }
     }
 
