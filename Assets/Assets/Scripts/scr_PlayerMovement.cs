@@ -14,29 +14,27 @@ public class scr_PlayerMovement : MonoBehaviour
     private float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
-    public float walkSpeed = 7f;
-    public float sprintSpeed = 10f;
+    public float walkSpeed = 3f;
+    public float sprintSpeed = 6f;
     [HideInInspector] public float vaultSpeed = 15f;
     [HideInInspector] public float groundDrag = 0f;
 
     [Header("Crouching")]
-    public float crouchSpeed = 3.5f;
     public float crouchYScale = 0.7f;
-    private float startYScale;
 
     [Header("Keybinds")]
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight = 1.75f;
+    public float playerHeight;
     public LayerMask whatIsGround;
     public LayerMask enemyField;
     /* [HideInInspector] */ public bool grounded;
 
     [Header("Slope Handling")]
     [HideInInspector] private bool onSlope;
-    public float maxSlopeAngle = 50f;
+    public float maxSlopeAngle = 60f;
     [HideInInspector] private RaycastHit slopeHit;
     [HideInInspector] private bool exitingSlope;
 
@@ -50,14 +48,13 @@ public class scr_PlayerMovement : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Camera cam;
-    public Animator playerAnimator;
     public CapsuleCollider playerCollider;
 
     [HideInInspector] float horizontalInput;
     [HideInInspector] float verticalInput;
 
     [HideInInspector] Vector3 moveDirection;
-    [HideInInspector] Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
 
 
     public MovementState state;
@@ -90,9 +87,8 @@ public class scr_PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        startYScale = transform.localScale.y;
-
         currentStamina = maxStamina;
+        playerHeight = 1.75f;
     }
 
     private void Update()
@@ -140,7 +136,6 @@ public class scr_PlayerMovement : MonoBehaviour
             playerCollider.height = playerHeight;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = true;
-            playerAnimator.SetBool("crouching", true);
         }
 
         // Stop crouch
@@ -150,8 +145,6 @@ public class scr_PlayerMovement : MonoBehaviour
             playerCollider.height = playerHeight;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = false;
-            playerAnimator.SetBool("crouching", false);
-            
         }
     }
 
@@ -209,16 +202,16 @@ public class scr_PlayerMovement : MonoBehaviour
         // Slope movement
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
+            rb.velocity = GetSlopeMoveDirection(moveDirection) * moveSpeed;
             if (rb.velocity.y > 0) rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
         else if (grounded)
         {
-            rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
+            rb.velocity = moveDirection * moveSpeed;
         }
         else if (!grounded)
         {
-            rb.AddForce(moveDirection * moveSpeed * 20f, ForceMode.Force);
+            rb.velocity = moveDirection * moveSpeed;
         }
     }
 

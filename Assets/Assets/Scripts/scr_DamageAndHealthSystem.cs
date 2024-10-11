@@ -10,7 +10,7 @@ public class scr_DamageAndHealthSystem : MonoBehaviour
     [Header("Player Setup")]
     [Range(1, 10)] public int playerHealth = 3;
     public int hurtLvl = 0;
-    private bool playerIsDead = false;
+    [HideInInspector] public bool playerIsDead = false;
 
     [Header("Enemy Setup")]
     [Range(0, 10)] public float hitRange = 2f;
