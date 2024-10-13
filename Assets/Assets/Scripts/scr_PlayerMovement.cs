@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Rendering;
@@ -76,7 +77,7 @@ public class scr_PlayerMovement : MonoBehaviour
 
     public RaycastHit hit;
     public GameObject hitObject;
-
+    public UnityEngine.UI.Slider staminaSlider;
 
 
     private Collider[] hitColliders;
@@ -108,12 +109,10 @@ public class scr_PlayerMovement : MonoBehaviour
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 99f);
 
         // Regeneriere die Ausdauer, wenn nicht gesprintet wird
-        if (state != MovementState.sprinting && currentStamina < maxStamina)
-        {
-            RegenerateStamina();
-        }
-
         staminaRatio = currentStamina / maxStamina;
+        staminaSlider.value = staminaRatio;
+        StartCoroutine(RegenerateStaminaAfterSeconds(3f));
+
 
         // Update Post-Processing basierend auf der Ausdauer
         //UpdatePostProcessingEffects();
@@ -236,24 +235,28 @@ public class scr_PlayerMovement : MonoBehaviour
     }
 
 
-
+    // Stamina has to stay zero for drainedTime seconds
     private void DrainStamina()
     {
-        if (state == MovementState.sprinting)
-        {
-            currentStamina -= staminaDrain * Time.deltaTime;
-            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
-        }
+        currentStamina -= staminaDrain * Time.deltaTime;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
     }
 
     private void RegenerateStamina()
     {
-        if (state != MovementState.sprinting)
+        currentStamina += staminaRegen * Time.deltaTime;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+    }
+
+    IEnumerator RegenerateStaminaAfterSeconds(float seconds)
+    {
+        if (state != MovementState.sprinting && currentStamina < maxStamina)
         {
-            currentStamina += staminaRegen * Time.deltaTime;
-            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+            yield return new WaitForSeconds(seconds);
+            RegenerateStamina();
         }
     }
+
 
     public bool OnSlope()
     {
@@ -269,4 +272,5 @@ public class scr_PlayerMovement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
+
 }
