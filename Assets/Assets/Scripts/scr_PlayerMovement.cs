@@ -55,6 +55,7 @@ public class scr_PlayerMovement : MonoBehaviour
     [HideInInspector] float verticalInput;
 
     [HideInInspector] Vector3 moveDirection;
+    [HideInInspector] public Vector3 localMoveDirection;
     [HideInInspector] public Rigidbody rb;
 
 
@@ -111,7 +112,7 @@ public class scr_PlayerMovement : MonoBehaviour
         // Regeneriere die Ausdauer, wenn nicht gesprintet wird
         staminaRatio = currentStamina / maxStamina;
         staminaSlider.value = staminaRatio;
-        StartCoroutine(RegenerateStaminaAfterSeconds(3f));
+        if (rb.velocity.magnitude < 4) StartCoroutine(RegenerateStaminaAfterSeconds(3f));
 
 
         // Update Post-Processing basierend auf der Ausdauer
@@ -133,6 +134,7 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             playerHeight *= crouchYScale;
             playerCollider.height = playerHeight;
+            playerCollider.radius = 0.77f;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = true;
         }
@@ -142,6 +144,7 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             playerHeight /= crouchYScale;
             playerCollider.height = playerHeight;
+            playerCollider.radius = 0.32f;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = false;
         }
@@ -171,7 +174,7 @@ public class scr_PlayerMovement : MonoBehaviour
             {
                 state = MovementState.sprinting;
                 desiredMoveSpeed = sprintSpeed;
-                DrainStamina();
+                if (rb.velocity.magnitude > 0.01) DrainStamina();
             }
             else if (crouching)
             {
@@ -197,6 +200,7 @@ public class scr_PlayerMovement : MonoBehaviour
         if (restricted) return;
 
         moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
+        localMoveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
         // Slope movement
         if (OnSlope() && !exitingSlope)
@@ -211,6 +215,7 @@ public class scr_PlayerMovement : MonoBehaviour
         else if (!grounded)
         {
             rb.velocity = moveDirection * moveSpeed;
+            
         }
     }
 

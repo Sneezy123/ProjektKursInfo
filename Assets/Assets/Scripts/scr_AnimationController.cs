@@ -9,7 +9,7 @@ public class scr_AnimationController : MonoBehaviour
     public scr_DamageAndHealthSystem DmgHthSystem;
 
     private float speed;
-    private float previusSpeed = 0;
+    private float previusSpeed = 0; 
     private float AnimationSpeed;
 
     void Update()
@@ -33,5 +33,10 @@ public class scr_AnimationController : MonoBehaviour
         animator.SetFloat("StaminaInfluence", Mathf.Clamp(staminaInfluence, 1f, 3.5f));
 
         if(DmgHthSystem.playerIsDead) animator.SetBool("isDead", true);
+
+
+        // Handle direction
+        animator.SetFloat("direction", Mathf.Rad2Deg * Mathf.Atan2(playMovement.localMoveDirection.z, playMovement.localMoveDirection.x) + 91f);
+                
     }
 }
