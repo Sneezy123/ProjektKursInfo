@@ -1,6 +1,6 @@
-//This version of the shader does not support shadows, but it does support transparent outlines
+//This version of the shader does support shadows, but it does not support transparent outlines
 
-Shader "Outlined/UltimateOutline"
+Shader "Outlined/UltimateOutlineShadows"
 {
 	Properties
 	{
@@ -39,10 +39,8 @@ Shader "Outlined/UltimateOutline"
 	SubShader{
 		//First outline
 		Pass{
-			Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
-			Blend SrcAlpha OneMinusSrcAlpha
-			ZWrite Off
-			Cull Back
+			Tags{ "Queue" = "Geometry" }
+			Cull Front
 			CGPROGRAM
 
 			struct v2f {
@@ -72,7 +70,9 @@ Shader "Outlined/UltimateOutline"
 			}
 
 			half4 frag(v2f i) : COLOR{
-				return _FirstOutlineColor;
+				float4 color = _FirstOutlineColor;
+				color.a = 1;
+				return color;
 			}
 
 			ENDCG
@@ -81,10 +81,8 @@ Shader "Outlined/UltimateOutline"
 
 		//Second outline
 		Pass{
-			Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
-			Blend SrcAlpha OneMinusSrcAlpha
-			ZWrite Off
-			Cull Back
+			Tags{ "Queue" = "Geometry" }
+			Cull Front
 			CGPROGRAM
 
 			struct v2f {
@@ -115,27 +113,28 @@ Shader "Outlined/UltimateOutline"
 			}
 
 			half4 frag(v2f i) : COLOR{
-				return _SecondOutlineColor;
+				float4 color = _SecondOutlineColor;
+				color.a = 1;
+				return color;
 			}
 
 			ENDCG
 		}
 
 		//Surface shader
-		Tags{ "Queue" = "Transparent" }
+		Tags{ "Queue" = "Geometry" "RenderType" = "Opaque" }
 
 		CGPROGRAM
-		#pragma surface surf Lambert noshadow
+		#pragma surface surf Lambert fullforwardshadows
 
 		struct Input {
 			float2 uv_MainTex;
-			float4 color : COLOR;
 		};
 
 		void surf(Input IN, inout SurfaceOutput  o) {
 			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
-			o.Alpha = c.a;
+			o.Alpha = 1;
 		}
 		ENDCG
 	}
