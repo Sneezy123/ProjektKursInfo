@@ -22,6 +22,7 @@ public class scr_PlayerMovement : MonoBehaviour
 
     [Header("Crouching")]
     public float crouchYScale = 0.7f;
+    public bool getWiderWhenCrouching = false;
 
     [Header("Keybinds")]
     public KeyCode sprintKey = KeyCode.LeftShift;
@@ -134,7 +135,7 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             playerHeight *= crouchYScale;
             playerCollider.height = playerHeight;
-            playerCollider.radius = 0.77f;
+            if (getWiderWhenCrouching) playerCollider.radius = 0.77f;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = true;
         }
@@ -144,7 +145,7 @@ public class scr_PlayerMovement : MonoBehaviour
         {
             playerHeight /= crouchYScale;
             playerCollider.height = playerHeight;
-            playerCollider.radius = 0.32f;
+            if(getWiderWhenCrouching) playerCollider.radius = 0.32f;
             playerCollider.center = new Vector3(0.01f, playerHeight * 0.5f, 0.06f);
             crouching = false;
         }
