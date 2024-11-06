@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 260.45267, g: 321.51962, b: 425.97284, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2252,6 +2252,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425091382}
   m_CullTransparentMesh: 1
+--- !u!1 &493534629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8082223267975228447, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
+  m_PrefabInstance: {fileID: 684702022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &504055946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2948,7 +2953,7 @@ PrefabInstance:
     - target: {fileID: 8276303837880057756, guid: 9d6d7add38dafb24eadeb161722328cf, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1423502011}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3657,6 +3662,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383811594}
   m_CullTransparentMesh: 1
+--- !u!4 &1423502011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7083220742093714331, guid: 1a411aef7f769cb4f8b223623dccd7b4, type: 3}
+  m_PrefabInstance: {fileID: 60198256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1441420636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4206,9 +4216,7 @@ MonoBehaviour:
   hitDelay: 1
   damage: 1
   enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 493534629}
   player: {fileID: 60198259}
   youHaveDiedText: {fileID: 86054534}
   image: {fileID: 666191760}
@@ -4668,6 +4676,7 @@ GameObject:
   - component: {fileID: 1958696366}
   - component: {fileID: 1958696367}
   - component: {fileID: 1958696368}
+  - component: {fileID: 1958696369}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -4697,7 +4706,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958696365}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.96506757, b: 0.7877358, a: 1}
@@ -4892,6 +4901,29 @@ MonoBehaviour:
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
+--- !u!114 &1958696369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958696365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &2031101438
 GameObject:
   m_ObjectHideFlags: 0
@@ -5225,112 +5257,604 @@ PrefabInstance:
     m_TransformParent: {fileID: 1820175467}
     m_Modifications:
     - target: {fileID: 65298741164077283, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 65298741164077283, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65298741164077283, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 211.06367
+      value: 8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 65298741164077283, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65298741164077283, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146901052534322521, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 146901052534322521, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 146901052534322521, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 146901052534322521, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146901052534322521, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195623146329733429, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 238004608200982062, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 300445145551387440, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 446810090346885645, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 453795027836752390, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 453795027836752390, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 453795027836752390, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 453795027836752390, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 453795027836752390, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 507464619574575843, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 507464619574575843, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 507464619574575843, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 507464619574575843, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 507464619574575843, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 515006907833561065, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 564453575289212300, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity1
+      objectReference: {fileID: 0}
+    - target: {fileID: 732112475601817601, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 892681163945098679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 892681163945098679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 892681163945098679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 892681163945098679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
-      propertyPath: m_AreaSize.x
-      value: 0.5
+      propertyPath: m_BounceIntensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 892681163945098679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
-      propertyPath: m_AreaSize.y
-      value: 0.5
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125172543220874234, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198263823111055669, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
       objectReference: {fileID: 0}
     - target: {fileID: 1474516328959291317, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
-      propertyPath: m_Intensity
-      value: 600
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599862909823390018, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733934328332863275, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733934328332863275, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1733934328332863275, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 97.275536
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733934328332863275, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733934328332863275, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066434790344189491, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166427057127465535, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415200549926689014, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589889917038492807, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2607835543374438475, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2607835543374438475, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2607835543374438475, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2607835543374438475, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2607835543374438475, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633377675908109733, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709453001502393436, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709453001502393436, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2709453001502393436, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709453001502393436, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709453001502393436, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808836538325827403, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808836538325827403, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2808836538325827403, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 102.27088
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808836538325827403, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808836538325827403, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066066110486694656, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153584284630258197, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153584284630258197, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3153584284630258197, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 98.58975
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153584284630258197, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153584284630258197, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316851168996583924, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329143798505942939, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520741204682199477, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840213876695699405, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027043306589781679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027043306589781679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4027043306589781679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 106.227974
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027043306589781679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027043306589781679, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318303503750282692, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318303503750282692, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4318303503750282692, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318303503750282692, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318303503750282692, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512330308699325590, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Intensity
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512330308699325590, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557143789503839932, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638713002172765054, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Intensity
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638713002172765054, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659285855771950763, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659285855771950763, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4659285855771950763, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 105.31224
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659285855771950763, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659285855771950763, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753539065341957738, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300289786624209673, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300289786624209673, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5300289786624209673, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 98.856804
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300289786624209673, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300289786624209673, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333164818021303689, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333164818021303689, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5333164818021303689, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 99.2151
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333164818021303689, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333164818021303689, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419769384765398780, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419769384765398780, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5419769384765398780, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419769384765398780, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419769384765398780, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447401005748553180, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456794252535437750, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5548806256873299844, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730641500333607622, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730641500333607622, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5730641500333607622, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 106.02316
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730641500333607622, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730641500333607622, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843077378644956266, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890462492373207127, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5982107891818649726, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.16
+      value: -8.15
       objectReference: {fileID: 0}
     - target: {fileID: 5982107891818649726, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.53
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 5982107891818649726, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.39
+      value: -3.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142802472115242743, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225229786704066278, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225229786704066278, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6225229786704066278, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225229786704066278, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225229786704066278, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240451950090926451, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240451950090926451, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257827239982594213, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257827239982594213, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257827239982594213, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257827239982594213, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257827239982594213, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362987752163165940, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410566084127588497, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513616614409838349, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Intensity
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513616614409838349, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851917684847972535, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851917684847972535, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7851917684847972535, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 96.333626
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851917684847972535, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851917684847972535, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174378668819111061, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199574508352650650, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199574508352650650, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8199574508352650650, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Intensity
-      value: 102.65373
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199574508352650650, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199574508352650650, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210934907720264670, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377177039333939907, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8524336000805906380, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5372,9 +5896,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8977043812143881424, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Name
+      value: Intensity3
+      objectReference: {fileID: 0}
     - target: {fileID: 9009264967860125046, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074264628390933061, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9116497607528644923, guid: 8503d0f286ef34b45bdbc1b0558e2013, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
