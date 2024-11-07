@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Batteryscr : MonoBehaviour
+
+
+public class Batteryscr : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
+    public flashlight lights;
     void Start()
     {
         
@@ -14,5 +17,10 @@ public class Batteryscr : MonoBehaviour
     void Update()
     {
         
+    }
+    public void Interact()
+    {
+        lights.flashlighttimer = 1000;
+        Destroy(gameObject);
     }
 }
