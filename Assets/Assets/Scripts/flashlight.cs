@@ -9,6 +9,8 @@ public class flashlight : MonoBehaviour, IInteractable, IItem
     private itemPickupManager itemPickupManager;
     private Light lightCone;
 
+    public int flashlighttimer = 1000;
+
     [Header("Audio")]
 
     public AudioSource turnOn;
@@ -28,6 +30,23 @@ public class flashlight : MonoBehaviour, IInteractable, IItem
     }
 
     // Flashlight can't be dropped so
+
+    void FixedUpdate()
+    {
+        if (lightCone.enabled)
+        {
+            if(flashlighttimer == 0)
+            {
+                lightCone.enabled = !lightCone.enabled;
+                turnOff.Play();
+            }else{
+                flashlighttimer --;
+            }
+            
+
+        }
+
+    }
     void Update()
     {
         /* if (Input.GetKeyDown(KeyCode.Q))
@@ -44,6 +63,8 @@ public class flashlight : MonoBehaviour, IInteractable, IItem
         }
 
     }
+
+    
 
     public void OnCollisionEnter (Collision collision)
     {
