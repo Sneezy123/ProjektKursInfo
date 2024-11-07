@@ -1792,7 +1792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.97
+      value: 9.732
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -73081,6 +73081,7 @@ MonoBehaviour:
   DmgHealthSystem: {fileID: 627755045}
   PlayerController: {fileID: 7519813273786326836}
   EnemieController: {fileID: 1564888349118855659}
+  testObj: {fileID: 0}
 --- !u!43 &1293396654
 Mesh:
   m_ObjectHideFlags: 0
@@ -108205,7 +108206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 7519813273786326836}
-  item: {fileID: 166740597}
+  itemBlueprintScript: {fileID: 0}
   interactingColor: {r: 0.088113785, g: 1, b: 0, a: 1}
 --- !u!43 &1856199653
 Mesh:
@@ -113931,13 +113932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6eda458b4c7467cbce7580f970f6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  replacementShader: {fileID: 4800000, guid: 9fa2626756d504e559885e202b5e4447, type: 3}
-  renderTextureFormat: 0
-  filterMode: 0
-  renderTextureDepth: 24
-  cameraClearFlags: 2
-  background: {r: 0, g: 0, b: 0, a: 1}
-  targetTexture: _CameraNormalsTexture
 --- !u!1 &1943658201
 GameObject:
   m_ObjectHideFlags: 0

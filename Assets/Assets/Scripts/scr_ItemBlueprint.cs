@@ -15,6 +15,7 @@ public class scr_ItemBlueprint : MonoBehaviour
     private string itemName;
 
     public float InteractRange = 100;
+    public static bool canInteract = false;
 
     public scr_PlayerMovement playerScript;
 
