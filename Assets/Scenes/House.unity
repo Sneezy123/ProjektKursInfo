@@ -3586,7 +3586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 60198260}
-  itemBlueprintScript: {fileID: 0}
+  itemBlueprintScript: {fileID: 1693432276}
   interactingColor: {r: 0.088113785, g: 1, b: 0, a: 1}
 --- !u!114 &1367942401
 MonoBehaviour:

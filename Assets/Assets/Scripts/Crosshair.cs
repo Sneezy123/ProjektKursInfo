@@ -33,7 +33,7 @@ public class Crosshair : MonoBehaviour
                 interactingOutline = interactedObj.AddComponent<Outline>();
                 interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
                 interactingOutline.OutlineColor = Color.white;
-                interactingOutline.OutlineWidth = 5f;
+                interactingOutline.OutlineWidth = 3f;
             }
         }
         else
@@ -42,7 +42,7 @@ public class Crosshair : MonoBehaviour
             scr_ItemBlueprint.canInteract = false;
 
             // Remove Outline
-            if (interactedObj.GetComponent<Outline>())
+            if (interactedObj != null && interactedObj.GetComponent<Outline>())
             {
                 Destroy(interactedObj.GetComponent<Outline>());
             }
