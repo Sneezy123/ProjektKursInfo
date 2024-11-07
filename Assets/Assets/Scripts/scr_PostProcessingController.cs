@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.PostProcessing; 
 
 public class scr_PostProcessingController : MonoBehaviour
 {
@@ -43,6 +43,8 @@ public class scr_PostProcessingController : MonoBehaviour
     public scr_PlayerMovement PlayerController;
     public scr_EnemieAI EnemieController;
 
+    public GameObject testObj;
+
     void Start()
     {
         Volume = GetComponent<PostProcessVolume>();
@@ -60,6 +62,8 @@ public class scr_PostProcessingController : MonoBehaviour
         minMotionBlurIntensity = motionBlurIntensity;
         minChromaticAberrationIntensity = chromaticAberrationIntensity;
         vignetteColor = startVignetterColor;
+
+        
     }
 
     void Update()
