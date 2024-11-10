@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public interface IItem
+public interface IPickupable
 {
     public void OnCollisionEnter(Collision collision);
+    public void Pickup();
+    public bool Drop();
 }
 
 

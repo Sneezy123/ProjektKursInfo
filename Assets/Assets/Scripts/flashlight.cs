@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class flashlight : MonoBehaviour, IInteractable, IItem
+public class flashlight : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
     private itemPickupManager itemPickupManager;
     private Light lightCone;
 
-    public int flashlighttimer = 1000;
+    public int flashlightTimer = 1000;
 
     [Header("Audio")]
 
@@ -22,6 +22,7 @@ public class flashlight : MonoBehaviour, IInteractable, IItem
     {
         itemPickupManager = GameObject.Find("FlashlightHolder").GetComponent<itemPickupManager>();
         lightCone = transform.GetChild(0).GetComponent<Light>();
+        lightCone.enabled = false;
     }
 
     public void Interact()
@@ -35,12 +36,12 @@ public class flashlight : MonoBehaviour, IInteractable, IItem
     {
         if (lightCone.enabled)
         {
-            if(flashlighttimer == 0)
+            if(flashlightTimer == 0)
             {
                 lightCone.enabled = !lightCone.enabled;
                 turnOff.Play();
             }else{
-                flashlighttimer --;
+                flashlightTimer --;
             }
             
 
@@ -49,10 +50,11 @@ public class flashlight : MonoBehaviour, IInteractable, IItem
     }
     void Update()
     {
-        /* if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            itemPickupManager.DropItem(this.gameObject);
-        }*/
+            itemPickupManager.DropItem();
+            lightCone.enabled = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.F) && itemPickupManager.isHolding)
         {
