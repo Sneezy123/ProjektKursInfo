@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class schlüssel_1 : MonoBehaviour, IInteractable, IItem
+public class schlüssel_1 : MonoBehaviour, IPickupable
 {
 
     public scr_PlayerMovement playerScript;
-    private itemPickupManager itemPickupManager;
 
 
     // Start is called before the first frame update
@@ -16,29 +15,17 @@ public class schlüssel_1 : MonoBehaviour, IInteractable, IItem
 
     public AudioSource hitGround;
 
-    void Start()
+    
+    public bool Drop()
     {
-        itemPickupManager = GameObject.Find("ItemHolder").GetComponent<itemPickupManager>();
+        playerScript.currentItem = 0;
+
+        return true; // That means that the item will be dropped physically!
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pickup()
     {
-
-
-        if (Input.GetKeyDown(KeyCode.Q) && itemPickupManager.isHolding)
-        {
-            itemPickupManager.DropItem();
-            playerScript.currentItem = 0;
-        }
-    }
-    public void Interact()
-    {
-        if (!itemPickupManager.isHolding)
-        {
-            playerScript.currentItem = schlüsselnummer;
-            itemPickupManager.PickupItem(this.transform);
-        }
+        playerScript.currentItem = schlüsselnummer;
     }
 
     public void OnCollisionEnter(Collision collision)

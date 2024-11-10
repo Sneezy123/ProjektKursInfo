@@ -8,21 +8,30 @@ interface IInteractable
     public void Interact();
 }
 
+interface IUsable
+{
+    public void Use();
+}
+
 public class scr_ItemBlueprint : MonoBehaviour
 {
 
 
     private string itemName;
+    private GameObject selectedGameObject;
+    private IPickupable holdingIPickupable;
 
     public float InteractRange = 100;
     public static bool canInteract = false;
 
     public scr_PlayerMovement playerScript;
+    private itemPickupManager itemPickupManager;
+
 
 
     void Start()
     {
-
+        itemPickupManager = GameObject.Find("ItemHolder").GetComponent<itemPickupManager>();
     }
 
 
@@ -30,11 +39,31 @@ public class scr_ItemBlueprint : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)/*  | Input.GetMouseButtonDown(0) */ && playerScript.hit.transform != null)
         {
-            if (playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= InteractRange)
+            selectedGameObject = playerScript.hit.transform.gameObject;
+
+            if (selectedGameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= InteractRange)
             {
-                // Debug.Log("Interact " + interactObj);
                 interactObj.Interact();
             }
+            if (selectedGameObject.TryGetComponent(out IPickupable pickupObj) && playerScript.hit.distance <= InteractRange)
+            {
+                if (!itemPickupManager.isHolding)
+                {
+                    holdingIPickupable = pickupObj;
+                    itemPickupManager.PickupItem(selectedGameObject.transform);
+                    pickupObj.Pickup();
+                }
+            }
+            if (selectedGameObject.TryGetComponent(out IUsable useObj) && playerScript.hit.distance <= InteractRange)
+            {
+                useObj.Use();
+                Destroy(selectedGameObject);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && itemPickupManager.isHolding)
+        {
+            bool useDrop = holdingIPickupable.Drop();
+            if (useDrop) itemPickupManager.DropItem();
         }
 
 

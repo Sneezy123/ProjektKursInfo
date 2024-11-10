@@ -8,6 +8,7 @@ public class Batteryscr : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
     public flashlight lights;
+
     void Start()
     {
         
@@ -20,7 +21,7 @@ public class Batteryscr : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        lights.flashlighttimer = 1000;
-        Destroy(gameObject);
+        lights.flashlightTimer = 1000;
+        
     }
 }
