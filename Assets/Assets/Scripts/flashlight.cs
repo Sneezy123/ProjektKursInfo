@@ -9,7 +9,7 @@ public class flashlight : MonoBehaviour, IInteractable
     private itemPickupManager itemPickupManager;
     private Light lightCone;
 
-    public int flashlighttimer = 1000;
+    public int flashlightTimer = 1000;
 
     [Header("Audio")]
 
@@ -36,12 +36,12 @@ public class flashlight : MonoBehaviour, IInteractable
     {
         if (lightCone.enabled)
         {
-            if(flashlighttimer == 0)
+            if(flashlightTimer == 0)
             {
                 lightCone.enabled = !lightCone.enabled;
                 turnOff.Play();
             }else{
-                flashlighttimer --;
+                flashlightTimer --;
             }
             
 
