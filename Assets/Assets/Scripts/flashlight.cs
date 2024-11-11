@@ -50,7 +50,7 @@ public class flashlight : MonoBehaviour, IInteractable, IPickupable
     }
     void Update()
     {
-        if (Input.GetKeyDown(Keybinds.drop) && Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(Keybinds.drop) && Input.GetKey(KeyCode.LeftShift))
         {
             itemPickupManager.DropItem();
             lightCone.enabled = false;
@@ -77,6 +77,6 @@ public class flashlight : MonoBehaviour, IInteractable, IPickupable
         }
     }
 
-    public void Pickup() {}
+    public bool Pickup() { return false; }
     public bool Drop() { return false; }
 }

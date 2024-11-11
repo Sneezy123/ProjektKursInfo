@@ -23,9 +23,10 @@ public class schlüssel_1 : MonoBehaviour, IPickupable
         return true; // That means that the item will be dropped physically!
     }
 
-    public void Pickup()
+    public bool Pickup()
     {
         playerScript.currentItem = schlüsselnummer;
+        return true;
     }
 
     public void OnCollisionEnter(Collision collision)

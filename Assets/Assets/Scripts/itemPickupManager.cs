@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IPickupable
 {
     public void OnCollisionEnter(Collision collision);
-    public void Pickup();
+    public bool Pickup(); // return determines whether to physically pickup the item
     public bool Drop(); // return determines whether to physically drop the item
 }
 
