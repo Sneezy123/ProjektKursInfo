@@ -64,6 +64,7 @@ public class scr_ItemBlueprint : MonoBehaviour
         {
             bool useDrop = holdingIPickupable.Drop();
             if (useDrop) itemPickupManager.DropItem();
+            
         }
 
 

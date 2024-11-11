@@ -31,6 +31,6 @@ public class schlüssel_1 : MonoBehaviour, IPickupable
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("WhatIsGround")) hitGround.Play();
+        if (collision.gameObject.layer != LayerMask.NameToLayer("WhatIsPlayer")) hitGround.Play();
     }
 }
