@@ -31,7 +31,7 @@ public class Crosshair : MonoBehaviour
             if (!interactedObj.GetComponent<Outline>())
             {
                 interactingOutline = interactedObj.AddComponent<Outline>();
-                interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                interactingOutline.OutlineMode = Outline.Mode.OutlineAll;
                 interactingOutline.OutlineColor = Color.green;
                 interactingOutline.OutlineWidth = 3f;
             }
@@ -46,7 +46,7 @@ public class Crosshair : MonoBehaviour
             if (!interactedObj.GetComponent<Outline>())
             {
                 interactingOutline = interactedObj.AddComponent<Outline>();
-                interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                interactingOutline.OutlineMode = Outline.Mode.OutlineAll;
                 interactingOutline.OutlineColor = Color.white;
                 interactingOutline.OutlineWidth = 3f;
             }
@@ -61,7 +61,7 @@ public class Crosshair : MonoBehaviour
             if (!interactedObj.GetComponent<Outline>())
             {
                 interactingOutline = interactedObj.AddComponent<Outline>();
-                interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                interactingOutline.OutlineMode = Outline.Mode.OutlineAll;
                 interactingOutline.OutlineColor = Color.red;
                 interactingOutline.OutlineWidth = 3f;
             }

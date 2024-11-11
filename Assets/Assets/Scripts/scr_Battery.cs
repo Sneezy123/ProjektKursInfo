@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class scr_Battery : MonoBehaviour, IInteractable
+public class scr_Battery : MonoBehaviour, IUsable
 {
     // Start is called before the first frame update
     public flashlight lights;
@@ -19,7 +19,7 @@ public class scr_Battery : MonoBehaviour, IInteractable
     {
         
     }
-    public void Interact()
+    public void Use()
     {
         lights.flashlightTimer = 1000;
         
