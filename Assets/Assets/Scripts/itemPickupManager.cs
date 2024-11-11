@@ -7,7 +7,7 @@ public interface IPickupable
 {
     public void OnCollisionEnter(Collision collision);
     public void Pickup();
-    public bool Drop();
+    public bool Drop(); // return determines whether to physically drop the item
 }
 
 
