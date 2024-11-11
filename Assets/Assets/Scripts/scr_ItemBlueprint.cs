@@ -37,7 +37,7 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)/*  | Input.GetMouseButtonDown(0) */ && playerScript.hit.transform != null)
+        if (Input.GetKeyDown(Keybinds.interact)/*  | Input.GetMouseButtonDown(0) */ && playerScript.hit.transform != null)
         {
             selectedGameObject = playerScript.hit.transform.gameObject;
 
@@ -50,8 +50,8 @@ public class scr_ItemBlueprint : MonoBehaviour
                 if (!itemPickupManager.isHolding)
                 {
                     holdingIPickupable = pickupObj;
-                    itemPickupManager.PickupItem(selectedGameObject.transform);
-                    pickupObj.Pickup();
+                    bool pickupItem = pickupObj.Pickup();
+                    if (pickupItem) itemPickupManager.PickupItem(selectedGameObject.transform);
                 }
             }
             if (selectedGameObject.TryGetComponent(out IUsable useObj) && playerScript.hit.distance <= InteractRange)
@@ -60,7 +60,7 @@ public class scr_ItemBlueprint : MonoBehaviour
                 Destroy(selectedGameObject);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q) && itemPickupManager.isHolding)
+        if (Input.GetKeyDown(Keybinds.drop) && itemPickupManager.isHolding)
         {
             bool useDrop = holdingIPickupable.Drop();
             if (useDrop) itemPickupManager.DropItem();

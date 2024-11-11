@@ -7,17 +7,23 @@ using UnityEngine.UI;
 // Script not in use!!!!
 // Test
 
-public class scr_Keybinds : MonoBehaviour
+public class Keybinds : MonoBehaviour
 {
     [Header("Movement")]
-				public KeyCode walkForward = KeyCode.W;
-				public KeyCode walkLeft = KeyCode.A;
-				public KeyCode walkBack = KeyCode.S;
-				public KeyCode walkRight = KeyCode.D;
+        public static KeyCode walkForward = KeyCode.W;
+        public static KeyCode walkLeft = KeyCode.A;
+        public static KeyCode walkBack = KeyCode.S;
+        public static KeyCode walkRight = KeyCode.D;
 
-    public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode crouchKey = KeyCode.LeftControl;
+        public static KeyCode sprintKey = KeyCode.LeftShift;
+        public static KeyCode crouchKey = KeyCode.LeftControl;
 	
     [Header("Interactions")]
-				public KeyCode interact = KeyCode.E;
+		public static KeyCode interact = KeyCode.E;
+		public static KeyCode drop = KeyCode.Q;
+		public static KeyCode flashLightToggle = KeyCode.F;
+
+    [Header("User Interface")]
+		public static KeyCode pauseMenu = KeyCode.Escape;
+
 }

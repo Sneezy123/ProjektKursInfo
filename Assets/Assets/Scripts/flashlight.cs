@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class flashlight : MonoBehaviour, IInteractable
+public class flashlight : MonoBehaviour, IInteractable, IPickupable
 {
     // Start is called before the first frame update
     private itemPickupManager itemPickupManager;
@@ -50,13 +50,13 @@ public class flashlight : MonoBehaviour, IInteractable
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(Keybinds.drop) && Input.GetKey(KeyCode.LeftShift))
         {
             itemPickupManager.DropItem();
             lightCone.enabled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && itemPickupManager.isHolding)
+        if (Input.GetKeyDown(Keybinds.flashLightToggle) && itemPickupManager.isHolding)
         {
             lightCone.enabled =  !lightCone.enabled;
 
@@ -76,4 +76,7 @@ public class flashlight : MonoBehaviour, IInteractable
             hitGround.Play();
         }
     }
+
+    public bool Pickup() { return false; }
+    public bool Drop() { return false; }
 }

@@ -24,10 +24,6 @@ public class scr_PlayerMovement : MonoBehaviour
     public float crouchYScale = 0.7f;
     public bool getWiderWhenCrouching = false;
 
-    [Header("Keybinds")]
-    public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode crouchKey = KeyCode.LeftControl;
-
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -131,7 +127,7 @@ public class scr_PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // Crouch
-        if (Input.GetKeyDown(crouchKey) && horizontalInput == 0)
+        if (Input.GetKeyDown(Keybinds.crouchKey) && horizontalInput == 0)
         {
             playerHeight *= crouchYScale;
             playerCollider.height = playerHeight;
@@ -141,7 +137,7 @@ public class scr_PlayerMovement : MonoBehaviour
         }
 
         // Stop crouch
-        if (Input.GetKeyUp(crouchKey))
+        if (Input.GetKeyUp(Keybinds.crouchKey))
         {
             playerHeight /= crouchYScale;
             playerCollider.height = playerHeight;
@@ -171,7 +167,7 @@ public class scr_PlayerMovement : MonoBehaviour
         }
         else if (grounded)
         {
-            if (grounded && Input.GetKey(sprintKey) && currentStamina > 0)
+            if (grounded && Input.GetKey(Keybinds.sprintKey) && currentStamina > 0)
             {
                 state = MovementState.sprinting;
                 desiredMoveSpeed = sprintSpeed;

@@ -21,7 +21,22 @@ public class Crosshair : MonoBehaviour
 
     void Update()
     {
-        if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= itemBlueprintScript.InteractRange)
+        if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IPickupable pickupObj) && playerScript.hit.distance <= itemBlueprintScript.InteractRange)
+        {
+            image.color = interactingColor;
+            scr_ItemBlueprint.canInteract = true;
+            interactedObj = playerScript.hit.transform.gameObject;
+
+            // Outline Object
+            if (!interactedObj.GetComponent<Outline>())
+            {
+                interactingOutline = interactedObj.AddComponent<Outline>();
+                interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                interactingOutline.OutlineColor = Color.green;
+                interactingOutline.OutlineWidth = 3f;
+            }
+        }
+        else if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= itemBlueprintScript.InteractRange)
         {
             image.color = interactingColor;
             scr_ItemBlueprint.canInteract = true;
@@ -33,6 +48,21 @@ public class Crosshair : MonoBehaviour
                 interactingOutline = interactedObj.AddComponent<Outline>();
                 interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
                 interactingOutline.OutlineColor = Color.white;
+                interactingOutline.OutlineWidth = 3f;
+            }
+        }
+        else if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IUsable useObj) && playerScript.hit.distance <= itemBlueprintScript.InteractRange)
+        {
+            image.color = interactingColor;
+            scr_ItemBlueprint.canInteract = true;
+            interactedObj = playerScript.hit.transform.gameObject;
+
+            // Outline Object
+            if (!interactedObj.GetComponent<Outline>())
+            {
+                interactingOutline = interactedObj.AddComponent<Outline>();
+                interactingOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                interactingOutline.OutlineColor = Color.red;
                 interactingOutline.OutlineWidth = 3f;
             }
         }

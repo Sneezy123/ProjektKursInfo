@@ -22,8 +22,8 @@ public class scr_AnimationController : MonoBehaviour
 
         previusSpeed = speed;
 
-        if (Input.GetKeyDown(playMovement.crouchKey)) animator.SetBool("crouching", true);
-        if (Input.GetKeyUp(playMovement.crouchKey)) animator.SetBool("crouching", false);
+        if (Input.GetKeyDown(Keybinds.crouchKey)) animator.SetBool("crouching", true);
+        if (Input.GetKeyUp(Keybinds.crouchKey)) animator.SetBool("crouching", false);
 
         AnimationSpeed = Mathf.Clamp(Mathf.Pow(speed, 0.5f) * 1f, 0.1f, 1f);
 
