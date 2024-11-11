@@ -12,6 +12,10 @@ public class scr_LightswitchControl : MonoBehaviour, IInteractable
     private void Start()
     {
         lightSwitchMat = GetComponent<Renderer>().material;
+        for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
+        {
+            lights[lightIdx].enabled = true;
+        }
     }
     public void Interact()
     {

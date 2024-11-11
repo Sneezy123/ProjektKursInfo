@@ -70,7 +70,7 @@ public class flashlight : MonoBehaviour, IInteractable, IPickupable
 
     public void OnCollisionEnter (Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("WhatIsGround"))
+        if (collision.gameObject.layer != LayerMask.NameToLayer("WhatIsPlayer"))
         {
             Debug.Log("hit ground");
             hitGround.Play();
