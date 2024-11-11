@@ -14,6 +14,8 @@
 
 **Website:** [Hier](https://jannik440.github.io/Projektkurs-Website/)
 
+**Download:** [Hier](https://sneezy123.itch.io/projektkursinfo/download/eyJpZCI6Mjk2NTkzOSwiZXhwaXJlcyI6MTczMTM0MDQ5OH0%3d.i0iwIGfmE0kSEM%2b9MwOptvD2lcw%3d)
+
 ---
 
 ## Checkliste
