@@ -19,7 +19,7 @@ public class itemPickupManager : MonoBehaviour
     private Transform currentItem;
     public Camera mainCam;
 
-    public void PickupItem(Transform item)
+    public void PickupItem(Transform item/* , Vector3 dPos, Vector3 dRot */)
     {
         Rigidbody itemRB = item.GetComponent<Rigidbody>();
         Collider itemCollider = item.GetComponent<Collider>();
@@ -27,8 +27,8 @@ public class itemPickupManager : MonoBehaviour
         item.SetParent(this.transform);
         itemRB.isKinematic = true;
         itemCollider.enabled = false;
-        item.localPosition = Vector3.zero;
-        item.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        item.localPosition = Vector3.zero/*  + dPos */;
+        item.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)/*  + dRot */);
 
         isHolding = true;
         currentItem = item;

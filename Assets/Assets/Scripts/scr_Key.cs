@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class schlüssel_1 : MonoBehaviour, IPickupable
+public class scr_Key : MonoBehaviour, IPickupable
 {
 
     public scr_PlayerMovement playerScript;
 
 
     // Start is called before the first frame update
-    public int schlüsselnummer;
+    public int keyNum;
 
     [Header("Audio")]
 
@@ -25,7 +25,7 @@ public class schlüssel_1 : MonoBehaviour, IPickupable
 
     public bool Pickup()
     {
-        playerScript.currentItem = schlüsselnummer;
+        playerScript.currentItem = keyNum;
         return true;
     }
 
