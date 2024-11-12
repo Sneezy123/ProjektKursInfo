@@ -32,6 +32,8 @@ MonoBehaviour:
     sssCustomSampleBudget: 20
     sssCustomDownsampleSteps: 0
     msaaMode: 1
+    sssResolvedSampleBudget: 0
+    sssResolvedDownsampleSteps: 0
     materialQuality: 0
   m_ObsoleteRenderingPathDefaultBakedOrCustomReflectionFrameSettings:
     bitDatas:
@@ -48,6 +50,8 @@ MonoBehaviour:
     sssCustomSampleBudget: 20
     sssCustomDownsampleSteps: 0
     msaaMode: 1
+    sssResolvedSampleBudget: 0
+    sssResolvedDownsampleSteps: 0
     materialQuality: 0
   m_ObsoleteRenderingPathDefaultRealtimeReflectionFrameSettings:
     bitDatas:
@@ -64,6 +68,8 @@ MonoBehaviour:
     sssCustomSampleBudget: 20
     sssCustomDownsampleSteps: 0
     msaaMode: 1
+    sssResolvedSampleBudget: 0
+    sssResolvedDownsampleSteps: 0
     materialQuality: 0
   m_RenderingPath:
     m_Version: 0
@@ -82,6 +88,8 @@ MonoBehaviour:
       sssCustomSampleBudget: 20
       sssCustomDownsampleSteps: 0
       msaaMode: 1
+      sssResolvedSampleBudget: 0
+      sssResolvedDownsampleSteps: 0
       materialQuality: 0
     m_CustomOrBakedReflection:
       bitDatas:
@@ -98,6 +106,8 @@ MonoBehaviour:
       sssCustomSampleBudget: 20
       sssCustomDownsampleSteps: 0
       msaaMode: 1
+      sssResolvedSampleBudget: 0
+      sssResolvedDownsampleSteps: 0
       materialQuality: 0
     m_RealtimeReflection:
       bitDatas:
@@ -114,8 +124,11 @@ MonoBehaviour:
       sssCustomSampleBudget: 20
       sssCustomDownsampleSteps: 0
       msaaMode: 1
+      sssResolvedSampleBudget: 0
+      sssResolvedDownsampleSteps: 0
       materialQuality: 0
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7, type: 2}
+  m_RenderPipelineEditorResources: {fileID: 1, guid: bf65aa0c6e3e70c4c8b484c4ddac473e, type: 2}
   m_RenderPipelineRayTracingResources: {fileID: 0}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
@@ -158,12 +171,13 @@ MonoBehaviour:
       m_Keys: []
       m_Values: []
     bakingSets: []
+    parentAsset: {fileID: 11400000}
     sceneBounds:
       m_Keys: []
       m_Values: []
     hasProbeVolumes:
       m_Keys: []
-      m_Values: 
+      m_Values: []
   m_Version: 10
   m_ShaderStrippingSetting:
     m_Version: 0
