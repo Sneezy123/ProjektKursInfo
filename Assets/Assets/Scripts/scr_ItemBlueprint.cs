@@ -19,6 +19,7 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     private string itemName;
     private GameObject selectedGameObject;
+    private GameObject holdingGameObject;
     private IPickupable holdingIPickupable;
 
     public float InteractRange = 100;
@@ -26,6 +27,7 @@ public class scr_ItemBlueprint : MonoBehaviour
 
     public scr_PlayerMovement playerScript;
     private itemPickupManager itemPickupManager;
+    public Transform IKTarget;
 
 
 
@@ -50,8 +52,9 @@ public class scr_ItemBlueprint : MonoBehaviour
                 if (!itemPickupManager.isHolding)
                 {
                     holdingIPickupable = pickupObj;
+                    holdingGameObject = selectedGameObject;
                     bool pickupItem = pickupObj.Pickup();
-                    if (pickupItem) itemPickupManager.PickupItem(selectedGameObject.transform);
+                    if (pickupItem) itemPickupManager.PickupItem(holdingGameObject.transform);
                     pickupObj.AfterPickup();
                 }
             }
@@ -67,6 +70,15 @@ public class scr_ItemBlueprint : MonoBehaviour
             if (useDrop) itemPickupManager.DropItem();
             holdingIPickupable.AfterDrop();
             
+        }
+
+        if (itemPickupManager.isHolding)
+        {
+            IKTarget.position = holdingGameObject.transform.position;
+        }
+        else
+        {
+            IKTarget.localPosition = Vector3.zero;
         }
 
 
