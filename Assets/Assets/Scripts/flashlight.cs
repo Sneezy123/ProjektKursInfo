@@ -79,4 +79,6 @@ public class flashlight : MonoBehaviour, IInteractable, IPickupable
 
     public bool Pickup() { return false; }
     public bool Drop() { return false; }
+    public void AfterPickup() {  }
+    public void AfterDrop() {  }
 }

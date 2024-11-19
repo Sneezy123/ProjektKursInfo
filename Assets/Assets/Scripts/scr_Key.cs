@@ -33,4 +33,12 @@ public class scr_Key : MonoBehaviour, IPickupable
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("WhatIsPlayer")) hitGround.Play();
     }
+
+    public void AfterPickup() 
+    { 
+        transform.localRotation = Quaternion.Euler(new Vector3(-5.804f, 93.979f, -20.426f));
+        transform.localPosition = new Vector3(-0.005646795f, 0.0296924f, -0.02867866f);
+    }
+
+    public void AfterDrop() {  }
 }

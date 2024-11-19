@@ -8,6 +8,8 @@ public interface IPickupable
     public void OnCollisionEnter(Collision collision);
     public bool Pickup(); // return determines whether to physically pickup the item
     public bool Drop(); // return determines whether to physically drop the item
+    public void AfterPickup(); // what to do after pickup
+    public void AfterDrop(); // what to do after dropping
 }
 
 

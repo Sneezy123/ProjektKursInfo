@@ -52,6 +52,7 @@ public class scr_ItemBlueprint : MonoBehaviour
                     holdingIPickupable = pickupObj;
                     bool pickupItem = pickupObj.Pickup();
                     if (pickupItem) itemPickupManager.PickupItem(selectedGameObject.transform);
+                    pickupObj.AfterPickup();
                 }
             }
             if (selectedGameObject.TryGetComponent(out IUsable useObj) && playerScript.hit.distance <= InteractRange)
@@ -64,6 +65,7 @@ public class scr_ItemBlueprint : MonoBehaviour
         {
             bool useDrop = holdingIPickupable.Drop();
             if (useDrop) itemPickupManager.DropItem();
+            holdingIPickupable.AfterDrop();
             
         }
 

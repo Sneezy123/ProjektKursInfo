@@ -8,10 +8,10 @@ public class scr_bigbucket : MonoBehaviour, IInteractable
     public int fullness;
     public void Interact()
     {
-        if (fullbucket.isfull && fullness <= 3)
+        if (fullbucket.isFull && fullness <= 3)
         {
             fullness++;
-            fullbucket.isfull = false;
+            fullbucket.isFull = false;
         }
     }
     void Start()
