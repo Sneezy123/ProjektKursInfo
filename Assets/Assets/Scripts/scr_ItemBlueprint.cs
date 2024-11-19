@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 interface IInteractable
 {
@@ -75,10 +76,14 @@ public class scr_ItemBlueprint : MonoBehaviour
         if (itemPickupManager.isHolding)
         {
             IKTarget.position = holdingGameObject.transform.position;
+            IKTarget.rotation = holdingGameObject.transform.rotation;
+            IKTarget.parent.GetComponent<TwoBoneIKConstraint>().weight = 1;
         }
         else
         {
             IKTarget.localPosition = Vector3.zero;
+            IKTarget.localRotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
+            IKTarget.parent.GetComponent<TwoBoneIKConstraint>().weight = 0;
         }
 
 
