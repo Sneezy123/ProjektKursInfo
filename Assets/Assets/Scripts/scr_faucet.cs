@@ -7,9 +7,9 @@ public class scr_faucet : MonoBehaviour, IInteractable
     public scr_bucket bucket;
     public void Interact()
     {
-        if (!bucket.isfull)
+        if (!bucket.isFull)
         {
-            bucket.isfull = true;
+            bucket.isFull = true;
         }
 
     }
