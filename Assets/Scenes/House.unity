@@ -4441,7 +4441,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4474,7 +4474,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -7564,31 +7564,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.26
+      value: -24.697365
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.01
+      value: -3.061
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.66
+      value: -9.243353
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.96683073
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.2554183
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7596,7 +7596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -29.597
       objectReference: {fileID: 0}
     - target: {fileID: 612507082473253912, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -7613,6 +7613,26 @@ PrefabInstance:
     - target: {fileID: 3469428457613289026, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_SpotAngle
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469428457613289026, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469428457613289026, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469428457613289026, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469428457613289026, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 4690
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469428457613289026, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6793644203749614892, guid: 548bb23916a3f469190b4e7cfd4838a8, type: 3}
       propertyPath: m_Enabled

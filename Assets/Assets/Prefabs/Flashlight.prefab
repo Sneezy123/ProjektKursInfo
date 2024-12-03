@@ -77,7 +77,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cc4e5325fbc49de935a550f5007511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashlightTimer: 1000
   turnOn: {fileID: 9182697662059128071}
   turnOff: {fileID: 2305594727430429135}
   hitGround: {fileID: 6793644203749614892}
