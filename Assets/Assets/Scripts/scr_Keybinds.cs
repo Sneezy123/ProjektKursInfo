@@ -25,5 +25,6 @@ public class Keybinds : MonoBehaviour
 
     [Header("User Interface")]
 		public static KeyCode pauseMenu = KeyCode.Escape;
+		public static KeyCode utilMenu = KeyCode.Tab;
 
 }
