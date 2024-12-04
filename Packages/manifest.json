@@ -1,8 +1,21 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Arvtesh",
+      "url": "https://registry.npmjs.org/",
+      "scopes": [
+        "com.unityfx"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.unity.2d.sprite": "1.0.0",
+    "com.unity.ai.navigation": "2.0.4",
+    "com.unity.animation.rigging": "1.3.0",
     "com.unity.cinemachine": "2.10.1",
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.feature.development": "1.0.2",
+    "com.unity.postprocessing": "3.4.0",
     "com.unity.probuilder": "5.2.3",
     "com.unity.timeline": "1.8.6",
     "com.unity.ugui": "2.0.0",
