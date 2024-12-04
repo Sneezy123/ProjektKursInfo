@@ -11,6 +11,7 @@ public class settingsMenu : MonoBehaviour
     private TextMeshProUGUI sensDisplay;
     private Slider sensSlider;
     private TMP_InputField sensTextField;
+
     void Start()
     {
         sensInputPanel = settingsMenuUI.transform.Find("SensInputPanel").gameObject;
@@ -25,17 +26,17 @@ public class settingsMenu : MonoBehaviour
         if (settingsMenuUI.activeSelf == true)
         {
             pauseMenu.menuOpen = true;
+            pauseMenu.pauseMenuOpen = true;
             pauseMenu.gamePaused = true;
-            Time.timeScale = 0f;
         }
     }
 
     public void CloseMenu()
     {
         settingsMenuUI.SetActive(false);
-        Time.timeScale = 1f;
         pauseMenu.gamePaused = false;
         pauseMenu.menuOpen = false;
+        pauseMenu.pauseMenuOpen = false;
     }
 
     public void changeSensSlider(float newSens)
