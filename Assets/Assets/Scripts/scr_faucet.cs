@@ -12,6 +12,13 @@ public class scr_faucet : MonoBehaviour, IInteractable
             bucket.isFull = true;
         }
 
+        /* 
+            Play animation in the bucket (Like a cylinder that grows up)
+            Play sound of water filling the bucket
+            Play faucet sound
+            Play faucet animation
+         */
+
     }
 
     void Start()
@@ -24,4 +31,6 @@ public class scr_faucet : MonoBehaviour, IInteractable
     {
         
     }
+
+    /*  */
 }
