@@ -7,7 +7,7 @@ public class doorMechanics : MonoBehaviour, IInteractable
     private Animator tuerAnim;
     private bool tueroffen = false;
 
-    private bool isLocked = true;
+    private bool isLocked = false;
 
     [Header("Audio")]
     public AudioSource doorOpen;
