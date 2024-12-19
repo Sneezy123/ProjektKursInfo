@@ -80,7 +80,7 @@ public class scr_PlayerMovement : MonoBehaviour
 
     private Collider[] hitColliders;
 
-    public int currentItem;
+    public static int currentItem = 0;
 
     private void Start()
     {

@@ -10,11 +10,13 @@ public class scr_screwdriverplus : MonoBehaviour, IPickupable
 
     public bool Drop()
     {
+        scr_PlayerMovement.currentItem = 0;
         return true; // That means that the item will be dropped physically!
     }
 
     public bool Pickup()
     {
+        
         return true;
     }
 
@@ -27,6 +29,7 @@ public class scr_screwdriverplus : MonoBehaviour, IPickupable
     {
         transform.localRotation = Quaternion.Euler(new Vector3(-81.575f, -107.379f, 113.948f));
         transform.localPosition = new Vector3(0.047f, -0.164f, 0.012f);
+        scr_PlayerMovement.currentItem = 69420;
     }
 
 
