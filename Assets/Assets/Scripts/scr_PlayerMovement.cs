@@ -275,4 +275,8 @@ public class scr_PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
+    public void drainStaminaForScare(float newValue)
+    {
+        currentStamina = newValue;
+    }
 }
