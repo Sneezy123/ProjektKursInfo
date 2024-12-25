@@ -9,6 +9,7 @@ public class keypaddoorMechanics : MonoBehaviour, IInteractable
 
     public bool isLocked = true;
 
+
     [Header("Audio")]
     public AudioSource doorOpen;
     public AudioSource doorClose;

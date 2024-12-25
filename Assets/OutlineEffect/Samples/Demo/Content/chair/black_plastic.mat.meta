@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 110c4631f21b8ba4d97979ac2b1b108c
+timeCreated: 1485093114
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/chair/black_plastic.mat
+  uploadId: 394414
