@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5ad926ab5ff9d914ea1f6812dfd6f07a
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/OutlineEffect.asmdef
+  uploadId: 394414

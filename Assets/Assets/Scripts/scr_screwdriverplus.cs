@@ -27,8 +27,8 @@ public class scr_screwdriverplus : MonoBehaviour, IPickupable
 
     public void AfterPickup()
     {
-        transform.localRotation = Quaternion.Euler(new Vector3(-81.575f, -107.379f, 113.948f));
-        transform.localPosition = new Vector3(0.047f, -0.164f, 0.012f);
+        transform.localRotation = Quaternion.Euler(new Vector3(-112f, 42.1f, -32f));
+        transform.localPosition = new Vector3(0.1f, -0.06f, 0.19f);
         scr_PlayerMovement.currentItem = 69420;
     }
 
