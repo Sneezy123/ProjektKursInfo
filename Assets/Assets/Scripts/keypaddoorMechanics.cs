@@ -16,7 +16,7 @@ public class keypaddoorMechanics : MonoBehaviour, IInteractable
     public AudioSource doorLocked;
     
     private void Start(){
-    tuerAnim = gameObject.GetComponent<Animator>();
+    tuerAnim = transform.parent.GetComponent<Animator>();
 
     }
 
