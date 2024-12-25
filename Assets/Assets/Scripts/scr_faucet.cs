@@ -5,11 +5,9 @@ using UnityEngine;
 public class scr_faucet : MonoBehaviour, IInteractable
 {
     public scr_bucket bucket;
-
-
     public void Interact()
     {
-        if (!bucket.isFull && scr_PlayerMovement.currentItem == 187)
+        if (!bucket.isFull)
         {
             bucket.isFull = true;
         }

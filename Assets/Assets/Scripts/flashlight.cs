@@ -14,6 +14,7 @@ public class flashlight : MonoBehaviour, IInteractable, IPickupable
     public int flashlightTimer = 1000;
     
     public Transform LeftIKTarget;
+    public GameObject body;
 
     [Header("Audio")]
 
@@ -73,12 +74,14 @@ public class flashlight : MonoBehaviour, IInteractable, IPickupable
             LeftIKTarget.position = transform.position;
             LeftIKTarget.rotation = transform.rotation;
             LeftIKTarget.parent.GetComponent<TwoBoneIKConstraint>().weight = 1;
+            body.SetActive(false);
         }
         else
         {
             LeftIKTarget.localPosition = Vector3.zero;
             LeftIKTarget.localRotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
             LeftIKTarget.parent.GetComponent<TwoBoneIKConstraint>().weight = 0;
+            body.SetActive(true);
         }
 
     }

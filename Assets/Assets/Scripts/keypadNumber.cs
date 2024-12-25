@@ -7,8 +7,6 @@ public class keypadNumber : MonoBehaviour, IInteractable
     public int number;
     private KeypadManager manager;
     // Start is called before the first frame update
-
-
     void Start()
     {
         manager = transform.parent.GetComponent<KeypadManager>();
