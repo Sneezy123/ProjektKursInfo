@@ -25011,6 +25011,8 @@ GameObject:
   - component: {fileID: 1712549766178424896}
   - component: {fileID: 5962209507807222483}
   - component: {fileID: 4138192427713141888}
+  - component: {fileID: 5034153518386260212}
+  - component: {fileID: 5214911356615089623}
   m_Layer: 0
   m_Name: mod_room6_3cabinetDrawer2
   m_TagString: Untagged
@@ -25026,12 +25028,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5747787927352445531}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.13794994, w: 0.9904392}
-  m_LocalPosition: {x: 0.0027783036, y: 0.0064330576, z: 0.00015509069}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1062402851938556717}
+  m_Father: {fileID: 9033258310533336816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1712549766178424896
 MeshFilter:
@@ -25108,6 +25110,46 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2387225887443411193, guid: 8baec4b2804e24194bff9f57f064ea0c, type: 3}
+--- !u!114 &5034153518386260212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747787927352445531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0061006b8b281c642ad77d3d0d963cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  showOutline: 1
+  doorOpen: {fileID: 0}
+  doorClose: {fileID: 0}
+  doorLocked: {fileID: 0}
+  playerScript: {fileID: 0}
+--- !u!95 &5214911356615089623
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747787927352445531}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3714f5ea8b9804a3d95c301bd69d7a3e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5752733612957932740
 GameObject:
   m_ObjectHideFlags: 0
@@ -30986,6 +31028,38 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 742961372947067529, guid: 8baec4b2804e24194bff9f57f064ea0c, type: 3}
+--- !u!1 &6952930960827107025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9033258310533336816}
+  m_Layer: 0
+  m_Name: Rotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9033258310533336816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952930960827107025}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.13794994, w: 0.9904392}
+  m_LocalPosition: {x: 0.0027783029, y: 0.0064330515, z: 0.00015509069}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6772649473195040428}
+  m_Father: {fileID: 1062402851938556717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6956516087127639708
 GameObject:
   m_ObjectHideFlags: 0
@@ -34075,7 +34149,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2260250131291561708}
-  - {fileID: 6772649473195040428}
+  - {fileID: 9033258310533336816}
   - {fileID: 1314896935266541253}
   - {fileID: 8142799843053812945}
   m_Father: {fileID: 695892873191227285}

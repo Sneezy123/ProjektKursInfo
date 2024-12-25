@@ -11808,6 +11808,14 @@ PrefabInstance:
       propertyPath: hitGround
       value: 
       objectReference: {fileID: 1149973399}
+    - target: {fileID: 5034153518386260212, guid: 08fea06d56c3048aaa3a16253c3fe59e, type: 3}
+      propertyPath: doorOpen
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034153518386260212, guid: 08fea06d56c3048aaa3a16253c3fe59e, type: 3}
+      propertyPath: playerScript
+      value: 
+      objectReference: {fileID: 60198260}
     m_RemovedComponents:
     - {fileID: 3401449454737002153, guid: 08fea06d56c3048aaa3a16253c3fe59e, type: 3}
     - {fileID: 8249492007233850470, guid: 08fea06d56c3048aaa3a16253c3fe59e, type: 3}
