@@ -8,6 +8,7 @@ public class CarInteract : MonoBehaviour, IInteractable
     private bool isCarDoorOpen = false;
     private bool isTrunkDoorOpen = false;
 
+
     [Header("Audio")]
 
     public AudioSource carDoorOpen;

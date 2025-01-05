@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 679bf00aa6eb6464ebdaae3778b20b62
+timeCreated: 1488934365
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/at.mat
+  uploadId: 394414

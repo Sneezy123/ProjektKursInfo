@@ -5,7 +5,7 @@ using UnityEngine;
 public class scr_Key : MonoBehaviour, IPickupable
 {
 
-    public scr_PlayerMovement playerScript;
+ 
 
 
     // Start is called before the first frame update
@@ -18,14 +18,14 @@ public class scr_Key : MonoBehaviour, IPickupable
     
     public bool Drop()
     {
-        playerScript.currentItem = 0;
+        scr_PlayerMovement.currentItem = 0;
 
         return true; // That means that the item will be dropped physically!
     }
 
     public bool Pickup()
     {
-        playerScript.currentItem = keyNum;
+        scr_PlayerMovement.currentItem = keyNum;
         return true;
     }
 

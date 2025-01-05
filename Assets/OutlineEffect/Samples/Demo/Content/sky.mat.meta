@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 20ac443f139e31f4fb528348875a2fd5
+timeCreated: 1485095367
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/sky.mat
+  uploadId: 394414

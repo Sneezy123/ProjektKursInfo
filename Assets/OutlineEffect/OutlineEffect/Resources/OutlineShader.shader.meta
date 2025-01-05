@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3c30d1a2a85b9d4499dfc9ebea9ade8b
+timeCreated: 1427406003
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/OutlineEffect/Resources/OutlineShader.shader
+  uploadId: 394414

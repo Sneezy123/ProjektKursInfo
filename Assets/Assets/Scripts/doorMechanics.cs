@@ -7,7 +7,9 @@ public class doorMechanics : MonoBehaviour, IInteractable
     private Animator tuerAnim;
     private bool tueroffen = false;
 
-    private bool isLocked = true;
+    public bool isLocked = true;
+    public bool showOutline = true;
+
 
     [Header("Audio")]
     public AudioSource doorOpen;
@@ -15,20 +17,26 @@ public class doorMechanics : MonoBehaviour, IInteractable
     public AudioSource doorLocked;
 
     public scr_PlayerMovement playerScript;
+    
     private void Start()
     {
-        tuerAnim = gameObject.GetComponent<Animator>();
+        tuerAnim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (!showOutline && GetComponent<cakeslice.Outline>() != null)
+        {
+            GetComponent<cakeslice.Outline>().eraseRenderer = true;
+        }
+        else if (showOutline && GetComponent<cakeslice.Outline>() != null)
+        {
+            GetComponent<cakeslice.Outline>().eraseRenderer = false;
+        }
     }
 
     public void Interact()
     {
-        if (playerScript.currentItem == 1)
-        {
-            isLocked = false;
-        }
-
-
-
         if (!isLocked)
         {
             if (!tueroffen && tuerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !tuerAnim.IsInTransition(0))

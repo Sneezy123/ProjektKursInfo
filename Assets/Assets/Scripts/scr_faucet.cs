@@ -5,12 +5,21 @@ using UnityEngine;
 public class scr_faucet : MonoBehaviour, IInteractable
 {
     public scr_bucket bucket;
+
+
     public void Interact()
     {
-        if (!bucket.isFull)
+        if (!bucket.isFull && scr_PlayerMovement.currentItem == 187)
         {
             bucket.isFull = true;
         }
+
+        /* 
+            Play animation in the bucket (Like a cylinder that grows up)
+            Play sound of water filling the bucket
+            Play faucet sound
+            Play faucet animation
+         */
 
     }
 
@@ -24,4 +33,6 @@ public class scr_faucet : MonoBehaviour, IInteractable
     {
         
     }
+
+    /*  */
 }

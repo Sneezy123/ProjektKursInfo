@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 82ad4c9ee43b58549ac4d1fa154e9527
+timeCreated: 1485093114
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/chair/chrome.mat
+  uploadId: 394414

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 261050824133e6348b9d65656f6d71ab
+timeCreated: 1485093114
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/chair/wheel.mat
+  uploadId: 394414
