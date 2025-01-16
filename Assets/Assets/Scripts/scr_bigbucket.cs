@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class scr_bigbucket : MonoBehaviour, IInteractable
 {
-    public scr_bucket fullbucket;
-    public int fullness;
+    public scr_bucket bucket;
+    public int barrelFullness;
     public void Interact()
     {
-        if (fullbucket.isFull && fullness <= 3)
+        if (bucket.isFull && barrelFullness <= 3)
         {
-            fullness++;
-            fullbucket.isFull = false;
+            barrelFullness++;
+            bucket.isFull = false;
         }
+
+        /* 
+            Play animation for each new fill state (Like a cylinder that grows up)
+         */
     }
     void Start()
     {
