@@ -9,13 +9,14 @@ public class keypaddoorMechanics : MonoBehaviour, IInteractable
 
     public bool isLocked = true;
 
+
     [Header("Audio")]
     public AudioSource doorOpen;
     public AudioSource doorClose;
     public AudioSource doorLocked;
     
     private void Start(){
-    tuerAnim = gameObject.GetComponent<Animator>();
+        tuerAnim = transform.parent.GetComponent<Animator>();
 
     }
 
@@ -36,7 +37,10 @@ public class keypaddoorMechanics : MonoBehaviour, IInteractable
                 tuerAnim.Play("tuerSchliessenAnimation", 0, 0.0f);
                 tueroffen = false;
                 doorClose.Play();
+                Debug.Log("Now locking door");
                 isLocked = true;
+                Debug.Log("Door locked");
+                
             }
         }
         else

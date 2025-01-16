@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using cakeslice;
 using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
@@ -10,7 +11,7 @@ public class Crosshair : MonoBehaviour
     Image image;
     Color imgColor;
     public Color interactingColor;
-    private Outline interactingOutline;
+    private cakeslice.Outline interactingOutline;
     private GameObject interactedObj;
 
     void Start()
@@ -28,12 +29,10 @@ public class Crosshair : MonoBehaviour
             interactedObj = playerScript.hit.transform.gameObject;
 
             // Outline Object
-            if (!interactedObj.GetComponent<Outline>())
+            if (!interactedObj.GetComponent<cakeslice.Outline>())
             {
-                interactingOutline = interactedObj.AddComponent<Outline>();
-                interactingOutline.OutlineMode = Outline.Mode.OutlineAll;
-                interactingOutline.OutlineColor = Color.green;
-                interactingOutline.OutlineWidth = 3f;
+                interactingOutline = interactedObj.AddComponent<cakeslice.Outline>();
+                interactingOutline.color = 1; // 1 is green
             }
         }
         else if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IInteractable interactObj) && playerScript.hit.distance <= itemBlueprintScript.InteractRange)
@@ -43,12 +42,10 @@ public class Crosshair : MonoBehaviour
             interactedObj = playerScript.hit.transform.gameObject;
 
             // Outline Object
-            if (!interactedObj.GetComponent<Outline>())
+            if (!interactedObj.GetComponent<cakeslice.Outline>())
             {
-                interactingOutline = interactedObj.AddComponent<Outline>();
-                interactingOutline.OutlineMode = Outline.Mode.OutlineAll;
-                interactingOutline.OutlineColor = Color.white;
-                interactingOutline.OutlineWidth = 3f;
+                interactingOutline = interactedObj.AddComponent<cakeslice.Outline>();
+                interactingOutline.color = 2; // 2 is white
             }
         }
         else if (playerScript.hit.transform != null && playerScript.hit.transform.gameObject.TryGetComponent(out IUsable useObj) && playerScript.hit.distance <= itemBlueprintScript.InteractRange)
@@ -58,12 +55,10 @@ public class Crosshair : MonoBehaviour
             interactedObj = playerScript.hit.transform.gameObject;
 
             // Outline Object
-            if (!interactedObj.GetComponent<Outline>())
+            if (!interactedObj.GetComponent<cakeslice.Outline>())
             {
-                interactingOutline = interactedObj.AddComponent<Outline>();
-                interactingOutline.OutlineMode = Outline.Mode.OutlineAll;
-                interactingOutline.OutlineColor = Color.red;
-                interactingOutline.OutlineWidth = 3f;
+                interactingOutline = interactedObj.AddComponent<cakeslice.Outline>();
+                interactingOutline.color = 0; // 0 is red
             }
         }
         else
@@ -72,9 +67,9 @@ public class Crosshair : MonoBehaviour
             scr_ItemBlueprint.canInteract = false;
 
             // Remove Outline
-            if (interactedObj != null && interactedObj.GetComponent<Outline>())
+            if (interactedObj != null && interactedObj.GetComponent<cakeslice.Outline>())
             {
-                Destroy(interactedObj.GetComponent<Outline>());
+                Destroy(interactedObj.GetComponent<cakeslice.Outline>());
             }
         }
 

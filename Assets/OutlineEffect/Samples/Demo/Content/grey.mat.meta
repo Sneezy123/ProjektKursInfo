@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 946d1ad9b3de9de459884e935ee7db82
+timeCreated: 1458246088
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/grey.mat
+  uploadId: 394414

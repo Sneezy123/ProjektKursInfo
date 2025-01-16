@@ -121,7 +121,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3631408179868125382}
   - component: {fileID: 6047183584358837174}
-  - component: {fileID: 6345099273770255115}
   - component: {fileID: 5019438801410467970}
   m_Layer: 0
   m_Name: Outline Camera
@@ -196,19 +195,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &6345099273770255115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4589716528129115552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503e6c8c5a60c47ca9240d982032b261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originalCamera: {fileID: 4480948568362086984}
 --- !u!114 &5019438801410467970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +572,6 @@ GameObject:
   - component: {fileID: 7083220742093714331}
   - component: {fileID: 7942586089884498264}
   - component: {fileID: 1328593861561533613}
-  - component: {fileID: 1232407506686309580}
   - component: {fileID: 2797588237350495883}
   m_Layer: 7
   m_Name: Player
@@ -657,8 +642,6 @@ MonoBehaviour:
   groundDrag: 0
   crouchYScale: 0.7
   getWiderWhenCrouching: 0
-  sprintKey: 304
-  crouchKey: 306
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -686,19 +669,6 @@ MonoBehaviour:
   restricted: 0
   hitObject: {fileID: 0}
   staminaSlider: {fileID: 0}
-  currentItem: 0
---- !u!114 &1232407506686309580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093819331560719155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5096ceac2c24c32acc3ad8a8f83493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2797588237350495883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1059,10 @@ PrefabInstance:
     - target: {fileID: -4501201811031430588, guid: edfcae060664f4e47a6ddb78e15a5d4c, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4396642182433536433, guid: edfcae060664f4e47a6ddb78e15a5d4c, type: 3}
+      propertyPath: m_CastShadows
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4192491875905271157, guid: edfcae060664f4e47a6ddb78e15a5d4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

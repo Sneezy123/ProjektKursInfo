@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class runtimeManager : MonoBehaviour
-
 {
+
+    public static List<string> alreadyCompletedPuzzlesList = new List<string>();
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -34,6 +36,15 @@ public class runtimeManager : MonoBehaviour
         {
             AudioListener.pause = false;
             Time.timeScale = 1f;
+        }
+    }
+
+    public static void CompletePuzzle(string puzzleName)
+    {
+        Debug.Log("Puzzle " + puzzleName + " completed!");
+        if (!alreadyCompletedPuzzlesList.Contains(puzzleName))
+        {
+            alreadyCompletedPuzzlesList.Add(puzzleName);
         }
     }
 }

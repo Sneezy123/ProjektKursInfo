@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 700717ea22f7419488d7ace817adfa25
+timeCreated: 1485093114
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/chair/brushed_steel.mat
+  uploadId: 394414

@@ -29,7 +29,6 @@ public class scr_ItemBlueprint : MonoBehaviour
     public scr_PlayerMovement playerScript;
     private itemPickupManager itemPickupManager;
     public Transform RightIKTarget;
-    public GameObject body;
 
 
 
@@ -79,14 +78,12 @@ public class scr_ItemBlueprint : MonoBehaviour
             RightIKTarget.position = holdingGameObject.transform.position;
             RightIKTarget.rotation = holdingGameObject.transform.rotation;
             RightIKTarget.parent.GetComponent<TwoBoneIKConstraint>().weight = 1;
-            body.SetActive(false);
         }
         else
         {
             RightIKTarget.localPosition = Vector3.zero;
             RightIKTarget.localRotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
             RightIKTarget.parent.GetComponent<TwoBoneIKConstraint>().weight = 0;
-            body.SetActive(true);
         }
 
 

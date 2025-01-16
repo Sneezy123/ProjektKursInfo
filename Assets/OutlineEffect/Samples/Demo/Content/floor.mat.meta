@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8a6f048b0027f9549ae1a03dec0e33dd
+timeCreated: 1485099846
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78608
+  packageName: Outline Effect
+  packageVersion: 2.1
+  assetPath: Assets/OutlineEffect/Samples/Demo/Content/floor.mat
+  uploadId: 394414
