@@ -38,5 +38,9 @@ public class scr_AnimationController : MonoBehaviour
         // Handle direction
         animator.SetFloat("direction", Mathf.Rad2Deg * Mathf.Atan2(playMovement.localMoveDirection.z, playMovement.localMoveDirection.x) + 91f);
                 
+       /*  if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0)  && animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|Getting Up"))
+        {
+            playMovement.SetMovementState(scr_PlayerMovement.MovementState.freeze);
+        } */
     }
 }
