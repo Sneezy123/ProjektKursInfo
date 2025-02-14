@@ -72,6 +72,8 @@ public class scr_PlayerMovement : MonoBehaviour
     [HideInInspector] public bool freeze;
     [HideInInspector] public bool unlimited;
     [HideInInspector] public bool restricted;
+    [HideInInspector] public static bool canChangeState = true;
+
 
     public RaycastHit hit;
     public GameObject hitObject;
@@ -119,6 +121,26 @@ public class scr_PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+    }
+
+    public MovementState GetMovementState()
+    {
+        return state;
+    }
+
+    public void SetMovementState(MovementState movementState)
+    {
+        state = movementState;
+    }
+
+    public void FreezeState()
+    {
+        state = MovementState.freeze;
+    }
+
+    public void WalkState()
+    {
+        state = MovementState.walking;
     }
 
     private void MyInput()
@@ -178,7 +200,7 @@ public class scr_PlayerMovement : MonoBehaviour
                 state = MovementState.crouching;
                 desiredMoveSpeed = walkSpeed * 0.6f;
             }
-            else
+            else if (canChangeState)
             {
                 state = MovementState.walking;
                 desiredMoveSpeed = walkSpeed;
